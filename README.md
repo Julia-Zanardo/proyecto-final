@@ -11,6 +11,7 @@ ingredientes, moldes, sabores y decoraciones.
 
 Las tecnologías a utilizar son: C#, Visual studio 2026, monogame y .NET.
 
+```bash
 Cómo Compilar y Ejecutar: 
 cd "C:\Local Development\Sandbox\JulpajulparaisoPasteleria"
 git add .
@@ -18,5 +19,5 @@ git commit -m "Inicialización de proyecto MonoGame"
 git remote add origin https://github.com/Julia-Zanardo/proyecto-final.git
 git branch -M main
 git push -u origin main
-
+```
 Estado Actual del Proyecto: Configuracion inicial y estructura del proyecto.
