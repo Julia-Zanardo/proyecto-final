@@ -1,5 +1,5 @@
 ## JULPAJULPARAISO PASTELERIA
-Integrantes del proyecto: Julia Garcia Cruz Zanardo.
+Integrante del proyecto: Julia Garcia Cruz Zanardo.
 
 En este proyecto se desarrollará Julpajulparaiso, un videojuego de simulación y gestión de tiempo en 2D
 ambientado en una pastelería. El jugador asumirá el rol de un repostero encargado de atender clientes y preparar
