@@ -8,14 +8,3 @@ obj/
 *.sln.docstates
 TestResults/
 *.log
-.DS_Store
-.vs/
-bin/
-obj/
-*.user
-*.suo
-*.rsuser
-*.userosscache
-*.sln.docstates
-TestResults/
-*.log 
