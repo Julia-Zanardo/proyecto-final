@@ -40,4 +40,4 @@ dotnet run
 Estado Actual del Proyecto: Configuracion inicial y estructura del proyecto.
 
 **Enlace a la wiki del proyecto:** 
-[Ver la propuesta del proyecto](https://github.com/Julia-Zanardo/proyecto-final/wiki)
+[Ver la propuesta del proyecto](https://github.com/Julia-Zanardo/proyecto-final/wiki/Propuesta-del-Proyecto-%E2%80%90-Julpajulparaiso-Pasteleria)
