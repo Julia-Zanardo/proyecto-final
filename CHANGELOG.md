@@ -7,6 +7,7 @@ Registro de cambios
 -  Carga e integración de las imágenes y fondos de cada estación en el pipeline de contenido de MonoGame (`Content.mgcb`).  
 -  Creación de las clases principales y enums.
 ## [0.0.1] - 2026-07-14
+### Corregido
 - Reorganización del README.
 - Corrección de como compilar en el README.
 - Corrección del CHANGELOG 
