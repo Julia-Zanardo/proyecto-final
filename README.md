@@ -17,7 +17,7 @@ El programa se va a desarrollar en lenguaje C# versión 12.0 bajo la plataforma 
 Requisitos Previos
 
 Antes de empezar, asegurate de tener instalado lo siguiente en tu sistema:
-* **SDK de .NET 9.0 (x64)** - [Descargar desde el sitio oficial de Microsoft](https://dotnet.microsoft.com/es-es/download/dotnet/9.0) (Fijate de instalar el **SDK**).
+* **SDK de .NET 8.0 (x64)** - [Descargar desde el sitio oficial de Microsoft](https://dotnet.microsoft.com/es-es/download/dotnet/8.0) (Fijate de instalar el **SDK**).
 * **Visual Studio 2022 o posterior** con la carga de trabajo **"Desarrollo de escritorio de .NET"** activa.
 * **Git** instalado en tu sistema.
 
