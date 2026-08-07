@@ -1,4 +1,4 @@
-## Juljulparaiso Pasteleria
+## Julpajulparaiso Pasteleria
 Nombre del juego: Julpajulparaiso Pasteleria.  
 Integrante del proyecto: Julia Garcia Cruz Zanardo.
 
