@@ -11,7 +11,7 @@ completar los pedidos con rapidez y precisión para obtener una mayor puntuació
 partida avanzará a lo largo de diferentes días de trabajo, incorporando nuevos desafíos mediante el desbloqueo de
 ingredientes, moldes, sabores y decoraciones.
 
-El programa se va a desarrollar en lenguaje C# versión 12.0 bajo la plataforma .NET versión 9.0, utilizando el entorno de desarrollo integrado Visual Studio 2026 y el framework de desarrollo de videojuegos MonoGame DesktopGL versión 3.8.4.1. Asimismo, para la gestión de la persistencia de datos y el guardado del progreso se utilizará un motor de base de datos relacional local integrado mediante SQLite. La comunicación con la base de datos se realizará de manera directa mediante sentencias SQL nativas utilizando el conector relacional nativo de ADO.NET, lo que permitirá un control preciso sobre las consultas y la estructura de almacenamiento.
+El programa se va a desarrollar en lenguaje C# versión 12.0 bajo la plataforma .NET versión 9.0, utilizando el entorno de desarrollo integrado Visual Studio 2026 y el framework de desarrollo de videojuegos MonoGame DesktopGL versión 3.8.4.1. Asimismo, para la gestión de la persistencia de datos y el guardado del progreso se utilizará un motor de base de datos relacional local que se integrará posteriormente mediante SQLite. La comunicación con la base de datos se realizará de manera directa mediante sentencias SQL nativas utilizando el conector relacional nativo de ADO.NET, lo que permitirá un control preciso sobre las consultas y la estructura de almacenamiento.
 
 **Cómo Compilar y Ejecutar**  
 Requisitos Previos
