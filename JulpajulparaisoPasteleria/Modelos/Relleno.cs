@@ -10,7 +10,6 @@ namespace JulpajulparaisoPasteleria.Modelos
     public class Relleno
     {
         private SaborRelleno Sabor { get; set; }
-        private float Precio { get; set; } = 5000f;
         private float Cantidad { get; set; } = 200f;
     }
 }

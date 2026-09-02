@@ -1,4 +1,5 @@
-﻿using JulpajulparaisoPasteleria.Enumeradores;
+﻿using JulpajulparaisoPasteleria.Content.Objetos;
+using JulpajulparaisoPasteleria.Enumeradores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace JulpajulparaisoPasteleria.Modelos
         {
             Bizcochuelos = new Bizcochuelo[2];
         }
-        public Bizcochuelo[] Bizcochuelos { get; set; }
-        public Relleno Relleno { get; set; }
-        public Cobertura Cobertura { get; set; }
-        public List<Topping> Decoracion { get; set; } = new List<Topping>();
-        public FormaBizcochuelo FormaBizcochuelo { get; set; }
+        public Bizcochuelo[] Bizcochuelos { get; private set; }
+        public Relleno Relleno { get; private set; }
+        public Cobertura Cobertura { get; private set; }
+        public List<Topping> Decoracion { get; private set;     } = new List<Topping>();
+        public FormaBizcochuelo FormaBizcochuelo { get; private set; }
 
         public void AgregarTopping(Topping topping)
         {

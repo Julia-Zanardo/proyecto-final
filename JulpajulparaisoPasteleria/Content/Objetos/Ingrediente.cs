@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Text;
 using System.Threading.Tasks;
-namespace JulpajulparaisoPasteleria.Content
+namespace JulpajulparaisoPasteleria.Content.Objetos
 {
     public class Ingrediente
     {

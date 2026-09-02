@@ -1,6 +1,6 @@
 ﻿using JulpajulparaisoPasteleria.Content;
 using JulpajulparaisoPasteleria.Enumeradores;
-using JulpajulparaisoPasteleria.Modelos.Estaciones;
+using JulpajulparaisoPasteleria.Content.Estaciones;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

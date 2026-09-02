@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace JulpajulparaisoPasteleria.Modelos.Estaciones
+namespace JulpajulparaisoPasteleria.Content.Estaciones
 {
     public class EstacionDeOrdenes : Estacion
     {

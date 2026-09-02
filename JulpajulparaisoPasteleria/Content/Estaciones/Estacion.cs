@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Modelos.Estaciones
+namespace JulpajulparaisoPasteleria.Content.Estaciones
 {
     public abstract class Estacion
     {

@@ -4,7 +4,7 @@ namespace JulpajulparaisoPasteleria.Modelos
 {
     public class Cobertura
     {
-        private float Precio { get; set; } = 5000f;
-        private TipoCobertura Tipo { get; set; }
+        public float Precio {  get; private set; } = 5000f;
+        public TipoCobertura Tipo {  get; private set; }
     }
 }

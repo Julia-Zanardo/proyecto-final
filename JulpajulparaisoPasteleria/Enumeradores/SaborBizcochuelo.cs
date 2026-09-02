@@ -2,7 +2,7 @@
 {
     public enum SaborBizcochuelo
     {
-        Vainilla,
+        CarameloVainilla,
         Chocolate,
         Frutilla,
         Limon

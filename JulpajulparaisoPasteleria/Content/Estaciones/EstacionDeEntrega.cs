@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Modelos.Estaciones
+namespace JulpajulparaisoPasteleria.Content.Estaciones
 {
-    public class EstacionDeHorneado : Estacion
+    public class EstacionDeEntrega : Estacion
     {
         public override void LoadContent(ContentManager content)
         {
-            Fondo = content.Load<Texture2D>("Fondos/EstacionHorneado");
+            Fondo = content.Load<Texture2D>("Fondos/EstacionDeEntrega");
         }
         public override void Update(GameTime gameTime)
         {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using JulpajulparaisoPasteleria.Enumeradores;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-namespace JulpajulparaisoPasteleria.Content
+namespace JulpajulparaisoPasteleria.Content.Objetos
 {
     public class Decoracion : Ingrediente
     {
