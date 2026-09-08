@@ -28,7 +28,7 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
         public override void LoadContent(ContentManager content)
         {
             
-            base.Fondo = content.Load<Texture2D>("Fondos/EstacionMezcla");
+            base.Fondo = content.Load<Texture2D>("imagenes/Fondos/EstacionMezcla");
             texturaCarameloVainilla = content.Load<Texture2D>("imagenes/Objetos/BotonCarameloVainilla");
            // Texture2D texturaTazon = content.Load<Texture2D>("Tazon/TazonVacio");
            // texturaBotonSiguiente = content.Load<Texture2D>("Botones/botonSiguiente");

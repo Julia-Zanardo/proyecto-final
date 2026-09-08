@@ -13,7 +13,7 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
     {
         public override void LoadContent(ContentManager content)
         {
-            Fondo = content.Load<Texture2D>("Fondos/EstacionDecoracion");
+            Fondo = content.Load<Texture2D>("imagenes/Fondos/EstacionDecoracion");
         }
         public override void Update(GameTime gameTime)
         {

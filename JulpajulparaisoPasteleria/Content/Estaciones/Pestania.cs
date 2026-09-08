@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 namespace JulpajulparaisoPasteleria.Content.Estaciones
 {
     public class Pestania
@@ -15,10 +16,5 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
         {
             return area.Contains(posicionMouse);
         }
-        public void ActualizarArea(Rectangle nuevaArea)
-        {
-            this.area = nuevaArea;
-        }
-
     }
 }
