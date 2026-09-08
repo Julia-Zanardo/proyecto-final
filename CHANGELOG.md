@@ -1,4 +1,8 @@
 Registro de cambios
+## [0.1.3] - 2026-09-02
+### Agregado
+-  Creacion de las clases tazon, botonBase, botonSiguiente y botonSabor.
+-  implementacion de la logica de estacion de mezcla.
 ## [0.1.2] - 2026-08-07
 ### Agregado
 -  Sistema de pestañas interactivas en la parte inferior para cambiar en tiempo real entre las 5 estaciones del juego.
