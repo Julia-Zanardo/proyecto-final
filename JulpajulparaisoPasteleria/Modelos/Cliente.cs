@@ -1,4 +1,7 @@
-﻿using System;
+﻿using JulpajulparaisoPasteleria.Content;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,29 +11,42 @@ namespace JulpajulparaisoPasteleria.Modelos
 {
     public class Cliente
     {
-        public int Id { get; private set; }
-        public string Nombre { get; private set; }
-        public Ticket Ticket { get; private set; }
-        public float Paciencia { get; private set; }
-        public float PacienciaMax { get; private set; }
-        public Cliente(int id, String nombre, Ticket ticket, float paciencia)
+        private Vector2 posicion;
+        private float escala;
+        private Animacion animacion;
+        private Vector2 destino;
+        private int velocidad;
+        private Texture2D textura;
+        private bool estaCaminando;
+        public Cliente(Texture2D textura, Vector2 posicion, Vector2 destino)
         {
-            Id = id;
-            Nombre = nombre;
-            Ticket = ticket;
-            Paciencia = paciencia;
+            this.textura = textura;
+            animacion = new Animacion(textura, 12);
+            this.posicion = posicion;
+            this.destino = destino;
+            velocidad = 2;
+            escala = 6.0f;
         }
-        public void ReducirPaciencia(float tiempoTranscurrido)
+        public void Actualizar(GameTime tiempo)
         {
-            Paciencia -= tiempoTranscurrido;
-            if (Paciencia < 0)
+                
+                Vector2 distancia = destino - posicion;
+                float distanciaTotal = distancia.Length();
+            if (distanciaTotal > 1)
             {
-                Paciencia = 0;
+                Vector2 direccion = Vector2.Normalize(distancia);
+                posicion += direccion * velocidad;
+                estaCaminando = true;
+                animacion.Actualizar(tiempo);
+            }
+            else
+            {
+                estaCaminando = false;
             }
         }
-        public bool EstaEnojado()
+        public void Dibujar(SpriteBatch spriteBatch)
         {
-            return Paciencia <= 0;
+            animacion.Dibujar(spriteBatch, posicion, escala);
         }
     }
 }
