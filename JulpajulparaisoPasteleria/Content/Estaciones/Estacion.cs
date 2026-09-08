@@ -14,8 +14,12 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
         protected Texture2D Fondo;
         public bool EsActiva { set; get; }
         public abstract void LoadContent(ContentManager content);
-        public abstract void Update(GameTime gameTime);
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public abstract void Update(GameTime gameTime, Vector2 posicionVirtual);
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destino = new Rectangle(0, 0, Constante.ANCHO_VIRTUAL, Constante.ALTO_VIRTUAL);
+            spriteBatch.Draw(Fondo, destino, Color.White);
+        }
 
     }
 }

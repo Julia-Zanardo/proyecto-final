@@ -16,20 +16,20 @@ namespace JulpajulparaisoPasteleria.Content
         {
         get { return new Rectangle(estadoActualMouse.X, estadoActualMouse.Y, 1, 1); }
         }
-        public static void actualizar()
+        public static void Actualizar()
         {
             estadoAnteriorMouse = estadoActualMouse;
             estadoActualMouse  = Mouse.GetState();
         }
-        public static bool elementoClickeado()
+        public static bool ElementoClickeado()
         {
             return estadoActualMouse.LeftButton == ButtonState.Pressed && estadoAnteriorMouse.LeftButton == ButtonState.Released;
         }
-        public static bool elementoPresionado()
+        public static bool ElementoPresionado()
         {
             return estadoActualMouse.LeftButton == ButtonState.Pressed;
         }
-        public static bool elementoSoltado()
+        public static bool ElementoSoltado  ()
         {
             return estadoActualMouse.LeftButton == ButtonState.Released && estadoAnteriorMouse.LeftButton == ButtonState.Pressed;
         }

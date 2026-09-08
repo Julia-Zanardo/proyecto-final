@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin imagenes/Fondos/EstacionDecoracion.png
+#begin imagenes/Fondos/estacionDecoracion.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,9 +23,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/Fondos/EstacionDecoracion.png;imagenes/Fondos/EstacionDecoracion
+/build:imagenes/Fondos/estacionDecoracion.png;imagenes/Fondos/estacionDecoracion
 
-#begin imagenes/Fondos/EstacionDeEntrega.png
+#begin imagenes/Fondos/estacionDeEntrega.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,9 +35,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/Fondos/EstacionDeEntrega.png;imagenes/Fondos/EstacionDeEntrega
+/build:imagenes/Fondos/estacionDeEntrega.png;imagenes/Fondos/estacionDeEntrega
 
-#begin imagenes/Fondos/EstacionHorneado.png
+#begin imagenes/Fondos/estacionHorneado.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,9 +47,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/Fondos/EstacionHorneado.png;imagenes/Fondos/EstacionHorneado
+/build:imagenes/Fondos/estacionHorneado.png;imagenes/Fondos/estacionHorneado
 
-#begin imagenes/Fondos/EstacionMezcla.png
+#begin imagenes/Fondos/estacionMezcla.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,9 +59,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/Fondos/EstacionMezcla.png;imagenes/Fondos/EstacionMezcla
+/build:imagenes/Fondos/estacionMezcla.png;imagenes/Fondos/estacionMezcla
 
-#begin imagenes/Fondos/EstacionOrdenes.png
+#begin imagenes/Fondos/estacionOrdenes.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,7 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/Fondos/EstacionOrdenes.png;imagenes/Fondos/EstacionOrdenes
+/build:imagenes/Fondos/estacionOrdenes.png;imagenes/Fondos/estacionOrdenes
 
 #begin imagenes/Fondos/pestañas.png
 /importer:TextureImporter
@@ -85,7 +85,7 @@
 /processorParam:TextureFormat=Color
 /build:imagenes/Fondos/pestañas.png;imagenes/Fondos/pestañas
 
-#begin imagenes/Objetos/BotonCarameloVainilla.png
+#begin imagenes/Objetos/botonCarameloVainilla.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -95,5 +95,17 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/Objetos/BotonCarameloVainilla.png;imagenes/Objetos/BotonCarameloVainilla
+/build:imagenes/Objetos/botonCarameloVainilla.png;imagenes/Objetos/botonCarameloVainilla
+
+#begin imagenes/Objetos/botonSiguiente.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Objetos/botonSiguiente.png
 

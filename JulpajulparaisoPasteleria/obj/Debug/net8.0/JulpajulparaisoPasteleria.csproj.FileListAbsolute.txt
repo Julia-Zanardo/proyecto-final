@@ -49,3 +49,4 @@ C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\JulpajulparaisoPasteleria.pdb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.genruntimeconfig.cache
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\ref\JulpajulparaisoPasteleria.dll
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Objetos\botonSiguiente.xnb

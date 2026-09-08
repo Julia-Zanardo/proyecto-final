@@ -44,5 +44,6 @@ namespace JulpajulparaisoPasteleria.Content
         {
             return Vector2.Transform(posicionPantalla, matrizInversa);
         }
+       
     }
 }

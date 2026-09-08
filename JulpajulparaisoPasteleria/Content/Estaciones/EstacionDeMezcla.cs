@@ -27,28 +27,29 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
         public bool ListoParaHorno { get; private set; }
         public override void LoadContent(ContentManager content)
         {
-            
-            base.Fondo = content.Load<Texture2D>("imagenes/Fondos/EstacionMezcla");
-            texturaCarameloVainilla = content.Load<Texture2D>("imagenes/Objetos/BotonCarameloVainilla");
-           // Texture2D texturaTazon = content.Load<Texture2D>("Tazon/TazonVacio");
-           // texturaBotonSiguiente = content.Load<Texture2D>("Botones/botonSiguiente");
-            listaDeBotones[0] = new BotonSabor(texturaCarameloVainilla, new Rectangle(100, 100, 50, 50), SaborBizcochuelo.CarameloVainilla  );
+
+            base.Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionMezcla");
+            texturaCarameloVainilla = content.Load<Texture2D>("imagenes/Objetos/botonCarameloVainilla");
+            texturaBotonSiguiente = content.Load<Texture2D>("imagenes/Objetos/botonSiguiente");
+            // Texture2D texturaTazon = content.Load<Texture2D>("Tazon/TazonVacio");
+            // texturaBotonSiguiente = content.Load<Texture2D>("Botones/botonSiguiente");
+            listaDeBotones[0] = new BotonSabor(texturaCarameloVainilla, new Rectangle(285, 240, 150, 100), SaborBizcochuelo.CarameloVainilla  );
            // tazon = new Tazon(texturaTazon);
             //tazon.LoadContent(content);
-            botonSiguiente = new BotonSiguiente(texturaBotonSiguiente, new Rectangle(700, 500, 100, 50));
+            botonSiguiente = new BotonSiguiente(texturaBotonSiguiente, new Rectangle(1400, 800, 300, 100));
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Vector2 posicionVirtual)
         {
             foreach (BotonSabor boton in listaDeBotones)
             {
-                if (boton.FueClickeado(ManejoEntrada.PosicionMouse, ManejoEntrada.elementoClickeado()))
+                if (boton.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                 {
                   // tazon.agregarSabor(boton.Sabor);
                     todoListo = true;
                 }
                 if (todoListo) 
                 {
-                    if(botonSiguiente.FueClickeado(ManejoEntrada.PosicionMouse, ManejoEntrada.elementoClickeado()))
+                    if(botonSiguiente.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                     {
                         ListoParaHorno = true;
                     }
@@ -58,10 +59,9 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destino = new Rectangle(0, 0, spriteBatch.GraphicsDevice.Viewport.Width, spriteBatch.GraphicsDevice.Viewport.Height);
-            spriteBatch.Draw(Fondo, destino, Color.White);
+            base.Draw(spriteBatch);
             //tazon.Draw(spriteBatch);
-            foreach(BotonSabor boton in listaDeBotones)
+            foreach (BotonSabor boton in listaDeBotones)
             {
                 boton.Draw(spriteBatch);
             }

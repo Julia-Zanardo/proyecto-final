@@ -13,15 +13,14 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
     {
         public override void LoadContent(ContentManager content)
         {
-            Fondo = content.Load<Texture2D>("imagenes/Fondos/EstacionHorneado");
+            Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionHorneado");
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Vector2 posicionVirtual)
         {
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destino = new Rectangle(0, 0, spriteBatch.GraphicsDevice.Viewport.Width, spriteBatch.GraphicsDevice.Viewport.Height);
-            spriteBatch.Draw(Fondo, destino, Color.White);
+            base.Draw(spriteBatch);
         }
 
     }

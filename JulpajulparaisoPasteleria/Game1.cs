@@ -10,8 +10,6 @@ namespace JulpajulparaisoPasteleria
 {
     public class Game1 : Game
     {
-        private const int ANCHO_VIRTUAL = 1920;
-        private const int ALTO_VIRTUAL = 1080;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch dibujo;
         private Estacion[] estaciones;
@@ -29,7 +27,7 @@ namespace JulpajulparaisoPasteleria
 
         protected override void Initialize()
         {
-            adaptadorDeResolucion = new AdaptadorDeResolucion(ANCHO_VIRTUAL, ALTO_VIRTUAL);
+            adaptadorDeResolucion = new AdaptadorDeResolucion(Constante.ANCHO_VIRTUAL, Constante.ALTO_VIRTUAL);
             Window.ClientSizeChanged += AlCambiarTamanoPantalla;
             adaptadorDeResolucion.Actualizar(Window.ClientBounds.Width, Window.ClientBounds.Height);
             base.Initialize();
@@ -38,13 +36,12 @@ namespace JulpajulparaisoPasteleria
         protected override void LoadContent()
         {
             dibujo = new SpriteBatch(GraphicsDevice);
-            int altoBarra = 100;
-            int yBarra = ALTO_VIRTUAL - altoBarra;
-            int anchoPestania = ANCHO_VIRTUAL / 5;
+            int yBarra = Constante.ALTO_VIRTUAL - Constante.ALTO_BARRA;
+            int anchoPestania = Constante.ANCHO_VIRTUAL / 5;
 
             for (int i = 0; i < indicePestanias.Length; i++)
             {
-                Rectangle areaVirtual = new Rectangle(i * anchoPestania, yBarra, anchoPestania, altoBarra);
+                Rectangle areaVirtual = new Rectangle(i * anchoPestania, yBarra, anchoPestania, Constante.ALTO_BARRA);
                 indicePestanias[i] = new Pestania(areaVirtual, i);
             }
 
@@ -59,7 +56,7 @@ namespace JulpajulparaisoPasteleria
             {
                 e.LoadContent(Content);
             }
-            pestanias = Content.Load<Texture2D>("Fondos/Pestanias");
+            pestanias = Content.Load<Texture2D>("imagenes/Fondos/Pestañas");
 
             estacionActual = estaciones[0];
         }
@@ -69,11 +66,11 @@ namespace JulpajulparaisoPasteleria
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            ManejoEntrada.actualizar();
+            ManejoEntrada.Actualizar();
             Vector2 posMouse = ManejoEntrada.PosicionMouse;
             Vector2 posVirtual = adaptadorDeResolucion.AjustarCoordenada(posMouse);
 
-            if (ManejoEntrada.elementoClickeado())
+            if (ManejoEntrada.ElementoClickeado())
             {
                 int i = 0;
                 bool encontrado = false;
@@ -87,7 +84,7 @@ namespace JulpajulparaisoPasteleria
                     i++;
                 }
             }
-            estacionActual?.Update(gameTime);
+            estacionActual?.Update(gameTime, posVirtual);
             base.Update(gameTime);
         }
 
@@ -97,9 +94,8 @@ namespace JulpajulparaisoPasteleria
             GraphicsDevice.Clear(Color.Black);
             dibujo.Begin(transformMatrix: adaptadorDeResolucion.MatrizDeTransformacion);
             estacionActual.Draw(dibujo);
-            int altoBarra = 100;
-            int yBarra = ALTO_VIRTUAL - altoBarra;
-            dibujo.Draw(pestanias, new Rectangle(0, yBarra, ANCHO_VIRTUAL, altoBarra), Color.White);
+            int yBarra = Constante.ALTO_VIRTUAL - Constante.ALTO_BARRA;
+            dibujo.Draw(pestanias, new Rectangle(0, yBarra, Constante.ANCHO_VIRTUAL, Constante.ALTO_BARRA), Color.White);
 
             dibujo.End();
 

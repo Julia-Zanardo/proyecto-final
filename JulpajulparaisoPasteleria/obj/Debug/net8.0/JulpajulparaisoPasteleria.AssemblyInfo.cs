@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JulpajulparaisoPasteleria")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3fa5f883c244c98c9c3bcfec40203f6b52bd169")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41adbf214c5ddff08a47f72288e35d232559c0c0")]
 [assembly: System.Reflection.AssemblyProductAttribute("JulpajulparaisoPasteleria")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JulpajulparaisoPasteleria")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

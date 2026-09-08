@@ -33,16 +33,16 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         public virtual void Actualizar()
         {
             Vector2 posMouse = ManejoEntrada.PosicionMouse;
-            if (ManejoEntrada.elementoClickeado() && limites.Contains(posMouse.ToPoint()))  
+            if (ManejoEntrada.ElementoClickeado() && limites.Contains(posMouse.ToPoint()))  
             {
                 estaSiendoArrastrado = true;
                 desplazamientoMouse = posMouse - Posicion;
             }
-            if (estaSiendoArrastrado && ManejoEntrada.elementoPresionado())
+            if (estaSiendoArrastrado && ManejoEntrada.ElementoPresionado    ())
             {
                 Posicion = posMouse + desplazamientoMouse;
             }
-            if (ManejoEntrada.elementoSoltado() && estaSiendoArrastrado)
+            if (ManejoEntrada.ElementoSoltado  () && estaSiendoArrastrado)
             {
                 estaSiendoArrastrado = false;
                 AlSoltar();
