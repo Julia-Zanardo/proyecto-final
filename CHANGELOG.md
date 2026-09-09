@@ -1,4 +1,7 @@
 Registro de cambios
+## [0.2.3] - 2026-09-08
+- Creacion de clase animacion, adaptadorDeResoluciones y Constante.
+- Implementacion de prueba de Sprite en movimiento.
 ## [0.1.3] - 2026-09-02
 ### Agregado
 -  Creacion de las clases tazon, botonBase, botonSiguiente y botonSabor.
