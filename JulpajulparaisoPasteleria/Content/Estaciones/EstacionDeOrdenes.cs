@@ -1,6 +1,7 @@
 ﻿using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Logica;
 using JulpajulparaisoPasteleria.Content.Personajes;
+using JulpajulparaisoPasteleria.Enumeradores;
 using JulpajulparaisoPasteleria.Modelos;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -50,8 +51,9 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
             {
                 cliente.Actualizar(gameTime);
             }
-            if (clientesActivos.Count >0 ) 
+            if (clientesActivos.Count >0 && clientesActivos[0].estado == EstadoCliente.Esperando) 
             {
+               //mostrarTicket
             }
 
         }
