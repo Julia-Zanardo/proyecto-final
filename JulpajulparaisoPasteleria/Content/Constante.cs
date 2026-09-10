@@ -11,5 +11,6 @@ namespace JulpajulparaisoPasteleria.Content
         public const int ANCHO_VIRTUAL = 1920;
         public const int ALTO_VIRTUAL = 1080;
         public const int ALTO_BARRA = 150;
+        public const int CANTIDAD_PERSONAJES = 3;
     }
 }

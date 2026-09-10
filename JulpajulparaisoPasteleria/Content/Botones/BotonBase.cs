@@ -26,7 +26,7 @@ namespace JulpajulparaisoPasteleria.Content.Botones
             } 
             return false;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Dibujar(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textura, area, Color.White);
         }

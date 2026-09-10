@@ -50,4 +50,13 @@ C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.genruntimeconfig.cache
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\ref\JulpajulparaisoPasteleria.dll
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Objetos\botonSiguiente.xnb
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\chicaCaminando.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Botones\botonCarameloVainilla.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Botones\botonSiguiente.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Objetos\bowlCaramelo.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Objetos\bowlVacio.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteCaminando1.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando1.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteCaminando2.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando2.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteCaminando3.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando3.xnb

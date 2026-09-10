@@ -1,7 +1,8 @@
 ﻿using JulpajulparaisoPasteleria.Content;
+using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Estaciones;
+using JulpajulparaisoPasteleria.Content.Personajes;
 using JulpajulparaisoPasteleria.Enumeradores;
-using JulpajulparaisoPasteleria.Modelos;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,8 +18,7 @@ namespace JulpajulparaisoPasteleria
         private Estacion estacionActual;
         private Pestania[] indicePestanias = new Pestania[5];
         private Texture2D pestanias;
-        private Texture2D texturaCliente;
-        private Cliente cliente;
+        private GestorDeJuego gestor;
         private AdaptadorDeResolucion adaptadorDeResolucion;
         public Game1()
         {
@@ -33,7 +33,9 @@ namespace JulpajulparaisoPasteleria
             adaptadorDeResolucion = new AdaptadorDeResolucion(Constante.ANCHO_VIRTUAL, Constante.ALTO_VIRTUAL);
             Window.ClientSizeChanged += AlCambiarTamanoPantalla;
             adaptadorDeResolucion.Actualizar(Window.ClientBounds.Width, Window.ClientBounds.Height);
+            gestor = new GestorDeJuego();
             base.Initialize();
+
         }
 
         protected override void LoadContent()
@@ -49,7 +51,7 @@ namespace JulpajulparaisoPasteleria
             }
 
             estaciones = new Estacion[] {
-                new EstacionDeOrdenes(),
+                new EstacionDeOrdenes(gestor),
                 new EstacionDeMezcla(),
                 new EstacionDeHorneado(),
                 new EstacionDeDecoracion(),
@@ -60,11 +62,9 @@ namespace JulpajulparaisoPasteleria
                 e.LoadContent(Content);
             }
             pestanias = Content.Load<Texture2D>("imagenes/Fondos/Pestañas");
-            texturaCliente = Content.Load<Texture2D>("imagenes/Sprites/chicaCaminando");
             Vector2 inicio = new Vector2(1920, 200);
             Vector2 objetivo = new Vector2(100, 200);
 
-             cliente = new Cliente(texturaCliente, inicio, objetivo);
             estacionActual = estaciones[0];
         }
 
@@ -92,7 +92,6 @@ namespace JulpajulparaisoPasteleria
                 }
             }
             estacionActual?.Update(gameTime, posVirtual);
-            cliente.Actualizar(gameTime);
             base.Update(gameTime);
         }
 
@@ -104,7 +103,6 @@ namespace JulpajulparaisoPasteleria
             estacionActual.Draw(dibujo);
             int yBarra = Constante.ALTO_VIRTUAL - Constante.ALTO_BARRA;
             dibujo.Draw(pestanias, new Rectangle(0, yBarra, Constante.ANCHO_VIRTUAL, Constante.ALTO_BARRA), Color.White);
-            cliente.Dibujar(dibujo);
             dibujo.End();
 
             base.Draw(gameTime);

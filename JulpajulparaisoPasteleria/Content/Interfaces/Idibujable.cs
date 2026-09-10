@@ -9,6 +9,6 @@ namespace JulpajulparaisoPasteleria.Content.Interfaces
 {
     public interface Idibujable
     {
-        void Draw(SpriteBatch spriteBatch);
+        void Dibujar(SpriteBatch spriteBatch);
     }
 }
