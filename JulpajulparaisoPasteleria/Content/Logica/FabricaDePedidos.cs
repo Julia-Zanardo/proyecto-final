@@ -1,5 +1,5 @@
-﻿using JulpajulparaisoPasteleria.Enumeradores;
-using JulpajulparaisoPasteleria.Modelos;
+﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
+using JulpajulparaisoPasteleria.Content.Modelos;
 using System;
 using System.Collections.Generic;
 using static Microsoft.Xna.Framework.MathHelper;

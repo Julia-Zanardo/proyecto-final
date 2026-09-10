@@ -1,4 +1,5 @@
-﻿using JulpajulparaisoPasteleria.Enumeradores;
+﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
+
 namespace JulpajulparaisoPasteleria.Content.Objetos
 {
     public class Bizcochuelo

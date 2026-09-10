@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Content
+namespace JulpajulparaisoPasteleria.Content.Logica
 {
     public class Animacion
     {

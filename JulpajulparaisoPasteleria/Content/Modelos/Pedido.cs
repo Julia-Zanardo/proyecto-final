@@ -1,7 +1,7 @@
-﻿using JulpajulparaisoPasteleria.Enumeradores;
+﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
 using System.Collections.Generic;
 
-namespace JulpajulparaisoPasteleria.Modelos
+namespace JulpajulparaisoPasteleria.Content.Modelos
 {
     public class Pedido
     {

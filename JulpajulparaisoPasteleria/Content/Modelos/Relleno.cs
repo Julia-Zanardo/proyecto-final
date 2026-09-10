@@ -1,11 +1,11 @@
-﻿using JulpajulparaisoPasteleria.Enumeradores;
+﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Modelos
+namespace JulpajulparaisoPasteleria.Content.Modelos
 {
     public class Relleno
     {

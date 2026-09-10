@@ -1,4 +1,4 @@
-﻿using JulpajulparaisoPasteleria.Enumeradores;
+﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

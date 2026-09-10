@@ -16,7 +16,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
         {
             DiaActual = 1;
             ContadorPedidos = 0;
-            TiempoEntreClientes = 10;
+            TiempoEntreClientes = 3;
             CantidadDeClientesPorDia = 3;
         }
         public int ObtenerIdPedido()

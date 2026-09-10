@@ -1,9 +1,9 @@
 ﻿using JulpajulparaisoPasteleria.Content.Interfaces;
-using JulpajulparaisoPasteleria.Enumeradores;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using JulpajulparaisoPasteleria.Content.Enumeradores;
 namespace JulpajulparaisoPasteleria.Content.Objetos
 {
     internal class Tazon : Idibujable

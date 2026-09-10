@@ -1,6 +1,6 @@
-﻿using JulpajulparaisoPasteleria.Content;
-using JulpajulparaisoPasteleria.Enumeradores;
-using JulpajulparaisoPasteleria.Modelos;
+﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
+using JulpajulparaisoPasteleria.Content.Logica;
+using JulpajulparaisoPasteleria.Content.Modelos;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,37 +16,39 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         private Vector2 posicion;
         private float escala;
         private Animacion animacion;
-        private Vector2 destino;
+        private Rectangle destino;
         private int velocidad;
         private SkinCliente skin;
         private Pedido pedido;
+        public Rectangle AreaCliente { get; private set; }
         public EstadoCliente estado { get; private set; }
-        public Cliente(SkinCliente skin, Vector2 posicion, Vector2 destino, Pedido pedido)
+        public Cliente(SkinCliente skin, Vector2 posicion, Rectangle destino, Pedido pedido)
         {
             this.skin = skin;
             animacion = new Animacion(skin.caminando, 12);
             this.posicion = posicion;
             this.destino = destino;
-            velocidad = 2;
+            velocidad = 3;
             escala = 6.0f;
             this.pedido = pedido;
         }
         public void Actualizar(GameTime tiempo)
         {
-                
-                Vector2 distancia = destino - posicion;
-                float distanciaTotal = distancia.Length();
+                Vector2 distanciaVector = new Vector2(destino.X, destino.Y) - posicion;
+                float distanciaTotal = distanciaVector.Length();
             if (distanciaTotal > 1)
             {
-                Vector2 direccion = Vector2.Normalize(distancia);
+                Vector2 direccion = Vector2.Normalize(distanciaVector); // .normalize es una funcion que devuelve un vector unitario en la misma direccion que el vector original
                 posicion += direccion * velocidad;
                 estado = EstadoCliente.Caminando;
                 animacion.Actualizar(tiempo);
+                AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.caminando.Height * (int)escala); 
             }
             else
             {
                 estado = EstadoCliente.Esperando;
                 animacion = new Animacion(skin.esperando, 9);
+                AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.esperando.Width/skin.ColumnasEsperando)*(int)escala, skin.esperando.Height*(int)escala);
             }
         }
         public void Dibujar(SpriteBatch spriteBatch)

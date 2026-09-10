@@ -1,4 +1,4 @@
-﻿namespace JulpajulparaisoPasteleria.Enumeradores
+﻿namespace JulpajulparaisoPasteleria.Content.Enumeradores
 {
     public enum SaborRelleno
     {

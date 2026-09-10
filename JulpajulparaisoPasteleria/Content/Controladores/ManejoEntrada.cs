@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-namespace JulpajulparaisoPasteleria.Content
+namespace JulpajulparaisoPasteleria.Content.Controladores
 {
     internal class ManejoEntrada
     {

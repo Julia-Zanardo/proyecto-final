@@ -1,6 +1,6 @@
 ﻿using JulpajulparaisoPasteleria.Content.Logica;
+using JulpajulparaisoPasteleria.Content.Modelos;
 using JulpajulparaisoPasteleria.Content.Personajes;
-using JulpajulparaisoPasteleria.Modelos;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -33,7 +33,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
             }
             return false;
         }
-        public Cliente GenerarCliente(Vector2 objetivo)
+        public Cliente GenerarCliente(Rectangle objetivo)
         {
             FabricaDePedidos generadorDePedidos = new FabricaDePedidos();
             Random random = new Random();

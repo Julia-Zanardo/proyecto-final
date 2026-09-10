@@ -1,8 +1,7 @@
-﻿using JulpajulparaisoPasteleria.Content;
-using JulpajulparaisoPasteleria.Content.Controladores;
+﻿using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Estaciones;
 using JulpajulparaisoPasteleria.Content.Personajes;
-using JulpajulparaisoPasteleria.Enumeradores;
+using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -26,6 +25,7 @@ namespace JulpajulparaisoPasteleria
             Content.RootDirectory = "Content";
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
+            _graphics.SynchronizeWithVerticalRetrace = true;
         }
 
         protected override void Initialize()
@@ -70,10 +70,10 @@ namespace JulpajulparaisoPasteleria
 
         protected override void Update(GameTime gameTime)
         {
+            ManejoEntrada.Actualizar();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            ManejoEntrada.Actualizar();
             Vector2 posMouse = ManejoEntrada.PosicionMouse;
             Vector2 posVirtual = adaptadorDeResolucion.AjustarCoordenada(posMouse);
 

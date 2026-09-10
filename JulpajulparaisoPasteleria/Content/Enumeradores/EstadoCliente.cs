@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Enumeradores
+namespace JulpajulparaisoPasteleria.Content.Enumeradores
 {
     public enum EstadoCliente
     {

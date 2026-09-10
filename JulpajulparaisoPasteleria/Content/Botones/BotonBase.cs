@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace JulpajulparaisoPasteleria.Content.Botones
 {
-    public abstract class BotonBase : Idibujable
+    public class BotonBase : Idibujable
     {
-         public Texture2D textura { get; private set; }
-         public Rectangle area { get; private set; }
+         public Texture2D Textura { get; private set; }
+         public Rectangle Area { get; private set; }
         public BotonBase(Texture2D textura, Rectangle area)
         {
-            this.textura = textura;
-            this.area = area;
+            this.Textura = textura;
+            this.Area = area;
         }
         public bool FueClickeado(Vector2 posicionMouse, bool click)
         {
-            if (click && area.Contains(posicionMouse))
+            if (click && Area.Contains(posicionMouse))
             {
                 return true;
             } 
@@ -28,7 +28,7 @@ namespace JulpajulparaisoPasteleria.Content.Botones
         }
         public void Dibujar(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textura, area, Color.White);
+            spriteBatch.Draw(Textura, Area , Color.White);
         }
     }
 }
