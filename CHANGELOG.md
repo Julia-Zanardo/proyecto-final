@@ -1,8 +1,17 @@
 Registro de cambios
+## [0.3.3] - 2026-09-09
+- Creacion de clases GeneradorDeClientes, FabricacionDePedidos, CargadorDeSkins y SkinsCliente.
+- Creacion del enum EstadoCliente.
+-  Logica de EstacionDeOrdenes hecha hasta la mitad.
+-  Agregacion de 2 personajes.
+-  Agregacion de texturas de objetos de la EstacionDeMezcla.
+## [0.2.3] - 2026-09-08
+- Creacion de clase Animacion, AdaptadorDeResoluciones y Constante.
+- Implementacion de prueba de Sprite en movimiento.
 ## [0.1.3] - 2026-09-02
 ### Agregado
--  Creacion de las clases tazon, botonBase, botonSiguiente y botonSabor.
--  implementacion de la logica de estacion de mezcla.
+-  Creacion de las clases Tazon, BotonBase, BotonSiguiente y BotonSabor.
+-  implementacion de la logica de EstacionDeMezcla.
 ## [0.1.2] - 2026-08-07
 ### Agregado
 -  Sistema de pestañas interactivas en la parte inferior para cambiar en tiempo real entre las 5 estaciones del juego.
