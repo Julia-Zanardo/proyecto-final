@@ -1,4 +1,10 @@
 Registro de cambios
+## [0.5.3] - 2026-09-11
+- Creacion de GestorDePantalla, PantallaJuego, MenuPrincipal y PantallaPausa.
+- Creacion de fondos e imagenes para cada una de esas clases.
+- Creacion de GestorDeAudio.
+- Funcion actualizar en BotonBase para que cambie de color.
+- Refactorizacion de Game1 con la creacion de AdministradorDePestañas y GestorDePantalla.
 ## [0.4.3] - 2026-09-10
 - Creacion de la clase DetectorDeColisiones.
 - Logica de colision entre personaje y posicion de orden agregada.

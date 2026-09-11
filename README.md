@@ -13,6 +13,17 @@ ingredientes, moldes, sabores y decoraciones.
 
 El programa se va a desarrollar en lenguaje C# versión 12.0 bajo la plataforma .NET versión 9.0, utilizando el entorno de desarrollo integrado Visual Studio 2026 y el framework de desarrollo de videojuegos MonoGame DesktopGL versión 3.8.4.1. Asimismo, para la gestión de la persistencia de datos y el guardado del progreso se utilizará un motor de base de datos relacional local que se integrará posteriormente mediante SQLite. La comunicación con la base de datos se realizará de manera directa mediante sentencias SQL nativas utilizando el conector relacional nativo de ADO.NET, lo que permitirá un control preciso sobre las consultas y la estructura de almacenamiento.
 
+**Características Implementadas:**
+- Sistema de navegacion entre pantallas.
+- Sistema de audio.
+- Hojas de sprites con animaciones.
+- Botones funcionales.
+- Sistema de Manejo de entrada.
+- Prototipo de logica de Estacion de ordenes.
+- Menu principal, Pantalla de juego y pantalla de pausa funcionales.
+- Muestra de como seria la logica de Estacion de Mezcla.
+- Una clase que adapta el contenido segun la resolucion de la pantalla.
+
 **Cómo Compilar y Ejecutar**  
 Requisitos Previos
 
@@ -38,7 +49,10 @@ cd JulpajulparaisoPasteleria
 dotnet run
 ```
 
-Estado Actual del Proyecto: Configuracion inicial y estructura del proyecto.
+Estado Actual del Proyecto: Prototipo funcional con gestión de estaciones, sistema de audio integrado, adaptador de resolucion, animaciones de sprites, generador de clientes, detector de colisiones y botones clickeables.
 
 **Enlace a la wiki del proyecto:** 
 [Ver la propuesta del proyecto](https://github.com/Julia-Zanardo/proyecto-final/wiki/Propuesta-del-Proyecto-%E2%80%90-Julpajulparaiso-Pasteleria)
+
+**Video del juego:**
+[Prototipo de Julpajulparaiso Pastelería](https://youtu.be/7gfjuPbUdkU)
