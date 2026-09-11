@@ -1,4 +1,9 @@
 Registro de cambios
+## [0.4.3] - 2026-09-10
+- Creacion de la clase DetectorDeColisiones.
+- Logica de colision entre personaje y posicion de orden agregada.
+- Logica de arrastre en EstacionDeOrdenes agregada.
+- Logica de personajo pidiendo el pedido agregada.
 ## [0.3.3] - 2026-09-09
 - Creacion de clases GeneradorDeClientes, FabricacionDePedidos, CargadorDeSkins y SkinsCliente.
 - Creacion del enum EstadoCliente.
