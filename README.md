@@ -53,5 +53,5 @@ Estado Actual del Proyecto: Prototipo funcional con gestión de estaciones, sist
 
 **Enlace a la wiki del proyecto:** 
 [Ver la propuesta del proyecto](https://github.com/Julia-Zanardo/proyecto-final/wiki/Propuesta-del-Proyecto-%E2%80%90-Julpajulparaiso-Pasteleria)
-## Video de Demostración
+**Video del juego:**
 [Prototipo de Julpajulparaiso Pastelería](https://youtu.be/7gfjuPbUdkU)
