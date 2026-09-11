@@ -1,4 +1,5 @@
-﻿using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
+﻿using JulpajulparaisoPasteleria.Content.Botones;
+using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -13,7 +14,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
 {
     public class AdministradorDePestañas
     {
-        private Pestania[] indicePestanias = new Pestania[5];
+        private BotonBase[] indicePestanias = new BotonBase[5];
         private Texture2D pestanias;
 
         public void LoadContent(ContentManager content)
@@ -24,7 +25,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
             for (int i = 0; i < indicePestanias.Length; i++)
             {
                 Rectangle areaVirtual = new Rectangle(i * anchoPestania, yBarra, anchoPestania, Constante.ALTO_BARRA);
-                indicePestanias[i] = new Pestania(areaVirtual, i);
+                indicePestanias[i] = new BotonBase(areaVirtual);
             }
             pestanias = content.Load<Texture2D>("imagenes/Fondos/Pestañas");
         }
@@ -36,7 +37,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
                 bool encontrado = false;
                 while (!encontrado && i < indicePestanias.Length)
                 {
-                    if (indicePestanias[i].fueClickeada(posVirtual.ToPoint()))
+                    if (indicePestanias[i].FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
                     {
                         estacionActual = estaciones[i];
                         encontrado = true;
