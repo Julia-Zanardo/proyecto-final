@@ -15,10 +15,9 @@ namespace JulpajulparaisoPasteleria
         private SpriteBatch dibujo;
         private Estacion[] estaciones;
         private Estacion estacionActual;
-        private Pestania[] indicePestanias = new Pestania[5];
-        private Texture2D pestanias;
         private GestorDeJuego gestor;
         private AdaptadorDeResolucion adaptadorDeResolucion;
+        private AdministradorDePestañas administradorDePestañas;
         public Game1()
         {
              _graphics = new GraphicsDeviceManager(this);
@@ -34,6 +33,7 @@ namespace JulpajulparaisoPasteleria
             Window.ClientSizeChanged += AlCambiarTamanoPantalla;
             adaptadorDeResolucion.Actualizar(Window.ClientBounds.Width, Window.ClientBounds.Height);
             gestor = new GestorDeJuego();
+            administradorDePestañas = new AdministradorDePestañas();
             base.Initialize();
 
         }
@@ -41,14 +41,7 @@ namespace JulpajulparaisoPasteleria
         protected override void LoadContent()
         {
             dibujo = new SpriteBatch(GraphicsDevice);
-            int yBarra = Constante.ALTO_VIRTUAL - Constante.ALTO_BARRA;
-            int anchoPestania = Constante.ANCHO_VIRTUAL / 5;
-
-            for (int i = 0; i < indicePestanias.Length; i++)
-            {
-                Rectangle areaVirtual = new Rectangle(i * anchoPestania, yBarra, anchoPestania, Constante.ALTO_BARRA);
-                indicePestanias[i] = new Pestania(areaVirtual, i);
-            }
+            administradorDePestañas.LoadContent(Content);
 
             estaciones = new Estacion[] {
                 new EstacionDeOrdenes(gestor),
@@ -61,10 +54,6 @@ namespace JulpajulparaisoPasteleria
             {
                 e.LoadContent(Content);
             }
-            pestanias = Content.Load<Texture2D>("imagenes/Fondos/Pestañas");
-            Vector2 inicio = new Vector2(1920, 200);
-            Vector2 objetivo = new Vector2(100, 200);
-
             estacionActual = estaciones[0];
         }
 
@@ -76,21 +65,7 @@ namespace JulpajulparaisoPasteleria
 
             Vector2 posMouse = ManejoEntrada.PosicionMouse;
             Vector2 posVirtual = adaptadorDeResolucion.AjustarCoordenada(posMouse);
-
-            if (ManejoEntrada.ElementoClickeado())
-            {
-                int i = 0;
-                bool encontrado = false;
-                while (!encontrado && i < indicePestanias.Length)
-                {
-                    if(indicePestanias  [i].fueClickeada(posVirtual.ToPoint()))
-                    {
-                        estacionActual = estaciones[i];
-                        encontrado = true;
-                    }
-                    i++;
-                }
-            }
+            estacionActual = administradorDePestañas.Actualizar(posVirtual, estaciones, estacionActual);
             estacionActual?.Update(gameTime, posVirtual);
             base.Update(gameTime);
         }
@@ -101,8 +76,7 @@ namespace JulpajulparaisoPasteleria
             GraphicsDevice.Clear(Color.Black);
             dibujo.Begin(transformMatrix: adaptadorDeResolucion.MatrizDeTransformacion);
             estacionActual.Draw(dibujo);
-            int yBarra = Constante.ALTO_VIRTUAL - Constante.ALTO_BARRA;
-            dibujo.Draw(pestanias, new Rectangle(0, yBarra, Constante.ANCHO_VIRTUAL, Constante.ALTO_BARRA), Color.White);
+            administradorDePestañas.Dibujar(dibujo);
             dibujo.End();
 
             base.Draw(gameTime);
