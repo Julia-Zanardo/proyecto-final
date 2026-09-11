@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-namespace JulpajulparaisoPasteleria.Content.Estaciones
+namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class Pestania
     {

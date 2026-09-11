@@ -6,24 +6,17 @@ using System.Threading.Tasks;
 
 namespace JulpajulparaisoPasteleria.Content.Controladores
 {
-    public class GestorDeJuego
+    public static class GestorDeJuego
     {
-        public int DiaActual { get; private set; }
-        public int ContadorPedidos { get; private set; }
-        public float TiempoEntreClientes { get; private set; }
-        public int CantidadDeClientesPorDia { get; private set; }
-        public GestorDeJuego()
-        {
-            DiaActual = 1;
-            ContadorPedidos = 0;
-            TiempoEntreClientes = 3;
-            CantidadDeClientesPorDia = 3;
-        }
-        public int ObtenerIdPedido()
+        public static int DiaActual { get; private set; } = 1;
+        public static int ContadorPedidos { get; private set; } = 0;
+        public static float TiempoEntreClientes { get; private set; } = 3;
+        public static int CantidadDeClientesPorDia { get; private set; } = 3;
+        public static int ObtenerIdPedido()
         {
             return ++ContadorPedidos;
         }
-        public void AvanzarDeDia()
+        public static void AvanzarDeDia()
         {
             DiaActual++;
             ContadorPedidos = 0;

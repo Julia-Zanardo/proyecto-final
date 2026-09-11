@@ -1,5 +1,6 @@
 ﻿using JulpajulparaisoPasteleria.Content.Controladores;
-using JulpajulparaisoPasteleria.Content.Estaciones;
+using JulpajulparaisoPasteleria.Content.Pantallas;
+using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
 using JulpajulparaisoPasteleria.Content.Personajes;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
@@ -13,11 +14,8 @@ namespace JulpajulparaisoPasteleria
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch dibujo;
-        private Estacion[] estaciones;
-        private Estacion estacionActual;
-        private GestorDeJuego gestor;
+        private GestorDePantalla gestorDePantalla;
         private AdaptadorDeResolucion adaptadorDeResolucion;
-        private AdministradorDePestañas administradorDePestañas;
         public Game1()
         {
              _graphics = new GraphicsDeviceManager(this);
@@ -32,29 +30,16 @@ namespace JulpajulparaisoPasteleria
             adaptadorDeResolucion = new AdaptadorDeResolucion(Constante.ANCHO_VIRTUAL, Constante.ALTO_VIRTUAL);
             Window.ClientSizeChanged += AlCambiarTamanoPantalla;
             adaptadorDeResolucion.Actualizar(Window.ClientBounds.Width, Window.ClientBounds.Height);
-            gestor = new GestorDeJuego();
-            administradorDePestañas = new AdministradorDePestañas();
+            gestorDePantalla = new GestorDePantalla(Content);
             base.Initialize();
 
         }
 
         protected override void LoadContent()
         {
+            gestorDePantalla.CambiarPantalla(new MenuPrincipal(gestorDePantalla));
             dibujo = new SpriteBatch(GraphicsDevice);
-            administradorDePestañas.LoadContent(Content);
 
-            estaciones = new Estacion[] {
-                new EstacionDeOrdenes(gestor),
-                new EstacionDeMezcla(),
-                new EstacionDeHorneado(),
-                new EstacionDeDecoracion(),
-                new EstacionDeEntrega()
-            };
-            foreach (Estacion e in estaciones)
-            {
-                e.LoadContent(Content);
-            }
-            estacionActual = estaciones[0];
         }
 
         protected override void Update(GameTime gameTime)
@@ -65,18 +50,15 @@ namespace JulpajulparaisoPasteleria
 
             Vector2 posMouse = ManejoEntrada.PosicionMouse;
             Vector2 posVirtual = adaptadorDeResolucion.AjustarCoordenada(posMouse);
-            estacionActual = administradorDePestañas.Actualizar(posVirtual, estaciones, estacionActual);
-            estacionActual?.Update(gameTime, posVirtual);
+            gestorDePantalla.Actualizar(gameTime, posVirtual);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-
             GraphicsDevice.Clear(Color.Black);
             dibujo.Begin(transformMatrix: adaptadorDeResolucion.MatrizDeTransformacion);
-            estacionActual.Draw(dibujo);
-            administradorDePestañas.Dibujar(dibujo);
+            gestorDePantalla.Dibujar(dibujo);
             dibujo.End();
 
             base.Draw(gameTime);

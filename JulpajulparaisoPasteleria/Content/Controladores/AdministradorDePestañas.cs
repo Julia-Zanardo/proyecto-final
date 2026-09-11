@@ -1,4 +1,4 @@
-﻿using JulpajulparaisoPasteleria.Content.Estaciones;
+﻿using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;

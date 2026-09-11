@@ -13,20 +13,18 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
 {
     public class GeneradorDeClientes
     {
-        private GestorDeJuego gestor;
         private float cronometro;
         private List<SkinCliente> texturasClientes = new List<SkinCliente>();
 
-        public GeneradorDeClientes(GestorDeJuego gestor, List<SkinCliente> texturas)
+        public GeneradorDeClientes(List<SkinCliente> texturas)
         {
-            this.gestor = gestor;
             this.texturasClientes = texturas;
             cronometro = 0f;
         }
         public bool Actualizar(GameTime tiempo)
         {
             cronometro += (float)tiempo.ElapsedGameTime.TotalSeconds;
-            if (cronometro >= gestor.TiempoEntreClientes)
+            if (cronometro >= GestorDeJuego.TiempoEntreClientes)
             {
                 cronometro = 0f;
                 return true;
@@ -40,7 +38,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
             int indice = random.Next(texturasClientes.Count);
             SkinCliente skin = texturasClientes[indice];
             Vector2 inicio = new Vector2(1920, 200);
-            Pedido pedido = generadorDePedidos.CrearPedido(gestor.ObtenerIdPedido());
+            Pedido pedido = generadorDePedidos.CrearPedido(GestorDeJuego.ObtenerIdPedido());
             Cliente nuevoCliente = new Cliente(skin, inicio, objetivo, pedido);
             return nuevoCliente;
         }

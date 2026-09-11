@@ -12,7 +12,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Content.Estaciones
+namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeMezcla : Estacion
     {
@@ -38,7 +38,7 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
             tazon = new Tazon(texturaTazon, texturasMasa);
             botonSiguiente = new BotonBase(texturaBotonSiguiente, new Rectangle(1400, 800, 300, 100));
         }
-        public override void Update(GameTime gameTime, Vector2 posicionVirtual)
+        public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
             foreach (BotonSabor boton in listaDeBotones)
             {
@@ -47,6 +47,7 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
                     tazon.AgregarSabor(boton.Sabor);
                     todoListo = true;
                 }
+            }
                 if (todoListo) 
                 {
                     if(botonSiguiente.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
@@ -55,11 +56,13 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
                     }
 
                 }
-            }
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void ActualizarEnSegundoPlano(GameTime gameTime)
         {
-            base.Draw(spriteBatch);
+        }
+        public override void Dibujar(SpriteBatch spriteBatch)
+        {
+            base.Dibujar(spriteBatch);
             tazon.Dibujar(spriteBatch);
             foreach (BotonSabor boton in listaDeBotones)
             {

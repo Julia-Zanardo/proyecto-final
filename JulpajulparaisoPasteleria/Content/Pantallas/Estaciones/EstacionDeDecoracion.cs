@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Content.Estaciones
+namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeDecoracion : Estacion
     {
@@ -15,12 +15,15 @@ namespace JulpajulparaisoPasteleria.Content.Estaciones
         {
             Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionDecoracion");
         }
-        public override void Update(GameTime gameTime, Vector2 posicionVirtual)
+        public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void ActualizarEnSegundoPlano(GameTime gameTime)
         {
-            base.Draw(spriteBatch);
+        }
+        public override void Dibujar(SpriteBatch spriteBatch)
+        {
+            base.Dibujar(spriteBatch);
         }
 
     }
