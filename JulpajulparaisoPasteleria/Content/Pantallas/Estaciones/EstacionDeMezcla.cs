@@ -17,9 +17,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
     public class EstacionDeMezcla : Estacion
     {
         private BotonBase botonSiguiente;
-        private Texture2D texturaCarameloVainilla;
-        private Texture2D texturaBotonSiguiente;
-        private Texture2D texturaTazon;
         private BotonSabor[] listaDeBotones = new BotonSabor[1];
         private Tazon tazon;
         private bool todoListo= false;
@@ -29,14 +26,11 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
 
             base.Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionMezcla");
-            texturaCarameloVainilla = content.Load<Texture2D>("imagenes/Botones/botonCarameloVainilla");
-            texturaBotonSiguiente = content.Load<Texture2D>("imagenes/Botones/botonSiguiente");
-            texturaTazon = content.Load<Texture2D>("imagenes/Objetos/bowlVacio");
             texturasMasa = new Dictionary<SaborBizcochuelo, Texture2D>();
             texturasMasa.Add(SaborBizcochuelo.CarameloVainilla, content.Load<Texture2D>("imagenes/Objetos/bowlCaramelo"));
-            listaDeBotones[0] = new BotonSabor(texturaCarameloVainilla, new Rectangle(285, 240, 150, 100), SaborBizcochuelo.CarameloVainilla  );
-            tazon = new Tazon(texturaTazon, texturasMasa);
-            botonSiguiente = new BotonBase(texturaBotonSiguiente, new Rectangle(1400, 800, 300, 100));
+            listaDeBotones[0] = new BotonSabor(content.Load<Texture2D>("imagenes/Botones/botonCarameloVainilla"), new Rectangle(285, 240, 150, 100), SaborBizcochuelo.CarameloVainilla  );
+            tazon = new Tazon(content.Load<Texture2D>("imagenes/Objetos/bowlVacio"), texturasMasa);
+            botonSiguiente = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonSiguiente"), new Rectangle(1400, 800, 300, 100));
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {

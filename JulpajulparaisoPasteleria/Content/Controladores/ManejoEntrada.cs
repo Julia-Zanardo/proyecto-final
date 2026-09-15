@@ -12,10 +12,6 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
         {
             get { return  new Vector2(estadoActualMouse.X, estadoActualMouse.Y);}
         }
-        public static Rectangle LimitesMouse
-        {
-        get { return new Rectangle(estadoActualMouse.X, estadoActualMouse.Y, 1, 1); }
-        }
         public static void Actualizar()
         {
             estadoAnteriorMouse = estadoActualMouse;
