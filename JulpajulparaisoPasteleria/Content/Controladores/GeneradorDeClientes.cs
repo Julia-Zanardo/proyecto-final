@@ -15,11 +15,13 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
     {
         private float cronometro;
         private List<SkinCliente> texturasClientes = new List<SkinCliente>();
+        FabricaDePedidos generadorDePedidos;
 
         public GeneradorDeClientes(List<SkinCliente> texturas)
         {
             this.texturasClientes = texturas;
             cronometro = 0f;
+            generadorDePedidos = new FabricaDePedidos();
         }
         public bool Actualizar(GameTime tiempo)
         {
@@ -33,7 +35,6 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
         }
         public Cliente GenerarCliente(Rectangle objetivo)
         {
-            FabricaDePedidos generadorDePedidos = new FabricaDePedidos();
             Random random = new Random();
             int indice = random.Next(texturasClientes.Count);
             SkinCliente skin = texturasClientes[indice];

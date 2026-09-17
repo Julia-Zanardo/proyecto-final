@@ -31,8 +31,6 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
         }
         public Estacion Actualizar(Vector2 posVirtual, Estacion[] estaciones, Estacion estacionActual)
         {
-            if (ManejoEntrada.ElementoClickeado())
-            {
                 int i = 0;
                 bool encontrado = false;
                 while (!encontrado && i < indicePestanias.Length)
@@ -44,7 +42,6 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
                     }
                     i++;
                 }
-            }
             return estacionActual;
         }
         public void Dibujar(SpriteBatch spriteBatch)

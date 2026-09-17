@@ -25,7 +25,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         public Cliente(SkinCliente skin, Vector2 posicion, Rectangle destino, Pedido pedido)
         {
             this.skin = skin;
-            animacion = new Animacion(skin.caminando, 12);
+            animacion = new Animacion(skin.Caminando, 12);
             this.posicion = posicion;
             this.destino = destino;
             velocidad = 3;
@@ -42,13 +42,13 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                 posicion += direccion * velocidad;
                 estado = EstadoCliente.Caminando;
                 animacion.Actualizar(tiempo);
-                AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.caminando.Height * (int)escala); 
+                AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala); 
             }
             else
             {
                 estado = EstadoCliente.Esperando;
-                animacion = new Animacion(skin.esperando, 9);
-                AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.esperando.Width/skin.ColumnasEsperando)*(int)escala, skin.esperando.Height*(int)escala);
+                animacion = new Animacion(skin.Esperando, 9);
+                AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Esperando.Width/skin.ColumnasEsperando)*(int)escala, skin.Esperando.Height*(int)escala);
             }
         }
         public void Dibujar(SpriteBatch spriteBatch)
