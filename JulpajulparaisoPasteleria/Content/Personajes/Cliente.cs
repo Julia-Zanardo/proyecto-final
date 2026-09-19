@@ -14,6 +14,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
     public class Cliente
     {
         private Vector2 posicion;
+        private Vector2 posicionSalida;
         private float escala;
         private Animacion animacion;
         private Rectangle destino;
@@ -21,39 +22,86 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         private SkinCliente skin;
         private Pedido pedido;
         public Rectangle AreaCliente { get; private set; }
-        public EstadoCliente estado { get; private set; }
+        public EstadoCliente Estado { get; private set; }
         public Cliente(SkinCliente skin, Vector2 posicion, Rectangle destino, Pedido pedido)
         {
             this.skin = skin;
-            animacion = new Animacion(skin.Caminando, 12);
+            animacion = new Animacion(skin.Caminando, skin.ColumnasCaminando, -1);
             this.posicion = posicion;
+            this.posicionSalida = posicion;
             this.destino = destino;
             velocidad = 3;
             escala = 6.0f;
             this.pedido = pedido;
+            this.Estado = EstadoCliente.Caminando;
         }
         public void Actualizar(GameTime tiempo)
         {
-                Vector2 distanciaVector = new Vector2(destino.X, destino.Y) - posicion;
-                float distanciaTotal = distanciaVector.Length();
-            if (distanciaTotal > 1)
+            Vector2 destinoVector = new Vector2(destino.X, destino.Y);
+            Vector2 distanciaVector = destinoVector - posicion;
+            float distanciaTotal = distanciaVector.Length();
+            switch (Estado)
             {
-                Vector2 direccion = Vector2.Normalize(distanciaVector); // .normalize es una funcion que devuelve un vector unitario en la misma direccion que el vector original
-                posicion += direccion * velocidad;
-                estado = EstadoCliente.Caminando;
-                animacion.Actualizar(tiempo);
-                AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala); 
+                case EstadoCliente.Caminando:
+                    if (distanciaTotal > 1)
+                    {
+                        Vector2 direccion = Vector2.Normalize(distanciaVector);
+                        posicion += direccion * velocidad;
+                    }
+                    else
+                    {
+                        posicion = destinoVector;
+                        CambiarDeEstado(EstadoCliente.Esperando);
+                    }
+                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala);
+                    break;
+                case EstadoCliente.Esperando:
+                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Esperando.Width / skin.ColumnasEsperando) * (int)escala, skin.Esperando.Height * (int)escala);
+                    break;
+                case EstadoCliente.Saliendo:
+                    Vector2 distanciaSalidaVector = posicionSalida - posicion;
+                    float distanciaSalidaTotal = distanciaSalidaVector.Length();
+                    if (distanciaSalidaTotal > 1)
+                    {
+                        Vector2 direccionSalida = Vector2.Normalize(distanciaSalidaVector);
+                        posicion += direccionSalida * velocidad;
+                    }
+                    else
+                    {
+                        posicion = posicionSalida;
+                    }
+
+                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala);
+                    break;
             }
-            else
-            {
-                estado = EstadoCliente.Esperando;
-                animacion = new Animacion(skin.Esperando, 9);
-                AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Esperando.Width/skin.ColumnasEsperando)*(int)escala, skin.Esperando.Height*(int)escala);
-            }
+            animacion.Actualizar(tiempo);
         }
         public void Dibujar(SpriteBatch spriteBatch)
         {
             animacion.Dibujar(spriteBatch, posicion, escala);
+        }
+        public void CambiarDeEstado(EstadoCliente estado)
+        {
+            if (this.Estado == estado)
+            { 
+                return;
+             }
+            this.Estado = estado;
+            animacion = ObtenerAnimacion(estado);
+        }
+        private Animacion ObtenerAnimacion(EstadoCliente estado)
+        {
+            switch (estado)
+            {
+                case EstadoCliente.Caminando:
+                    return new Animacion(skin.Caminando,skin.ColumnasCaminando, -1);
+                case EstadoCliente.Esperando:
+                    return new Animacion(skin.Esperando, skin.ColumnasEsperando, -1);
+                case EstadoCliente.Saliendo:
+                    return new Animacion(skin.Caminando, skin.ColumnasCaminando, 1);
+                default:
+                    return null;
+            }
         }
     }
 }
