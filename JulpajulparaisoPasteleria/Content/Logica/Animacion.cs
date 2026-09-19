@@ -17,7 +17,8 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         private float temporizador;
         private int cuadroActual;
         private float tiempoPorCuadro = 0.1f;
-        public Animacion(Texture2D textura, int cantidadFrames)
+        private int direccion;
+        public Animacion(Texture2D textura, int cantidadFrames, int direccion)
         {
             this.textura = textura;
             this.cantidadFrames = cantidadFrames;
@@ -25,16 +26,21 @@ namespace JulpajulparaisoPasteleria.Content.Logica
             altoFrame = textura.Height;
             temporizador = 0;
             cuadroActual = 0;
+            this.direccion = direccion;
         }
         public void Actualizar(GameTime tiempo)
         {
             temporizador += (float)tiempo.ElapsedGameTime.TotalSeconds;
             if (temporizador >= tiempoPorCuadro)
             {
-                cuadroActual = (cuadroActual - 1);
+                cuadroActual++;
                 if(cuadroActual < 0)
                 {
-                    cuadroActual = cantidadFrames - 1;
+                    cuadroActual = (cantidadFrames-1);
+                }
+                if (cuadroActual >= cantidadFrames)
+                {
+                    cuadroActual = 0;
                 }
                 temporizador = 0;
             }
@@ -43,7 +49,8 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         {
 
             Rectangle areaRecortada = new Rectangle(anchoFrame * cuadroActual, 0, anchoFrame, altoFrame);
-            spriteBatch.Draw(textura, posicion, areaRecortada, Color.White, 0f, Vector2.Zero, escala, SpriteEffects.None, 1);
+            SpriteEffects efecto = (direccion < 0) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            spriteBatch.Draw(textura, posicion, areaRecortada, Color.White, 0f, Vector2.Zero, escala, efecto, 1);
         }
     }
 }

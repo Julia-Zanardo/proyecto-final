@@ -1,6 +1,7 @@
 ﻿
 using JulpajulparaisoPasteleria.Content.Botones;
 using JulpajulparaisoPasteleria.Content.Controladores;
+using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Logica;
 using JulpajulparaisoPasteleria.Content.Personajes;
 using JulpajulparaisoPasteleria.Content.Utilidades;
@@ -24,7 +25,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private List<Cliente> clientesActivos = new List<Cliente>();
         private Fila fila;
         private BotonBase ventanaDeDialogo;
-        private bool clienteEsperando = false;
         private bool dialogoClickeado = false;
         private DibujadorDeTicket ticket;
         private Rectangle areaDeTickets;
@@ -47,23 +47,27 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
-            ActualizarClientes(gameTime);
-            if (clientesActivos.Count > 0 && !clienteEsperando)
-            {
-                if (detectorDeColisiones.DetectarColision(clientesActivos[0].AreaCliente, fila.posiciones[0]))
+            if (clientesActivos.Count >0) 
+            { 
+                Cliente clienteEnPrimeraFila = clientesActivos[0];
+                switch (clienteEnPrimeraFila.Estado) 
                 {
-                    clienteEsperando = true;
+                    case EstadoCliente.Caminando:
+                    if (detectorDeColisiones.DetectarColision(clientesActivos[0].AreaCliente, fila.posiciones[0]))
+                    {
+                       clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Esperando);
+                    }
+                        break;
+                    case EstadoCliente.Esperando:
+                        if (ventanaDeDialogo.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
+                        {
+                            dialogoClickeado = true;
+                            clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Saliendo);
+                        }
+                        break;
                 }
             }
-                if (clienteEsperando && !dialogoClickeado)
-                {
-                    if (ventanaDeDialogo.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
-                    {
-                        clienteEsperando = false;
-                        dialogoClickeado = true;
-                        
-                    }
-                }
+            ActualizarClientes(gameTime);
             if (dialogoClickeado)
             {
                 ticket.Actualizar(posicionVirtual);
@@ -102,13 +106,17 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 cliente.Dibujar(spriteBatch);
             }
-            if (clienteEsperando && !dialogoClickeado)
+            if (clientesActivos.Count >0)
             {
-                ventanaDeDialogo.Dibujar(spriteBatch);
-            }
-            else if (dialogoClickeado)
-            {
-                ticket.Dibujar(spriteBatch);
+                switch (clientesActivos[0].Estado)
+                {
+                    case EstadoCliente.Esperando:
+                        ventanaDeDialogo.Dibujar(spriteBatch);
+                        break;
+                    case EstadoCliente.Saliendo:
+                        ticket.Dibujar(spriteBatch);
+                        break;
+                }
             }
         }
 

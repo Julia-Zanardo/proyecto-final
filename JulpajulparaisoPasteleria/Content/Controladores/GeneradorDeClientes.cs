@@ -14,7 +14,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
     public class GeneradorDeClientes
     {
         private float cronometro;
-        private List<SkinCliente> texturasClientes = new List<SkinCliente>();
+        private List<SkinCliente> texturasClientes;
         FabricaDePedidos generadorDePedidos;
 
         public GeneradorDeClientes(List<SkinCliente> texturas)
