@@ -65,6 +65,18 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                             clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Saliendo);
                         }
                         break;
+                    case EstadoCliente.Saliendo:
+                        if (clienteEnPrimeraFila.TerminoDeSalir)
+                        {
+                            clientesActivos.Remove(clienteEnPrimeraFila);
+                            for(int i = 0; i<clientesActivos.Count; i++)
+                            {
+                                Cliente clienteActual = clientesActivos[i];
+                                Rectangle posicionFila = fila.obtenerPosicionFila(i);
+                                clienteActual.CaminarHaciaPosicion(posicionFila);
+                            }
+                        }
+                        break;
                 }
             }
             ActualizarClientes(gameTime);

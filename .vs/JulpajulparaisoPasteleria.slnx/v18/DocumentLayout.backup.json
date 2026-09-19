@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\personajes\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\enumeradores\\estadocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\enumeradores\\estadocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondeordenes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondeordenes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondehorneado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondehorneado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\logica\\animacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\logica\\animacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondeordenes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondeordenes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\enumeradores\\estadocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\enumeradores\\estadocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\logica\\skincliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -147,10 +151,6 @@
       "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondemezcla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondehorneado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondehorneado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|c:\\local development\\sandbox\\julpajulparaisopasteleria\\julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondeentrega.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{409C3990-A8AD-5344-5DF2-9409453EB693}|JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria.csproj|solutionrelative:julpajulparaisopasteleria\\content\\pantallas\\estaciones\\estaciondeentrega.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -239,53 +239,14 @@
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Personajes\\Cliente.cs",
               "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Personajes\\Cliente.cs*",
               "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Personajes\\Cliente.cs*",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwDoAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAmwEYAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-19T00:02:44Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SkinCliente.cs",
-              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\SkinCliente.cs",
-              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\SkinCliente.cs",
-              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\SkinCliente.cs",
-              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Logica\\SkinCliente.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-09T22:27:48.558Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Fila.cs",
-              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\Fila.cs",
-              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\Fila.cs",
-              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\Fila.cs",
-              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Logica\\Fila.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T20:03:23.034Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Animacion.cs",
-              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\Animacion.cs",
-              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\Animacion.cs",
-              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\Animacion.cs",
-              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Logica\\Animacion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T21:58:00.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CargadorDeSkins.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\CargadorDeSkins.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\CargadorDeSkins.cs",
@@ -298,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GeneradorDeClientes.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Controladores\\GeneradorDeClientes.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Controladores\\GeneradorDeClientes.cs",
@@ -311,15 +272,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "EstadoCliente.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Enumeradores\\EstadoCliente.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Enumeradores\\EstadoCliente.cs",
-              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Enumeradores\\EstadoCliente.cs*",
-              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Enumeradores\\EstadoCliente.cs*",
+              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Enumeradores\\EstadoCliente.cs",
+              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Enumeradores\\EstadoCliente.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-09T23:18:05.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EstacionDeHorneado.cs",
+              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeHorneado.cs",
+              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeHorneado.cs",
+              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeHorneado.cs",
+              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeHorneado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-23T02:28:43.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EstacionDeOrdenes.cs",
+              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeOrdenes.cs",
+              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeOrdenes.cs",
+              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeOrdenes.cs",
+              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeOrdenes.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAEQAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T19:56:49.328Z",
               "EditorCaption": ""
             },
             {
@@ -333,19 +320,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "EstacionDeOrdenes.cs",
-              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeOrdenes.cs",
-              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeOrdenes.cs",
-              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeOrdenes.cs",
-              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeOrdenes.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAmwFAAAAARAAAAAAAAAA==",
+              "Title": "Animacion.cs",
+              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\Animacion.cs",
+              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\Animacion.cs",
+              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\Animacion.cs",
+              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Logica\\Animacion.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAxwBMAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-06T19:56:49.328Z",
+              "WhenOpened": "2026-09-08T21:58:00.206Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
+              "Title": "Fila.cs",
+              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\Fila.cs",
+              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\Fila.cs",
+              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\Fila.cs",
+              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Logica\\Fila.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:03:23.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SkinCliente.cs",
+              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\SkinCliente.cs",
+              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\SkinCliente.cs",
+              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\SkinCliente.cs",
+              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Logica\\SkinCliente.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-09T22:27:48.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "PantallaJuego.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\PantallaJuego.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\PantallaJuego.cs",
@@ -357,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ConfiguracionSkin.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\ConfiguracionSkin.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\ConfiguracionSkin.cs",
@@ -370,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Estacion.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\Estacion.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\Estacion.cs",
@@ -382,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "IPantalla.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Interfaces\\IPantalla.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Interfaces\\IPantalla.cs",
@@ -394,7 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ManejoEntrada.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Controladores\\ManejoEntrada.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Controladores\\ManejoEntrada.cs",
@@ -406,7 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "BotonBase.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Botones\\BotonBase.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Botones\\BotonBase.cs",
@@ -418,7 +431,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Idibujable.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Interfaces\\Idibujable.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Interfaces\\Idibujable.cs",
@@ -430,7 +443,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "GestorDePantalla.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Controladores\\GestorDePantalla.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Controladores\\GestorDePantalla.cs",
@@ -442,7 +455,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "GestorDeJuego.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Controladores\\GestorDeJuego.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Controladores\\GestorDeJuego.cs",
@@ -454,7 +467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "GestorDeAudio.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Controladores\\GestorDeAudio.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Controladores\\GestorDeAudio.cs",
@@ -466,7 +479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "DetectorDeColisiones.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Controladores\\DetectorDeColisiones.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Controladores\\DetectorDeColisiones.cs",
@@ -478,7 +491,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "AdministradorDePesta\u00F1as.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Controladores\\AdministradorDePesta\u00F1as.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Controladores\\AdministradorDePesta\u00F1as.cs",
@@ -490,7 +503,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "AdaptadorDeResolucion.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Controladores\\AdaptadorDeResolucion.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Controladores\\AdaptadorDeResolucion.cs",
@@ -502,7 +515,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "BotonSabor.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Botones\\BotonSabor.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Botones\\BotonSabor.cs",
@@ -514,7 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Game1.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Game1.cs",
@@ -526,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "PantallaPausa.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\PantallaPausa.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\PantallaPausa.cs",
@@ -538,7 +551,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "MenuPrincipal.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\MenuPrincipal.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\MenuPrincipal.cs",
@@ -550,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "Torta.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Modelos\\Torta.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Modelos\\Torta.cs",
@@ -562,7 +575,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "Relleno.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Modelos\\Relleno.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Modelos\\Relleno.cs",
@@ -574,7 +587,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "Pedido.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Modelos\\Pedido.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Modelos\\Pedido.cs",
@@ -586,7 +599,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "Cobertura.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Modelos\\Cobertura.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Modelos\\Cobertura.cs",
@@ -598,7 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "FabricaDePedidos.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\FabricaDePedidos.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\FabricaDePedidos.cs",
@@ -610,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "DibujadorDeTicket.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Logica\\DibujadorDeTicket.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Logica\\DibujadorDeTicket.cs",
@@ -622,7 +635,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "TiempoCoccion.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Enumeradores\\TiempoCoccion.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Enumeradores\\TiempoCoccion.cs",
@@ -634,7 +647,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "SaborRelleno.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Enumeradores\\SaborRelleno.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Enumeradores\\SaborRelleno.cs",
@@ -646,7 +659,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "SaborBizcochuelo.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Enumeradores\\SaborBizcochuelo.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Enumeradores\\SaborBizcochuelo.cs",
@@ -658,7 +671,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "FormaBizcochuelo.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Enumeradores\\FormaBizcochuelo.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Enumeradores\\FormaBizcochuelo.cs",
@@ -670,7 +683,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "EstacionDeMezcla.cs",
               "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeMezcla.cs",
               "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeMezcla.cs",
@@ -679,18 +692,6 @@
               "ViewState": "AgIAACMAAAAAAAAAAAAUwD0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-23T02:28:52.883Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "EstacionDeHorneado.cs",
-              "DocumentMoniker": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeHorneado.cs",
-              "RelativeDocumentMoniker": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeHorneado.cs",
-              "ToolTip": "C:\\Local Development\\Sandbox\\JulpajulparaisoPasteleria\\JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeHorneado.cs",
-              "RelativeToolTip": "JulpajulparaisoPasteleria\\Content\\Pantallas\\Estaciones\\EstacionDeHorneado.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-23T02:28:43.599Z"
             },
             {
               "$type": "Document",

@@ -21,6 +21,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         private int velocidad;
         private SkinCliente skin;
         private Pedido pedido;
+        public bool TerminoDeSalir { get; private set; }
         public Rectangle AreaCliente { get; private set; }
         public EstadoCliente Estado { get; private set; }
         public Cliente(SkinCliente skin, Vector2 posicion, Rectangle destino, Pedido pedido)
@@ -37,8 +38,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         }
         public void Actualizar(GameTime tiempo)
         {
-            Vector2 destinoVector = new Vector2(destino.X, destino.Y);
-            Vector2 distanciaVector = destinoVector - posicion;
+            Vector2 distanciaVector = new Vector2(destino.X, destino.Y) - posicion;
             float distanciaTotal = distanciaVector.Length();
             switch (Estado)
             {
@@ -50,7 +50,6 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     }
                     else
                     {
-                        posicion = destinoVector;
                         CambiarDeEstado(EstadoCliente.Esperando);
                     }
                     AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala);
@@ -69,8 +68,9 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     else
                     {
                         posicion = posicionSalida;
-                    }
+                        TerminoDeSalir = true;
 
+                    }
                     AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala);
                     break;
             }
@@ -101,6 +101,15 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     return new Animacion(skin.Caminando, skin.ColumnasCaminando, 1);
                 default:
                     return null;
+            }
+        }
+        public void CaminarHaciaPosicion(Rectangle posicionFila)
+        {
+
+            this.destino = posicionFila;
+            if (this.Estado == EstadoCliente.Esperando)
+            {
+                CambiarDeEstado(EstadoCliente.Caminando);
             }
         }
     }
