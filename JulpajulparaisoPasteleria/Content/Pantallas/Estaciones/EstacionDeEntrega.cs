@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using JulpajulparaisoPasteleria.Content.Gestores;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,6 +18,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)     
         {
+            GestorDeTickets.ActualizarTickets(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
         {
@@ -24,6 +26,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public override void Dibujar(SpriteBatch spriteBatch)
         {
             base.Dibujar(spriteBatch);
+            DibujarTickets(spriteBatch);
         }
 
     }

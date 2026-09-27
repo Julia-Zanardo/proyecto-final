@@ -1,6 +1,7 @@
 ﻿using JulpajulparaisoPasteleria.Content.Botones;
 using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Enumeradores;
+using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Objetos;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -50,6 +51,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                     }
 
                 }
+            GestorDeTickets.ActualizarTickets(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
         {
@@ -66,7 +68,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             { 
             botonSiguiente.Dibujar(spriteBatch);
             }
-
+            DibujarTickets(spriteBatch);
         }
 
     }

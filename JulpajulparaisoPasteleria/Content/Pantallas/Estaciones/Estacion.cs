@@ -1,4 +1,7 @@
-﻿using JulpajulparaisoPasteleria.Content.Interfaces;
+﻿using JulpajulparaisoPasteleria.Content.Controladores;
+using JulpajulparaisoPasteleria.Content.Gestores;
+using JulpajulparaisoPasteleria.Content.Interfaces;
+using JulpajulparaisoPasteleria.Content.Logica;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -24,6 +27,14 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
             Rectangle destino = new Rectangle(0, 0, Constante.ANCHO_VIRTUAL, Constante.ALTO_VIRTUAL);
             spriteBatch.Draw(Fondo, destino, Color.White);
+        }
+        public void DibujarTickets(SpriteBatch spriteBatch) 
+        {
+            foreach (DibujadorDeTicket ticket in GestorDeTickets.TicketsActuales)
+            {
+                ticket.Dibujar(spriteBatch);
+            }
+
         }
 
     }

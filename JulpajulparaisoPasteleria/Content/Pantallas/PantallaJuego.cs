@@ -1,5 +1,6 @@
 ﻿using JulpajulparaisoPasteleria.Content.Botones;
 using JulpajulparaisoPasteleria.Content.Controladores;
+using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
 using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
 using Microsoft.Xna.Framework;
@@ -16,20 +17,20 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
     public class PantallaJuego : IPantalla
     {
         private Estacion[] estaciones;
-        private AdministradorDePestañas administradorDePestañas;
+        private GestorDePestañas gestorDePestañas;
         private Estacion estacionActual;
         private BotonBase botonPausa;
         private GestorDePantalla gestorDePantalla;
         public PantallaJuego(GestorDePantalla gestorDePantalla)
         {
-            administradorDePestañas = new AdministradorDePestañas();
+            gestorDePestañas = new GestorDePestañas();
             this.gestorDePantalla = gestorDePantalla;
         }
         public void LoadContent(ContentManager content)
         { 
             if (estaciones == null)
             {
-                administradorDePestañas.LoadContent(content);
+                gestorDePestañas.LoadContent(content);
                 botonPausa = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonPausa"), new Rectangle(1800, 10, 100, 100));
                 estaciones = new Estacion[] {
                      new EstacionDeOrdenes(),
@@ -48,7 +49,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         }
         public void Actualizar(GameTime gameTime, Vector2 posVirtual)
         {
-            estacionActual = administradorDePestañas.Actualizar(posVirtual, estaciones, estacionActual);
+            estacionActual = gestorDePestañas.Actualizar(posVirtual, estaciones, estacionActual);
             estacionActual.Actualizar(gameTime, posVirtual);
             foreach (Estacion e in estaciones)
             {
@@ -66,7 +67,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         public void Dibujar(SpriteBatch dibujo)
         {
             estacionActual.Dibujar(dibujo);
-            administradorDePestañas.Dibujar(dibujo);
+            gestorDePestañas.Dibujar(dibujo);
             botonPausa.Dibujar(dibujo);
         }
     }

@@ -27,7 +27,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         public Cliente(SkinCliente skin, Vector2 posicion, Rectangle destino, Pedido pedido)
         {
             this.skin = skin;
-            animacion = new Animacion(skin.Caminando, skin.ColumnasCaminando, -1);
+            animacion = new Animacion(skin.Caminando, skin.ConfiguracionSkin.ColumnasCaminando, -1);
             this.posicion = posicion;
             this.posicionSalida = posicion;
             this.destino = destino;
@@ -52,10 +52,10 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     {
                         CambiarDeEstado(EstadoCliente.Esperando);
                     }
-                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala);
+                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ConfiguracionSkin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala);
                     break;
                 case EstadoCliente.Esperando:
-                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Esperando.Width / skin.ColumnasEsperando) * (int)escala, skin.Esperando.Height * (int)escala);
+                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Esperando.Width / skin.ConfiguracionSkin.ColumnasEsperando) * (int)escala, skin.Esperando.Height * (int)escala);
                     break;
                 case EstadoCliente.Saliendo:
                     Vector2 distanciaSalidaVector = posicionSalida - posicion;
@@ -71,7 +71,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                         TerminoDeSalir = true;
 
                     }
-                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala);
+                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ConfiguracionSkin.ColumnasSaliendo) * (int)escala, skin.Caminando.Height * (int)escala);
                     break;
             }
             animacion.Actualizar(tiempo);
@@ -94,11 +94,11 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
             switch (estado)
             {
                 case EstadoCliente.Caminando:
-                    return new Animacion(skin.Caminando,skin.ColumnasCaminando, -1);
+                    return new Animacion(skin.Caminando,skin.ConfiguracionSkin.ColumnasCaminando, -1);
                 case EstadoCliente.Esperando:
-                    return new Animacion(skin.Esperando, skin.ColumnasEsperando, -1);
+                    return new Animacion(skin.Esperando, skin.ConfiguracionSkin.ColumnasEsperando, -1);
                 case EstadoCliente.Saliendo:
-                    return new Animacion(skin.Caminando, skin.ColumnasCaminando, 1);
+                    return new Animacion(skin.Caminando, skin.ConfiguracionSkin.ColumnasSaliendo, 1);
                 default:
                     return null;
             }

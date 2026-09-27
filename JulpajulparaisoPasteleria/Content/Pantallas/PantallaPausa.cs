@@ -1,5 +1,6 @@
 ﻿using JulpajulparaisoPasteleria.Content.Botones;
 using JulpajulparaisoPasteleria.Content.Controladores;
+using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;

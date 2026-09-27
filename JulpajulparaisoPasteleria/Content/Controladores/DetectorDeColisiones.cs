@@ -9,7 +9,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
 {
     public class DetectorDeColisiones
     {
-        public bool DetectarColision(Rectangle rect1, Rectangle rect2)
+        public static bool DetectarColision(Rectangle rect1, Rectangle rect2)
         {
             return rect1.Intersects(rect2);
         }

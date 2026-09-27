@@ -25,7 +25,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
                 ConfiguracionSkin configuracionColumnas = datosSkins[i];
                 Texture2D caminando = content.Load<Texture2D>($"imagenes/Sprites/clienteCaminando{i}");
                 Texture2D esperando = content.Load<Texture2D>($"imagenes/Sprites/clienteEsperando{i}");
-                skinsClientes.Add(new SkinCliente(caminando, esperando, configuracionColumnas.ColumnasCaminando, configuracionColumnas.ColumnasEsperando, configuracionColumnas.ColumnasAtendido));
+                skinsClientes.Add(new SkinCliente(caminando, esperando, configuracionColumnas));
             }
             return skinsClientes;
         }

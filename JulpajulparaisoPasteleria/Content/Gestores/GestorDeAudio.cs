@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Content.Controladores
+namespace JulpajulparaisoPasteleria.Content.Gestores
 {
     public static class GestorDeAudio
     {

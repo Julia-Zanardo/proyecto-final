@@ -1,4 +1,4 @@
-﻿using JulpajulparaisoPasteleria.Content.Controladores;
+﻿using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;

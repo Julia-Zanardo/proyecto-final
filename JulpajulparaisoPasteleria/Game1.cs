@@ -1,4 +1,5 @@
 ﻿using JulpajulparaisoPasteleria.Content.Controladores;
+using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Pantallas;
 using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
 using JulpajulparaisoPasteleria.Content.Personajes;

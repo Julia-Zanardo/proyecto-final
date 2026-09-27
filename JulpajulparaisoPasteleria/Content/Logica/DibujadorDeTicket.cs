@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Controladores;
+using JulpajulparaisoPasteleria.Content.Modelos;
+using JulpajulparaisoPasteleria.Content.Utilidades;
 
 namespace JulpajulparaisoPasteleria.Content.Logica
 {
@@ -11,15 +13,16 @@ namespace JulpajulparaisoPasteleria.Content.Logica
     {
         private Dictionary<SaborBizcochuelo, Texture2D> iconos;
         private Texture2D imagenTicket;
-        private Vector2 posicionTicket = new Vector2(1450, 00);
+        private Vector2 posicionTicket;
         public Rectangle AreaTicket { get; private set; }
         public Rectangle AreaTicketDefaut { get; private set; }
         public bool EstaSiendoArrastrado { get; private set; }
         private Vector2 desplazamiento;
-        public float Escala { get; private set; } = 5;
-        public DibujadorDeTicket()
+        public float Escala { get; private set; } = Constante.ESCALA_TICKET;
+        public DibujadorDeTicket(Vector2 posicionTicket)
         {
-            this.AreaTicketDefaut = new Rectangle(1450, 0, 500, 500);
+            this.posicionTicket = posicionTicket;
+            this.AreaTicketDefaut = new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y, 500, 500);
         }
         public void LoadContent(ContentManager content)
         {
@@ -50,10 +53,11 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         {
             spriteBatch.Draw(imagenTicket, posicionTicket, null, Color.White, 0f, Vector2.Zero, Escala, SpriteEffects.None, 1);
         }
-        public void acomodarTicket(Rectangle posicion,float escala)
+        public void AcomodarTicket(Rectangle posicion,float escala)
         {
             posicionTicket = new Vector2 (posicion.X, posicion.Y);
             this.Escala = escala;
         }
+
     }
 }

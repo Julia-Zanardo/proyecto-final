@@ -1,4 +1,5 @@
 ﻿using JulpajulparaisoPasteleria.Content.Botones;
+using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
@@ -10,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Content.Controladores
+namespace JulpajulparaisoPasteleria.Content.Gestores
 {
-    public class AdministradorDePestañas
+    public class GestorDePestañas
     {
         private BotonBase[] indicePestanias = new BotonBase[5];
         private Texture2D pestanias;
