@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,6 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
         public const int ALTO_VIRTUAL = 1080;
         public const int ALTO_BARRA = 150;
         public const int CANTIDAD_PERSONAJES = 3;
-        public const float ESCALA_TICKET = 2.5f;
+        public const float ESCALA_TICKET = 1.5f;
     }
 }

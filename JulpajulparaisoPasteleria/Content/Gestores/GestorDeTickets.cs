@@ -8,14 +8,14 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
 {
     public class GestorDeTickets
     {
-        public static List<DibujadorDeTicket> TicketsActuales { get; private set; } = new List<DibujadorDeTicket> { };
-        private static Rectangle areaDeTicket = new Rectangle(1450, 0, 900, 200);
-        private static bool areaDeTicketOcupada = false;
-        public static void AgregarTikcet(DibujadorDeTicket nuevoTicket)
+        public List<DibujadorDeTicket> TicketsActuales { get; private set; } = new List<DibujadorDeTicket> { };
+        private  Rectangle areaDeTicket = new Rectangle(1450, 0, 900, 200);
+        private  bool areaDeTicketOcupada = false;
+        public  void AgregarTikcet(DibujadorDeTicket nuevoTicket)
         {
             TicketsActuales.Add(nuevoTicket);
         }
-        public static void ActualizarTickets(Vector2 posVirtual)
+        public void ActualizarTickets(Vector2 posVirtual)
         {
             foreach (var ticket in TicketsActuales)
             {
@@ -37,7 +37,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                 }
             }
         }
-        public static int ObtenerCantidadTickets()
+        public int ObtenerCantidadTickets()
         {
             return TicketsActuales.Count;
         }

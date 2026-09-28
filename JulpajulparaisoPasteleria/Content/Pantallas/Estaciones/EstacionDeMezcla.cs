@@ -17,6 +17,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeMezcla : Estacion
     {
+        public EstacionDeMezcla(GestorDeTickets gestorDeTickets) : base(gestorDeTickets)
+        {
+        }
         private BotonBase botonSiguiente;
         private BotonSabor[] listaDeBotones = new BotonSabor[1];
         private Tazon tazon;
@@ -29,7 +32,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             base.Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionMezcla");
             texturasMasa = new Dictionary<SaborBizcochuelo, Texture2D>();
             texturasMasa.Add(SaborBizcochuelo.CarameloVainilla, content.Load<Texture2D>("imagenes/Objetos/bowlCaramelo"));
-            listaDeBotones[0] = new BotonSabor(content.Load<Texture2D>("imagenes/Botones/botonCarameloVainilla"), new Rectangle(285, 240, 150, 100), SaborBizcochuelo.CarameloVainilla  );
+            listaDeBotones[0] = new BotonSabor(content.Load<Texture2D>("imagenes/SaboresBizcochuelo/botonCarameloVainilla"), new Rectangle(285, 240, 150, 100), SaborBizcochuelo.CarameloVainilla  );
             tazon = new Tazon(content.Load<Texture2D>("imagenes/Objetos/bowlVacio"), texturasMasa);
             botonSiguiente = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonSiguiente"), new Rectangle(1400, 800, 300, 100));
         }
@@ -51,7 +54,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                     }
 
                 }
-            GestorDeTickets.ActualizarTickets(posicionVirtual);
+            base.gestorDeTickets.ActualizarTickets(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
         {

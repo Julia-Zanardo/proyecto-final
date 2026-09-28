@@ -18,6 +18,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
     {
         private Estacion[] estaciones;
         private GestorDePestañas gestorDePestañas;
+        GestorDeTickets gestorTickets = new GestorDeTickets();
         private Estacion estacionActual;
         private BotonBase botonPausa;
         private GestorDePantalla gestorDePantalla;
@@ -33,11 +34,11 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 gestorDePestañas.LoadContent(content);
                 botonPausa = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonPausa"), new Rectangle(1800, 10, 100, 100));
                 estaciones = new Estacion[] {
-                     new EstacionDeOrdenes(),
-                     new EstacionDeMezcla(),
-                     new EstacionDeHorneado(),
-                     new EstacionDeDecoracion(),
-                     new EstacionDeEntrega()
+                     new EstacionDeOrdenes(gestorTickets),
+                     new EstacionDeMezcla(gestorTickets),
+                     new EstacionDeHorneado(gestorTickets),
+                     new EstacionDeDecoracion(gestorTickets),
+                     new EstacionDeEntrega(gestorTickets)
                  };
                 foreach (Estacion e in estaciones)
                 {

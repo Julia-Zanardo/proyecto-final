@@ -33,6 +33,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
 
         public void Actualizar(GameTime gameTime, Vector2 posVirtual)
         {
+            GestorDeJuego.reiniciarPedidos();
             if (botonJugar.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
             {
                 gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));

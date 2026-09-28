@@ -20,6 +20,11 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public bool EsActiva { set; get; }
         public abstract void LoadContent(ContentManager content);
         public abstract void Actualizar(GameTime gameTime, Vector2 posicionVirtual);
+        protected GestorDeTickets gestorDeTickets;
+        public Estacion(GestorDeTickets gestorDeTickets)
+        {
+            this.gestorDeTickets = gestorDeTickets;
+        }
         public virtual void ActualizarEnSegundoPlano(GameTime gameTime)
         {
         }
@@ -30,7 +35,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public void DibujarTickets(SpriteBatch spriteBatch) 
         {
-            foreach (DibujadorDeTicket ticket in GestorDeTickets.TicketsActuales)
+            foreach (DibujadorDeTicket ticket in gestorDeTickets.TicketsActuales)
             {
                 ticket.Dibujar(spriteBatch);
             }

@@ -12,13 +12,16 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeEntrega : Estacion
     {
+        public EstacionDeEntrega(GestorDeTickets gestorDeTickets) : base(gestorDeTickets)
+        {
+        }
         public override void LoadContent(ContentManager content)
         {
             Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionDeEntrega");
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)     
         {
-            GestorDeTickets.ActualizarTickets(posicionVirtual);
+            base.gestorDeTickets.ActualizarTickets(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
         {

@@ -22,7 +22,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private Fila fila;
         private BotonBase ventanaDeDialogo;
         private ContentManager contentManager;
-        public EstacionDeOrdenes()
+        public EstacionDeOrdenes(GestorDeTickets gestorDeTickets) : base(gestorDeTickets) 
         {
             this.fila = new Fila();
         }
@@ -53,9 +53,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                         if (ventanaDeDialogo.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                         {
                             clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Saliendo);
-                            DibujadorDeTicket ticket = new DibujadorDeTicket(new Vector2(GestorDeTickets.ObtenerCantidadTickets()>0?GestorDeTickets.ObtenerCantidadTickets()*200:0, 00));
+                            DibujadorDeTicket ticket = new DibujadorDeTicket(new Vector2(base.gestorDeTickets.ObtenerCantidadTickets()>0?base.gestorDeTickets.ObtenerCantidadTickets()*200:0, 00), clienteEnPrimeraFila.pedido);
                             ticket.LoadContent(contentManager);
-                            GestorDeTickets.AgregarTikcet(ticket);
+                            base.gestorDeTickets.AgregarTikcet(ticket);
                         }
 
                         break;
@@ -73,7 +73,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                         break;
                 }
             }
-            GestorDeTickets.ActualizarTickets(posicionVirtual);
+            base.gestorDeTickets.ActualizarTickets(posicionVirtual);
             ActualizarClientes(gameTime);
             ventanaDeDialogo.Actualizar(posicionVirtual);
         }
