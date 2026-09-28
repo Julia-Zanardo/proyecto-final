@@ -16,6 +16,7 @@ namespace JulpajulparaisoPasteleria.Content.Botones
          public Texture2D Textura { get; private set; }
          public Rectangle Area { get; private set; }
          private Color colorBoton = Color.White;
+
         public BotonBase(Texture2D textura, Rectangle area)
         {
             this.Textura = textura;

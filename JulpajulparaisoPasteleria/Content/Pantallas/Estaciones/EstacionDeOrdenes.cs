@@ -22,6 +22,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private Fila fila;
         private BotonBase ventanaDeDialogo;
         private ContentManager contentManager;
+        private int contadorClientes=0;
         public EstacionDeOrdenes(GestorDeTickets gestorDeTickets) : base(gestorDeTickets) 
         {
             this.fila = new Fila();
@@ -83,9 +84,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         private void ActualizarClientes(GameTime gameTime)
         {
-            if (generadorClientes.Actualizar(gameTime) && clientesActivos.Count < cantidadClientesMaxima)
+            if (generadorClientes.Actualizar(gameTime) && contadorClientes < cantidadClientesMaxima)
             {
                 clientesActivos.Add(generadorClientes.GenerarCliente(fila.obtenerPosicionFila(clientesActivos.Count)));
+                contadorClientes++;
             }
 
             foreach (Cliente cliente in clientesActivos)

@@ -3,6 +3,7 @@ using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Objetos;
+using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,39 +22,43 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
         }
         private BotonBase botonSiguiente;
-        private BotonSabor[] listaDeBotones = new BotonSabor[1];
         private Tazon tazon;
         private bool todoListo= false;
-        private Dictionary<SaborBizcochuelo, Texture2D> texturasMasa;
+        private bool saborElegido = false;
+        private Dictionary<SaborBizcochuelo, Texture2D> texturasBowl;
         public bool ListoParaHorno { get; private set; }
+        private RepositorioImagenes r=new RepositorioImagenes();
+        private BotonBase botonTirar;
         public override void LoadContent(ContentManager content)
         {
-
             base.Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionMezcla");
-            texturasMasa = new Dictionary<SaborBizcochuelo, Texture2D>();
-            texturasMasa.Add(SaborBizcochuelo.CarameloVainilla, content.Load<Texture2D>("imagenes/Objetos/bowlCaramelo"));
-            listaDeBotones[0] = new BotonSabor(content.Load<Texture2D>("imagenes/SaboresBizcochuelo/botonCarameloVainilla"), new Rectangle(285, 240, 150, 100), SaborBizcochuelo.CarameloVainilla  );
-            tazon = new Tazon(content.Load<Texture2D>("imagenes/Objetos/bowlVacio"), texturasMasa);
             botonSiguiente = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonSiguiente"), new Rectangle(1400, 800, 300, 100));
+            botonTirar = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonTirar"), new Rectangle(200, 600, 100, 100));
+            r.LoadContent(content);
+            tazon = new Tazon(content.Load<Texture2D>("imagenes/Bowls/bowlVacio"), r.TexturasBowl);
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
-            foreach (BotonSabor boton in listaDeBotones)
+            foreach (BotonSabor boton in r.IconosBotonesSabor)
             {
                 if (boton.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                 {
                     tazon.AgregarSabor(boton.Sabor);
-                    todoListo = true;
+                    saborElegido = true;
                 }
             }
-                if (todoListo) 
+            if (botonTirar.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
+            {
+                tazon.Tirar();
+            }
+            if (todoListo) 
                 {
                     if(botonSiguiente.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                     {
                         ListoParaHorno = true;
                     }
 
-                }
+            }
             base.gestorDeTickets.ActualizarTickets(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
@@ -63,7 +68,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
             base.Dibujar(spriteBatch);
             tazon.Dibujar(spriteBatch);
-            foreach (BotonSabor boton in listaDeBotones)
+            foreach (BotonSabor boton in r.IconosBotonesSabor)
             {
                 boton.Dibujar(spriteBatch);
             }
@@ -72,6 +77,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             botonSiguiente.Dibujar(spriteBatch);
             }
             DibujarTickets(spriteBatch);
+            botonTirar.Dibujar(spriteBatch);
         }
 
     }

@@ -9,7 +9,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
     public class GestorDeTickets
     {
         public List<DibujadorDeTicket> TicketsActuales { get; private set; } = new List<DibujadorDeTicket> { };
-        private  Rectangle areaDeTicket = new Rectangle(1450, 0, 900, 200);
+        private  Rectangle areaDeTicket = new Rectangle(1530, 0, 900, 200);
         private  bool areaDeTicketOcupada = false;
         public  void AgregarTikcet(DibujadorDeTicket nuevoTicket)
         {
