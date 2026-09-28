@@ -5,6 +5,6 @@
         CarameloVainilla,
         Chocolate,
         Frutilla,
-        Limon
+        Arandano
     }
 }

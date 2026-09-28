@@ -50,7 +50,6 @@ C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.genruntimeconfig.cache
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\ref\JulpajulparaisoPasteleria.dll
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Objetos\botonSiguiente.xnb
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Botones\botonCarameloVainilla.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Botones\botonSiguiente.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Objetos\bowlCaramelo.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Objetos\bowlVacio.xnb
@@ -135,3 +134,27 @@ C:\Users\Alumno\Source\Repos\proyecto-final\JulpajulparaisoPasteleria\obj\Debug\
 C:\Users\Alumno\Source\Repos\proyecto-final\JulpajulparaisoPasteleria\obj\Debug\net8.0\Julpajul.6725B22D.Up2Date
 C:\Users\Alumno\Source\Repos\proyecto-final\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.genruntimeconfig.cache
 C:\Users\Alumno\Source\Repos\proyecto-final\JulpajulparaisoPasteleria\obj\Debug\net8.0\ref\JulpajulparaisoPasteleria.dll
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\SaboresBizcochuelo\botonArandano.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\SaboresBizcochuelo\BotonCarameloVainilla.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\SaboresBizcochuelo\botonChocolate.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\SaboresBizcochuelo\botonFrutilla.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Rellenos\rellenoChantilly.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Rellenos\rellenoChocolate.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Rellenos\rellenoFrutilla.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Rellenos\rellenoLimon.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Moldes\moldeCorazon.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Moldes\moldeCuadrado.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Moldes\moldeRedondo.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Coberturas\algodonAzucar.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Coberturas\ganacheChocolate.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Coberturas\glaseadoBanana.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Coberturas\glaseadoFrutilla.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Coberturas\glaseadoPistacho.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Coberturas\glaseadoVainilla.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Coberturas\napolitana.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Topings\topingBanana.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Topings\topingCereza.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Topings\topingCubanito.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Topings\topingOreo.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Topings\topingWaffle.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\Fuentes\fuentePedido.xnb

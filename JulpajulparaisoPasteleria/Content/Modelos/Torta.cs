@@ -15,8 +15,8 @@ namespace JulpajulparaisoPasteleria.Content.Modelos
             Bizcochuelos = new Bizcochuelo[2];
         }
         public Bizcochuelo[] Bizcochuelos { get; private set; }
-        public Relleno Relleno { get; private set; }
-        public Cobertura Cobertura { get; private set; }
+        public SaborRelleno Relleno { get; private set; }
+        public TipoCobertura Cobertura { get; private set; }
         public List<Topping> Decoracion { get; private set;     } = new List<Topping>();
         public FormaBizcochuelo FormaBizcochuelo { get; private set; }
 
@@ -33,17 +33,9 @@ namespace JulpajulparaisoPasteleria.Content.Modelos
             }
         }
 
-        public bool EstaCompleta()
-        {
-            return Bizcochuelos[0] != null && Relleno != null && Cobertura != null;
-        }
-
         public void LimpiarTorta()
         {
-            Bizcochuelos = new Bizcochuelo[2];
-            Relleno = null;
-            Cobertura = null;
-            Decoracion.Clear();
+            
         }
     }
 }

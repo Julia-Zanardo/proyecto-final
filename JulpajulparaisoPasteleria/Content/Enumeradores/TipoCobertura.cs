@@ -2,10 +2,12 @@
 {
     public enum TipoCobertura
     {
-        Merengue,
+        GlaseadoDePistacho,
         GanacheChocolate,
         GlaseadoDeFrutilla,
-        GlaseadoDeArandano,
-        GlaseadoDeLimon,
+        GlaseadoDeVainilla,
+        GlaseadoDeBanana,
+        AlgodonDeAzucar,
+        Napolitano,
     }
 }

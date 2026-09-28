@@ -2,9 +2,9 @@
 {
     public enum SaborRelleno
     {
-            DulcedDeLeche,
             Chocolate,
             Frutilla,
             Chantilly,
+            Limon
     }
 }

@@ -20,7 +20,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         private Rectangle destino;
         private int velocidad;
         private SkinCliente skin;
-        private Pedido pedido;
+        public Pedido pedido { get; private set; }
         public bool TerminoDeSalir { get; private set; }
         public Rectangle AreaCliente { get; private set; }
         public EstadoCliente Estado { get; private set; }

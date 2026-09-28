@@ -23,7 +23,10 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             TiempoEntreClientes -= 5; // despues lo cambio con una clase aleatorio o algo asi
             CantidadDeClientesPorDia++;
         }
-
+        public static void reiniciarPedidos() 
+        {
+            ContadorPedidos = 0;
+        }
     }
 
 }
