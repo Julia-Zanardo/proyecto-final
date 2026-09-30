@@ -18,7 +18,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         private float escala;
         private Animacion animacion;
         private Rectangle destino;
-        private int velocidad;
+        private float velocidad;
         private SkinCliente skin;
         public Pedido pedido { get; private set; }
         public bool TerminoDeSalir { get; private set; }
@@ -31,13 +31,14 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
             this.posicion = posicion;
             this.posicionSalida = posicion;
             this.destino = destino;
-            velocidad = 3;
+            velocidad = 300f;
             escala = 6.0f;
             this.pedido = pedido;
             this.Estado = EstadoCliente.Caminando;
         }
         public void Actualizar(GameTime tiempo)
         {
+            float tiempoTranscurrido = (float)tiempo.ElapsedGameTime.TotalSeconds;
             Vector2 distanciaVector = new Vector2(destino.X, destino.Y) - posicion;
             float distanciaTotal = distanciaVector.Length();
             switch (Estado)
@@ -46,7 +47,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     if (distanciaTotal > 1)
                     {
                         Vector2 direccion = Vector2.Normalize(distanciaVector);
-                        posicion += direccion * velocidad;
+                        posicion += direccion * velocidad *tiempoTranscurrido;
                     }
                     else
                     {
@@ -63,7 +64,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     if (distanciaSalidaTotal > 1)
                     {
                         Vector2 direccionSalida = Vector2.Normalize(distanciaSalidaVector);
-                        posicion += direccionSalida * velocidad;
+                        posicion += direccionSalida * velocidad * tiempoTranscurrido;
                     }
                     else
                     {
