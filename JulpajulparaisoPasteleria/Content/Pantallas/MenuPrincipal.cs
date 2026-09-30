@@ -22,6 +22,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         public MenuPrincipal(GestorDePantalla gestorDePantalla)
         {
             this.gestorDePantalla = gestorDePantalla;
+            GestorDeAudio.PausarMusica();
         }
 
         public void LoadContent(ContentManager content)

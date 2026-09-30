@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
     {
         private static SoundEffect sonidoClick;
         private static Song musicaFondo;
+        public static bool musicaSonando = true;
         public static void LoadContent(ContentManager content) 
         {
             sonidoClick = content.Load<SoundEffect>("Sonidos/sonidoClick");
@@ -36,6 +38,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             if (MediaPlayer.State == MediaState.Playing)
             {
                 MediaPlayer.Pause();
+                musicaSonando = false;
             }
         }
         public static void ReanudarMusica()
@@ -43,6 +46,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             if (MediaPlayer.State == MediaState.Paused)
             {
                 MediaPlayer.Resume();
+                musicaSonando = true;
             }
         }
     }
