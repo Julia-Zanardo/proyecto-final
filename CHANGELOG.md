@@ -1,4 +1,6 @@
 Registro de cambios
+## [0.5.7] - 2026-09-30
+- Incorporacion de botones de pausa y reanuacion de musica en PantallaJuego.
 ## [0.5.6] - 2026-09-28
 - Reestructuracion de de logica de GestorDeTickets --> ya no es mas static.
 - Logica de dibujadorDeTicket completa.
