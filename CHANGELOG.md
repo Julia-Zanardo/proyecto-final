@@ -1,4 +1,18 @@
 Registro de cambios
+## [0.5.6] - 2026-09-28
+- Reestructuracion de de logica de GestorDeTickets --> ya no es mas static.
+- Logica de dibujadorDeTicket completa.
+- Creacion de la clase repositorioImagenes.
+- Botones de estacionMezcla agregados.
+- Texturas de Tazon agregadas en repositorioImagenes.
+## [0.5.5] - 2026-09-27
+- Creacion de la clase statica GestorDeTickets.
+- Logica de colision de tickets corregida.
+- Ahora los tickets se ven en todas las estaciones
+## [0.5.4] - 2026-09-20
+- Creacion de la clase ConfiguracionSkin.
+- Problema de animacion esperando resuelto.
+- Implementacion de animacion de personaje saliendo de la tienda.
 ## [0.5.3] - 2026-09-11
 - Creacion de GestorDePantalla, PantallaJuego, MenuPrincipal y PantallaPausa.
 - Creacion de fondos e imagenes para cada una de esas clases.
