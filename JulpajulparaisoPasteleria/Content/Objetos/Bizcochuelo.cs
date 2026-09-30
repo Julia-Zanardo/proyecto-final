@@ -14,5 +14,9 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         public void cambiarEstadoDeCoccion(TiempoCoccion coccion) {
             this.Coccion = coccion;
         }
+        public void agregarSabor(SaborBizcochuelo saborBizcochuelo) 
+        {
+            this.Sabor = saborBizcochuelo;
+        }
     }
     }

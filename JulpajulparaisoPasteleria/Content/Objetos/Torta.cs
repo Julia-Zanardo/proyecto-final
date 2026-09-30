@@ -1,20 +1,15 @@
 ﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
-using JulpajulparaisoPasteleria.Content.Objetos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Content.Modelos
+namespace JulpajulparaisoPasteleria.Content.Objetos
 {
     internal class Torta
     {
-        public Torta()
-        {
-            Bizcochuelos = new Bizcochuelo[2];
-        }
-        public Bizcochuelo[] Bizcochuelos { get; private set; }
+        public  SaborBizcochuelo SaborBizcochuelo { get; private set; }
         public SaborRelleno Relleno { get; private set; }
         public TipoCobertura Cobertura { get; private set; }
         public List<Topping> Decoracion { get; private set;     } = new List<Topping>();
@@ -22,20 +17,19 @@ namespace JulpajulparaisoPasteleria.Content.Modelos
 
         public void AgregarTopping(Topping topping)
         {
-
                 Decoracion.Add(topping);
-        }
-        public void AgregarBizcochuelo(Bizcochuelo bizcochuelo, int indicePiso)
-        {
-            if (indicePiso >= 0 && indicePiso < Bizcochuelos.Length)
-            {
-                Bizcochuelos[indicePiso] = bizcochuelo;
-            }
         }
 
         public void LimpiarTorta()
         {
             
+        }
+        public void AgregarSaborBizcochuelo(SaborBizcochuelo sabor)
+        {
+            if (SaborBizcochuelo == default) 
+            {
+                SaborBizcochuelo = sabor;
+            }
         }
     }
 }
