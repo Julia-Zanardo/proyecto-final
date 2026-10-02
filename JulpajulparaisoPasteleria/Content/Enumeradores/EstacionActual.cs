@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JulpajulparaisoPasteleria.Content.Enumeradores
+{
+    public enum EstacionActual
+    {
+        EstacionDeOrdenes,
+        EstacionDeMezcla,
+        EstacionDeHorneado,
+        EstacionDeDecoracion,
+        EstacionDeEntrega
+    }
+}
