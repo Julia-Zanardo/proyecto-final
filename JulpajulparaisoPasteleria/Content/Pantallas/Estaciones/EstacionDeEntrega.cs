@@ -12,7 +12,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeEntrega : Estacion
     {
-        public EstacionDeEntrega(GestorDeTickets gestorDeTickets) : base(gestorDeTickets)
+        public EstacionDeEntrega() 
         {
         }
         public override void LoadContent(ContentManager content)

@@ -4,6 +4,7 @@ using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Logica;
+using JulpajulparaisoPasteleria.Content.Objetos;
 using JulpajulparaisoPasteleria.Content.Personajes;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
@@ -23,7 +24,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private BotonBase ventanaDeDialogo;
         private ContentManager contentManager;
         private int contadorClientes=0;
-        public EstacionDeOrdenes(GestorDeTickets gestorDeTickets) : base(gestorDeTickets) 
+        public EstacionDeOrdenes()
         {
             this.fila = new Fila();
         }
@@ -88,8 +89,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 clientesActivos.Add(generadorClientes.GenerarCliente(fila.obtenerPosicionFila(clientesActivos.Count)));
                 contadorClientes++;
+                Torta torta = new Torta();
+                torta.CambiarDeEstacion(EstacionActual.EstacionDeOrdenes);
+                gestorDePedidos.AgregarTorta(torta);
             }
-
             foreach (Cliente cliente in clientesActivos)
             {
                 cliente.Actualizar(gameTime);

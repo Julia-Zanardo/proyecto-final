@@ -2,6 +2,7 @@
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
 using JulpajulparaisoPasteleria.Content.Logica;
+using JulpajulparaisoPasteleria.Content.Objetos;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -20,10 +21,11 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public bool EsActiva { set; get; }
         public abstract void LoadContent(ContentManager content);
         public abstract void Actualizar(GameTime gameTime, Vector2 posicionVirtual);
-        protected GestorDeTickets gestorDeTickets;
-        public Estacion(GestorDeTickets gestorDeTickets)
+        protected GestorDeTickets gestorDeTickets = new GestorDeTickets();
+        protected GestorDePedidos gestorDePedidos = new GestorDePedidos();
+        protected List<Torta> tortasEstacion = new List<Torta>();
+        public Estacion()
         {
-            this.gestorDeTickets = gestorDeTickets;
         }
         public virtual void ActualizarEnSegundoPlano(GameTime gameTime)
         {

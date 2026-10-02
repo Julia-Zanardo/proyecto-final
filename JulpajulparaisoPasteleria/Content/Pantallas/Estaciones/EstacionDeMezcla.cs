@@ -18,17 +18,15 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeMezcla : Estacion
     {
-        public EstacionDeMezcla(GestorDeTickets gestorDeTickets) : base(gestorDeTickets)
+        public EstacionDeMezcla() 
         {
         }
         private BotonBase botonSiguiente;
         private Tazon tazon;
         private bool todoListo= false;
-        private bool saborElegido = false;
-        private Dictionary<SaborBizcochuelo, Texture2D> texturasBowl;
-        public bool ListoParaHorno { get; private set; }
         private RepositorioImagenes r=new RepositorioImagenes();
         private BotonBase botonTirar;
+        
         public override void LoadContent(ContentManager content)
         {
             base.Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionMezcla");
@@ -39,14 +37,17 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
+            base.tortasEstacion = gestorDePedidos.getTortasEstacion(EstacionActual.EstacionDeMezcla);
             foreach (BotonSabor boton in r.IconosBotonesSabor)
             {
                 if (boton.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                 {
                     tazon.AgregarSabor(boton.Sabor);
-                    saborElegido = true;
+                    tortasEstacion[0].SaborBizcochuelo = boton.Sabor;
+                    todoListo = true;
                 }
             }
+
             if (botonTirar.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
             {
                 tazon.Tirar();
@@ -55,7 +56,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 {
                     if(botonSiguiente.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                     {
-                        ListoParaHorno = true;
+                    base.tortasEstacion[0].CambiarDeEstacion(EstacionActual.EstacionDeHorneado);
                     }
 
             }
