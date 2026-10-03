@@ -24,7 +24,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private BotonBase ventanaDeDialogo;
         private ContentManager contentManager;
         private int contadorClientes=0;
-        public EstacionDeOrdenes(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos) : base(gestorDeTickets, gestorDePedidos)
+        public EstacionDeOrdenes(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
             this.fila = new Fila();
         }
@@ -55,10 +55,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                         if (ventanaDeDialogo.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                         {
                             clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Saliendo);
-                            DibujadorDeTicket ticket = new DibujadorDeTicket(new Vector2(base.gestorDeTickets.ObtenerCantidadTickets()>0?base.gestorDeTickets.ObtenerCantidadTickets()*200:0, 00), clienteEnPrimeraFila.pedido);
+                            DibujadorDeTicket ticket = new DibujadorDeTicket(new Vector2(base.gestorDeTickets.ObtenerCantidadTickets()>0?base.gestorDeTickets.ObtenerCantidadTickets()*200:0, 00), clienteEnPrimeraFila.pedido, r);
                             ticket.LoadContent(contentManager);
                             base.gestorDeTickets.AgregarTikcet(ticket);
-                            Torta torta = new Torta();
+                            Torta torta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
                             torta.EstacionActual = EstacionActual.EstacionDeMezcla;
                             gestorDePedidos.AgregarTorta(torta);
                         }

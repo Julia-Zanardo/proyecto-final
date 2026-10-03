@@ -16,16 +16,15 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeHorneado : Estacion
     {
-        private RepositorioImagenes r;
         private float tiempoTranscurrido = 0f;
-        private Rectangle areaTortaLista = new Rectangle(1500, 850, 200, 200);
+        private Rectangle areaTortaLista = new Rectangle(1500, 850, 100, 100);
         private Vector2[] posicionesTortas = new Vector2[3]
         {
             new Vector2(200, 250),
             new Vector2(600, 250),
             new Vector2(1000, 250),
         };
-        public EstacionDeHorneado(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos) : base(gestorDeTickets, gestorDePedidos)
+        public EstacionDeHorneado(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes r) : base(gestorDeTickets, gestorDePedidos, r)
         {
         }
         public override void LoadContent(ContentManager content)
@@ -42,7 +41,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 Torta torta = tortasEstacion[i];
                 Rectangle area = new Rectangle((int)posicionesTortas[i].X, (int)posicionesTortas[i].Y, 300, 200);
-                if (!torta.estaSiendoArrastrada)
+                if (!torta.EstaSiendoArrastrado)
                 {
                     torta.cambiarArea(area);
                 }
@@ -50,7 +49,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 {
                     torta.Actualizar(posicionVirtual);
                 }
-                if (torta.estaSiendoArrastrada)
+                if (torta.EstaSiendoArrastrado)
                 {
                     if(DetectorDeColisiones.DetectarColision(torta.Area, areaTortaLista))
                     {
@@ -73,11 +72,11 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                     torta.tiempoDeHorneadoActual += tiempoTranscurrido;
                     if (torta.tiempoDeHorneadoActual >= torta.tiempoDeHorneadoNecesario)
                     {
-                        torta.EstadoCoccion = EstadoCoccion.Perfecta;
+                        torta.EstadoCoccion = EstadoCoccion.Perfecto;
                     }
                     if (torta.tiempoDeHorneadoActual >= torta.tiempoDeHorneadoQuemado)
                     {
-                        torta.EstadoCoccion = EstadoCoccion.Quemada;
+                        torta.EstadoCoccion = EstadoCoccion.Quemado;
                     }
                 }
             }
@@ -96,10 +95,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 {
                     Torta torta = tortasEstacion[i];
 
-                    if (torta.EstadoCoccion != EstadoCoccion.Quemada)
+                    if (torta.EstadoCoccion != EstadoCoccion.Quemado)
                     {
                         Texture2D textura = r.TexturasMoldeSaborCoccion[(torta.SaborBizcochuelo, torta.FormaBizcochuelo, torta.EstadoCoccion)];
-                        if (torta.estaSiendoArrastrada)
+                        if (torta.EstaSiendoArrastrado)
                         {
                             torta.Dibujar(spriteBatch, torta.Area, textura);
                         }
@@ -108,10 +107,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                             torta.Dibujar(spriteBatch, new Rectangle((int)posicionesTortas[i].X, (int)posicionesTortas[i].Y, 300, 200), textura);
                         }
                     }
-                    else if (torta.EstadoCoccion == EstadoCoccion.Quemada)
+                    else if (torta.EstadoCoccion == EstadoCoccion.Quemado)
                     {
                         Texture2D textura = r.TexturasFormaQuemada[torta.FormaBizcochuelo];
-                        if (torta.estaSiendoArrastrada)
+                        if (torta.EstaSiendoArrastrado)
                         {
                             torta.Dibujar(spriteBatch, torta.Area, textura);
                         }

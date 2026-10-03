@@ -3,6 +3,7 @@ using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
 using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
+using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,8 +19,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
     {
         private Estacion[] estaciones;
         private GestorDePestañas gestorDePestañas;
-        GestorDeTickets gestorTickets = new GestorDeTickets();
-        GestorDePedidos gestorDePedidos = new GestorDePedidos();
+        private RepositorioImagenes repositorioImagenes = new RepositorioImagenes();
+        private GestorDeTickets gestorTickets = new GestorDeTickets();
+        private GestorDePedidos gestorDePedidos = new GestorDePedidos();
         private Estacion estacionActual;
         private BotonBase botonPausa;
         private GestorDePantalla gestorDePantalla;
@@ -35,11 +37,11 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 gestorDePestañas.LoadContent(content);
                 botonPausa = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonPausa"), new Rectangle(1800, 10, 100, 100));
                 estaciones = new Estacion[] {
-                     new EstacionDeOrdenes(gestorTickets, gestorDePedidos),
-                     new EstacionDeMezcla(gestorTickets, gestorDePedidos),
-                     new EstacionDeHorneado(gestorTickets, gestorDePedidos),
-                     new EstacionDeDecoracion(gestorTickets, gestorDePedidos),
-                     new EstacionDeEntrega(gestorTickets, gestorDePedidos)
+                     new EstacionDeOrdenes(gestorTickets, gestorDePedidos, repositorioImagenes),
+                     new EstacionDeMezcla(gestorTickets, gestorDePedidos, repositorioImagenes),
+                     new EstacionDeHorneado(gestorTickets, gestorDePedidos, repositorioImagenes),
+                     new EstacionDeDecoracion(gestorTickets, gestorDePedidos, repositorioImagenes),
+                     new EstacionDeEntrega(gestorTickets, gestorDePedidos, repositorioImagenes)
                  };
                 foreach (Estacion e in estaciones)
                 {
@@ -47,7 +49,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 }
                 estacionActual = estaciones[0];
             }
-            GestorDeAudio.ReproducirMusicaFondo();
+            if (GestorDeAudio.musicaSonando)
+            {
+                GestorDeAudio.ReproducirMusicaFondo();
+            }
         }
         public void Actualizar(GameTime gameTime, Vector2 posVirtual)
         {

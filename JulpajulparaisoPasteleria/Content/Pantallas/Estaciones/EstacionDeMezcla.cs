@@ -18,7 +18,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeMezcla : Estacion
     {
-        public EstacionDeMezcla(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos) : base(gestorDeTickets, gestorDePedidos)
+        public EstacionDeMezcla(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes r) : base(gestorDeTickets, gestorDePedidos, r)
         {
         }
 
@@ -26,7 +26,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private Tazon tazon;
         private bool todoListo= false;
         private bool botonSaborSeleccionado = false;
-        private RepositorioImagenes r=new RepositorioImagenes();
         private BotonBase botonTirar;
         
         public override void LoadContent(ContentManager content)
@@ -44,6 +43,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 foreach (BotonSabor boton in r.IconosBotonesSabor)
                 {
+                    boton.Actualizar(posicionVirtual);
                     if (boton.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                     {
                         tazon.AgregarSabor(boton.Sabor);
@@ -65,7 +65,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             }
             if (botonTirar.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
             {
-                tazon.Tirar();
+                tazon.Reiniciar();
+                botonSaborSeleccionado = false;
+                todoListo = false;
             }
             if (todoListo) 
                 {
@@ -77,6 +79,15 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 }
 
             }
+            if (botonSaborSeleccionado)
+            {
+                foreach (BotonForma boton in r.IconosBotonesFormas)
+                {
+                    boton.Actualizar(posicionVirtual);
+                }
+            }
+            botonSiguiente.Actualizar(posicionVirtual);
+            botonTirar.Actualizar(posicionVirtual);
             base.gestorDeTickets.ActualizarTickets(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)

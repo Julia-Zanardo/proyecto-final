@@ -2,8 +2,8 @@
 {
     public enum EstadoCoccion
     {
-        Cruda,
-        Perfecta,
-        Quemada
+        Crudo,
+        Perfecto,
+        Quemado
     }
 }
