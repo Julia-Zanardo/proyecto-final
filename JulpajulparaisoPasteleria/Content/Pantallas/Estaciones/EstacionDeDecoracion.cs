@@ -23,6 +23,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private Torta tortaActual;
         private SpriteFont fuente;
         private Rectangle areaDeBasura = new Rectangle(200,600,150,150);
+        private bool rellenoSeleccionado = false;
         public EstacionDeDecoracion(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes r) : base(gestorDeTickets, gestorDePedidos, r)
         {
         }
@@ -49,7 +50,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 tortaActual = tortasEstacion[0];
                 tortaActual.cambiarArea(areaTorta);
-                {
+                
                     foreach (Topping topping in toppingsDisponibles)
                     {
                         if (ManejoEntrada.ElementoClickeado() && topping.Area.Contains(posicionVirtual) && contadorToppingsPuestos < 3 && toppingActivo == null)
@@ -71,7 +72,15 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                             toppingActivo = null;
                         }
                     }
+                foreach(BotonRelleno boton in r.IconosBotonesRelleno)
+                {
+                    if(boton.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado())&& !rellenoSeleccionado)
+                    {
+                        rellenoSeleccionado = true;
+                        tortaActual.Relleno = boton.Sabor;
+                    }
                 }
+
             }
                 foreach (BotonCobertura boton in r.IconosBotonesCobertura)
                 {
@@ -99,6 +108,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 Texture2D textura = r.TexturasBizcochueloSinRelleno[(torta.SaborBizcochuelo, torta.FormaBizcochuelo)];
                 torta.Dibujar(spriteBatch, areaTorta, textura);
                 spriteBatch.DrawString(fuente, texto, new Vector2(520, 880), Color.Black, 0f, Vector2.Zero, 1.8f, SpriteEffects.None, 1f);
+                if(rellenoSeleccionado)
+                {
+                    tortaActual.Dibujar(spriteBatch, areaTorta, r.TexturasBizcochueloConRelleno[(tortaActual.SaborBizcochuelo, tortaActual.FormaBizcochuelo, tortaActual.Relleno)]);
+                }
             }
             foreach (BotonCobertura boton in r.IconosBotonesCobertura)
             {

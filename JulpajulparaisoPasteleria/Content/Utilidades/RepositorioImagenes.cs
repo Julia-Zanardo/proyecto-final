@@ -23,6 +23,7 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
         public BotonCobertura[] IconosBotonesCobertura { get; private set; }
         public BotonRelleno[] IconosBotonesRelleno { get; private set; }
         public Texture2D TexturaBasura { get; private set; }
+        public Dictionary<(SaborBizcochuelo,FormaBizcochuelo,SaborRelleno), Texture2D> TexturasBizcochueloConRelleno { get; private set; }
         public void LoadContent(ContentManager content)
         {
             IconosBizcochuelo = new Dictionary<SaborBizcochuelo, Texture2D>();
@@ -54,7 +55,7 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
             IconosToppings.Add(TipoTopping.Cubanito, content.Load<Texture2D>("imagenes/Topings/topingCubanito"));
             IconosToppings.Add(TipoTopping.Waffle, content.Load<Texture2D>("imagenes/Topings/topingWaffle"));
             IconosBotonesSabor = new BotonSabor[4];
-            IconosBotonesSabor[0]=(new BotonSabor(content.Load<Texture2D>("imagenes/SaboresBizcochuelo/botonCarameloVainilla"), new Microsoft.Xna.Framework.Rectangle(285, 240, 150, 100), SaborBizcochuelo.CarameloVainilla));
+            IconosBotonesSabor[0] = (new BotonSabor(content.Load<Texture2D>("imagenes/SaboresBizcochuelo/botonCarameloVainilla"), new Microsoft.Xna.Framework.Rectangle(285, 240, 150, 100), SaborBizcochuelo.CarameloVainilla));
             IconosBotonesSabor[1] = (new BotonSabor(content.Load<Texture2D>("imagenes/SaboresBizcochuelo/botonArandano"), new Microsoft.Xna.Framework.Rectangle(465, 240, 150, 100), SaborBizcochuelo.Arandano));
             IconosBotonesSabor[2] = (new BotonSabor(content.Load<Texture2D>("imagenes/SaboresBizcochuelo/botonFrutilla"), new Microsoft.Xna.Framework.Rectangle(1165, 240, 150, 100), SaborBizcochuelo.Frutilla));
             IconosBotonesSabor[3] = (new BotonSabor(content.Load<Texture2D>("imagenes/SaboresBizcochuelo/botonChocolate"), new Microsoft.Xna.Framework.Rectangle(1345, 240, 150, 100), SaborBizcochuelo.Chocolate));
@@ -130,6 +131,68 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
             IconosBotonesRelleno[3] = (new BotonRelleno(content.Load<Texture2D>("imagenes/Rellenos/botonRellenoLimon"), new Rectangle(1050, 300, 60, 150), SaborRelleno.Limon));
 
             TexturaBasura = content.Load<Texture2D>("imagenes/EstacionDecoracion/areaDeBasura");
+
+            TexturasBizcochueloConRelleno = new Dictionary<(SaborBizcochuelo, FormaBizcochuelo, SaborRelleno), Texture2D>();
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Redondo, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaRedondoCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Redondo, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaRedondoCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Redondo, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaRedondoCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Redondo, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaRedondoCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Cuadrado, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaCuadradoCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Cuadrado, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaCuadradoCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Cuadrado, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaCuadradoCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Cuadrado, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaCuadradoCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Corazon, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaCorazonCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Corazon, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaCorazonCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Corazon, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaCorazonCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Corazon, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaCorazonCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Redondo, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateRedondoCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Redondo, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateRedondoCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Redondo, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateRedondoCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Redondo, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateRedondoCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Cuadrado, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateCuadradoCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Cuadrado, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateCuadradoCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Cuadrado, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateCuadradoCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Cuadrado, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateCuadradoCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Corazon, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateCorazonCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Corazon, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateCorazonCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Corazon, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateCorazonCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Chocolate, FormaBizcochuelo.Corazon, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/chocolateCorazonCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Redondo, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaRedondoCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Redondo, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaRedondoCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Redondo, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaRedondoCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Redondo, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaRedondoCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Cuadrado, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaCuadradoCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Cuadrado, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaCuadradoCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Cuadrado, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaCuadradoCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Cuadrado, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaCuadradoCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Corazon, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaCorazonCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Corazon, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaCorazonCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Corazon, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaCorazonCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Frutilla, FormaBizcochuelo.Corazon, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/frutillaCorazonCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Redondo, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoRedondoCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Redondo, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoRedondoCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Redondo, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoRedondoCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Redondo, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoRedondoCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Cuadrado, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCuadradoCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Cuadrado, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCuadradoCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Cuadrado, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCuadradoCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Cuadrado, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCuadradoCorteLimon"));
+
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Corazon, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCorazonCorteChantilly"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Corazon, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCorazonCorteChocolate"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Corazon, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCorazonCorteFrutilla"));
+            TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Corazon, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCorazonCorteLimon"));
+
         }
     }
 }
