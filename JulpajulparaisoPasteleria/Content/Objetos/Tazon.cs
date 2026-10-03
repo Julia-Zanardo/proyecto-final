@@ -38,5 +38,10 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
             this.texturaActual = this.texturaVacia;
             estaLleno = false;
         }
+        public void Reiniciar()
+        {
+            this.texturaActual = this.texturaVacia;
+            estaLleno = false;
+        }
     }
 }

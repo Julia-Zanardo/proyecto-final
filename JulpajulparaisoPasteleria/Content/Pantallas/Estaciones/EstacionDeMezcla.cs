@@ -18,12 +18,14 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeMezcla : Estacion
     {
-        public EstacionDeMezcla() 
+        public EstacionDeMezcla(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos) : base(gestorDeTickets, gestorDePedidos)
         {
         }
+
         private BotonBase botonSiguiente;
         private Tazon tazon;
         private bool todoListo= false;
+        private bool botonSaborSeleccionado = false;
         private RepositorioImagenes r=new RepositorioImagenes();
         private BotonBase botonTirar;
         
@@ -38,16 +40,29 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
             base.tortasEstacion = gestorDePedidos.getTortasEstacion(EstacionActual.EstacionDeMezcla);
-            foreach (BotonSabor boton in r.IconosBotonesSabor)
+            if (tortasEstacion.Count > 0 )
             {
-                if (boton.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
+                foreach (BotonSabor boton in r.IconosBotonesSabor)
                 {
-                    tazon.AgregarSabor(boton.Sabor);
-                    tortasEstacion[0].SaborBizcochuelo = boton.Sabor;
-                    todoListo = true;
+                    if (boton.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
+                    {
+                        tazon.AgregarSabor(boton.Sabor);
+                        tortasEstacion[0].SaborBizcochuelo = boton.Sabor;
+                        botonSaborSeleccionado = true;
+                    }
                 }
             }
-
+            if (botonSaborSeleccionado == true) 
+            {
+                foreach (BotonForma boton in r.IconosBotonesFormas)
+                {
+                    if(boton.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
+                    {
+                        tortasEstacion[0].FormaBizcochuelo = boton.Forma;
+                        todoListo = true;
+                    }
+                }
+            }
             if (botonTirar.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
             {
                 tazon.Tirar();
@@ -56,8 +71,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 {
                     if(botonSiguiente.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                     {
-                    base.tortasEstacion[0].CambiarDeEstacion(EstacionActual.EstacionDeHorneado);
-                    }
+                        base.tortasEstacion[0].EstacionActual = EstacionActual.EstacionDeHorneado;
+                        base.tortasEstacion.RemoveAt(0);
+                        Reiniciar();
+                }
 
             }
             base.gestorDeTickets.ActualizarTickets(posicionVirtual);
@@ -73,13 +90,25 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 boton.Dibujar(spriteBatch);
             }
+            if (botonSaborSeleccionado)
+            {
+                foreach (BotonForma boton in r.IconosBotonesFormas)
+                {
+                    boton.Dibujar(spriteBatch);
+                }
+            }
             if (todoListo) 
             { 
-            botonSiguiente.Dibujar(spriteBatch);
+               botonSiguiente.Dibujar(spriteBatch);
             }
             DibujarTickets(spriteBatch);
             botonTirar.Dibujar(spriteBatch);
         }
-
+        public void Reiniciar()
+        {
+            tazon.Reiniciar();
+            botonSaborSeleccionado = false;
+            todoListo = false;
+        }
     }
 }
