@@ -16,77 +16,59 @@ using System.Threading.Tasks;
 
 namespace JulpajulparaisoPasteleria.Content.Logica
 {
-    public class DibujadorDeTicket
+    public class DibujadorDeTicket : ObjetoArrastrable
     {
         private int cantidadToppings;
         private SpriteFont numeroDePedido;
         private Texture2D imagenTicket;
-        private Vector2 posicionTicket;
-        public Rectangle AreaTicket { get; private set; }
         public Rectangle AreaTicketDefaut { get; private set; }
-        public bool EstaSiendoArrastrado { get; private set; }
-        private Vector2 desplazamiento;
         private RepositorioImagenes r;
         public float Escala { get; private set; } = Constante.ESCALA_TICKET;
         private Pedido pedido;
-        public DibujadorDeTicket(Vector2 posicionTicket, Pedido pedido)
+        public DibujadorDeTicket(Vector2 posicionTicket, Pedido pedido, RepositorioImagenes r) : base(posicionTicket, new Rectangle((int)posicionTicket.X,(int)posicionTicket.Y, 500,500))
         {
-            this.posicionTicket = posicionTicket;
+            base.Posicion = posicionTicket;
             this.AreaTicketDefaut = new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y, 500, 500);
             this.pedido = pedido;
-            r = new RepositorioImagenes();
+            this.r = r;
         }
         public void LoadContent(ContentManager content)
         {
             imagenTicket = content.Load<Texture2D>("imagenes/EstacionOrdenes/ticket");
             r.LoadContent(content);
-            numeroDePedido = content.Load<SpriteFont>("Fuentes/fuentePedido");
+            numeroDePedido = content.Load<SpriteFont>("Fuentes/fuenteEscritura");
         }
         public void Actualizar(Vector2 posicionVirtual)
         {
             this.cantidadToppings = pedido.ToppingsDeseados.Count;
-            AreaTicket = new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y, (int)(imagenTicket.Width * Escala), (int)(imagenTicket.Height * Escala));
-            if (ManejoEntrada.ElementoPresionado() && AreaTicket.Contains(posicionVirtual))
-            {
-                EstaSiendoArrastrado = true;
-                desplazamiento = posicionTicket - posicionVirtual;
-            }
-
-            if (EstaSiendoArrastrado)
-            {
-                posicionTicket = posicionVirtual + desplazamiento;
-                if (ManejoEntrada.ElementoSoltado())
-                {
-                    EstaSiendoArrastrado = false;
-                }
-            }
-
+            base.Area = new Rectangle((int)base.Posicion.X, (int)base.Posicion.Y, (int)(imagenTicket.Width * Escala), (int)(imagenTicket.Height * Escala));
+            base.ActualizarArrastre(posicionVirtual);
         }
         public void Dibujar( SpriteBatch spriteBatch)
         {
             string texto = "Pedido #" + pedido.Id;
-            spriteBatch.Draw(imagenTicket, posicionTicket, null, Color.White, 0f, Vector2.Zero, Escala, SpriteEffects.None, 1);
-            spriteBatch.DrawString( numeroDePedido, texto, posicionTicket + new Vector2(18 * Escala, 15 * Escala), Color.Black, 0f,Vector2.Zero, Escala * 0.7f,SpriteEffects.None,0.95f);
-            spriteBatch.Draw(r.IconosBizcochuelo[pedido.SaborBizcochuelo], posicionTicket + new Vector2(20 * Escala, 135 * Escala),null,Color.White,0f,Vector2.Zero,Escala * 0.8f, SpriteEffects.None, 0.9f );
-            spriteBatch.Draw(r.IconosRelleno[pedido.SaborRelleno], posicionTicket + new Vector2(7 * Escala, 110 * Escala), null, Color.White, 0f, Vector2.Zero, Escala * 0.8f, SpriteEffects.None, 0.9f);
-            spriteBatch.Draw(r.IconosMoldes[pedido.FormaBizcochuelo], posicionTicket + new Vector2(8 * Escala, 163 * Escala), null, Color.White, 0f, Vector2.Zero, Escala*0.1f, SpriteEffects.None, 0.9f);
-            spriteBatch.Draw(r.IconosCoberturas[pedido.Cobertura], posicionTicket + new Vector2(57 * Escala, 163 * Escala), null, Color.White, 0f, Vector2.Zero, Escala * 0.25f, SpriteEffects.None, 0.9f);
+            spriteBatch.Draw(imagenTicket, base.Posicion, null, Color.White, 0f, Vector2.Zero, Escala, SpriteEffects.None, 1);
+            spriteBatch.DrawString( numeroDePedido, texto, base.Posicion + new Vector2(18 * Escala, 15 * Escala), Color.Black, 0f,Vector2.Zero, Escala * 0.7f,SpriteEffects.None,0.95f);
+            spriteBatch.Draw(r.IconosBizcochuelo[pedido.SaborBizcochuelo], base.Posicion + new Vector2(20 * Escala, 135 * Escala),null,Color.White,0f,Vector2.Zero,Escala * 0.8f, SpriteEffects.None, 0.9f );
+            spriteBatch.Draw(r.IconosRelleno[pedido.SaborRelleno], base.Posicion + new Vector2(7 * Escala, 110 * Escala), null, Color.White, 0f, Vector2.Zero, Escala * 0.8f, SpriteEffects.None, 0.9f);
+            spriteBatch.Draw(r.IconosMoldes[pedido.FormaBizcochuelo], base.Posicion + new Vector2(8 * Escala, 163 * Escala), null, Color.White, 0f, Vector2.Zero, Escala*0.1f, SpriteEffects.None, 0.9f);
+            spriteBatch.Draw(r.IconosCoberturas[pedido.Cobertura], base.Posicion + new Vector2(57 * Escala, 163 * Escala), null, Color.White, 0f, Vector2.Zero, Escala * 0.25f, SpriteEffects.None, 0.9f);
             int anchoTopping = (int)(24 * Escala);
             int altoTopping = (int)(24 * Escala);
 
             switch (cantidadToppings)
             {
                 case 1:
-                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[0]], new Rectangle((int)(posicionTicket.X + 32 * Escala), (int)(posicionTicket.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
+                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[0]], new Rectangle((int)(base.Posicion.X + 32 * Escala), (int)(base.Posicion.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
                     break;
                 case 2:
-                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[0]], new Rectangle((int)(posicionTicket.X + 15 * Escala), (int)(posicionTicket.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
-                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[1]], new Rectangle((int)(posicionTicket.X + 47 * Escala), (int)(posicionTicket.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
+                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[0]], new Rectangle((int)(base.Posicion.X + 15 * Escala), (int)(base.Posicion.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
+                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[1]], new Rectangle((int)(base.Posicion.X + 47 * Escala), (int)(base.Posicion.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
                     break;
                 case 3:
-                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[0]], new Rectangle((int)(posicionTicket.X + 8 * Escala), (int)(posicionTicket.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
-                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[1]], new Rectangle((int)(posicionTicket.X + 32 * Escala), (int)(posicionTicket.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
-                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[2]], new Rectangle((int)(posicionTicket.X + 56 * Escala), (int)(posicionTicket.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
+                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[0]], new Rectangle((int)(base.Posicion.X + 8 * Escala), (int)(base.Posicion.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
+                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[1]], new Rectangle((int)(base.Posicion.X + 32 * Escala), (int)(base.Posicion.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
+                    spriteBatch.Draw(r.IconosToppings[pedido.ToppingsDeseados[2]], new Rectangle((int)(base.Posicion.X + 56 * Escala), (int)(base.Posicion.Y + 85 * Escala), anchoTopping, altoTopping), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
                     break;
             }
         
@@ -94,7 +76,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         }
         public void AcomodarTicket(Rectangle posicion,float escala)
         {
-            posicionTicket = new Vector2 (posicion.X, posicion.Y);
+            base.Posicion = new Vector2 (posicion.X, posicion.Y);
             this.Escala = escala;
         }
 
