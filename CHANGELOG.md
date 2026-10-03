@@ -7,6 +7,10 @@ Registro de cambios
 - Creacion e implementacion de las imagenes de cada molde con cada sabor de bizcochuelo y estado de coccion
 - Logica de EstacionDeMezcla terminada.
 - Logica de EstacionDeHorneado terminada
+- Creacion de la clase Topping.
+- Creacion de la clase ObjetoArrastrable.
+- Logica de rellenar el bizcochuelo y colocar los toppings completada.
+- Correcion de pantallaPausa por tema de botones pausado y reanudado.
 ## [0.5.7] - 2026-09-30
 - Incorporacion de botones de pausa y reanuacion de musica en PantallaJuego.
 ## [0.5.6] - 2026-09-28
