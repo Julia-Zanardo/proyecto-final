@@ -9,27 +9,51 @@ using System.Collections.Generic;
 
 namespace JulpajulparaisoPasteleria.Content.Objetos
 {
-    public class Torta
+    public class Torta : ObjetoArrastrable
     {
-        public Rectangle Area { get; private set; }
-        private Vector2 posicionTorta;
-        private Vector2 desplazamiento;
         public SaborBizcochuelo SaborBizcochuelo { get; set; }
-        public EstadoCoccion EstadoCoccion { get; set; } = EstadoCoccion.Cruda;
+        public EstadoCoccion EstadoCoccion { get; set; } = EstadoCoccion.Crudo;
         public SaborRelleno Relleno { get; set; }
         public TipoCobertura Cobertura { get; set; }
-        public List<Topping> Decoracion { get; set; } = new List<Topping>();
+        public List<TipoTopping> Decoracion { get; set; } = new List<TipoTopping>();
         public FormaBizcochuelo FormaBizcochuelo { get; set; }
+        public List<Topping> toppings { get;set; }
         public float tiempoDeHorneadoNecesario { get; private set; } = 10f;
         public float tiempoDeHorneadoQuemado { get; private set; } = 20f;
         public float tiempoDeHorneadoActual { get; set; }
         public EstacionActual EstacionActual { get; set; } = EstacionActual.EstacionDeOrdenes;
-        public bool estaSiendoArrastrada { get; private set; } = false;
-        public void AgregarTopping(Topping topping)
+        public Rectangle[] PosicionesToppings { get; private set; }
+        public Torta(Rectangle area) : base(new Vector2(area.X, area.Y), area)
         {
-            Decoracion.Add(topping);
+            toppings = new List<Topping>();
         }
-
+        public void crearPosicionesToppings() 
+        {
+            switch (FormaBizcochuelo) 
+            {
+                case FormaBizcochuelo.Corazon:
+                    PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
+                     new Rectangle(Area.X+70, Area.Y+70, 100,100),
+                     new Rectangle(Area.X+250,Area.Y+150,100,100),
+                     new Rectangle(Area.X+430, Area.Y+70,100,100)
+                    };
+                    break;
+                case FormaBizcochuelo.Redondo:
+                    PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
+                     new Rectangle(Area.X+50, Area.Y+100, 100,100),
+                     new Rectangle(Area.X+250,Area.Y+100,100,100),
+                     new Rectangle(Area.X+450, Area.Y+100,100,100)
+                    };
+                    break;
+                case FormaBizcochuelo.Cuadrado:
+                    PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
+                     new Rectangle(Area.X+50, Area.Y+110, 100,100),
+                     new Rectangle(Area.X+250,Area.Y+70,100,100),
+                     new Rectangle(Area.X+450, Area.Y+110,100,100)
+                    };
+                    break;
+            }
+        }
         public void LimpiarTorta()
         {
 
@@ -43,33 +67,25 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         }
         public void Actualizar(Vector2 posicionVirtual)
         {
-            Area = new Rectangle((int)posicionTorta.X, (int)posicionTorta.Y, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y);
-
-           
-            if (ManejoEntrada.ElementoPresionado() && Area.Contains(posicionVirtual))
-            {
-                estaSiendoArrastrada = true;
-                desplazamiento = posicionTorta - posicionVirtual; 
-            }
-
-            if (estaSiendoArrastrada)
-            {
-                posicionTorta = posicionVirtual + desplazamiento; 
-
-                if (ManejoEntrada.ElementoSoltado())
-                {
-                    estaSiendoArrastrada = false;
-                }
-            }
+            base.ActualizarArrastre(posicionVirtual);
+            base.Area = new Rectangle((int)posicionVirtual.X, (int)posicionVirtual.Y, Area.Width, Area.Height);
         }
         public void Dibujar(SpriteBatch spriteBatch, Rectangle area, Texture2D textura)
         {
             spriteBatch.Draw(textura, area, Color.White);
+            if (toppings.Count > 0) 
+            {
+                foreach (Topping topping in toppings)
+                {
+                    topping.Dibujar(spriteBatch);
+                }
+            }
         }
         public void cambiarArea(Rectangle nuevaArea)
         {
             Area = nuevaArea;
-            posicionTorta = new Vector2(nuevaArea.X, nuevaArea.Y);
+            base.Posicion = new Vector2(nuevaArea.X, nuevaArea.Y);
+            crearPosicionesToppings();
         }
     }
 }
