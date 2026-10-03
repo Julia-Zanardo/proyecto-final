@@ -24,7 +24,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private BotonBase ventanaDeDialogo;
         private ContentManager contentManager;
         private int contadorClientes=0;
-        public EstacionDeOrdenes()
+        public EstacionDeOrdenes(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos) : base(gestorDeTickets, gestorDePedidos)
         {
             this.fila = new Fila();
         }
@@ -58,6 +58,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                             DibujadorDeTicket ticket = new DibujadorDeTicket(new Vector2(base.gestorDeTickets.ObtenerCantidadTickets()>0?base.gestorDeTickets.ObtenerCantidadTickets()*200:0, 00), clienteEnPrimeraFila.pedido);
                             ticket.LoadContent(contentManager);
                             base.gestorDeTickets.AgregarTikcet(ticket);
+                            Torta torta = new Torta();
+                            torta.EstacionActual = EstacionActual.EstacionDeMezcla;
+                            gestorDePedidos.AgregarTorta(torta);
                         }
 
                         break;
@@ -89,9 +92,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 clientesActivos.Add(generadorClientes.GenerarCliente(fila.obtenerPosicionFila(clientesActivos.Count)));
                 contadorClientes++;
-                Torta torta = new Torta();
-                torta.CambiarDeEstacion(EstacionActual.EstacionDeOrdenes);
-                gestorDePedidos.AgregarTorta(torta);
             }
             foreach (Cliente cliente in clientesActivos)
             {

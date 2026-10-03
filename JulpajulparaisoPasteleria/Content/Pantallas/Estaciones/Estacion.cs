@@ -21,11 +21,13 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public bool EsActiva { set; get; }
         public abstract void LoadContent(ContentManager content);
         public abstract void Actualizar(GameTime gameTime, Vector2 posicionVirtual);
-        protected GestorDeTickets gestorDeTickets = new GestorDeTickets();
-        protected GestorDePedidos gestorDePedidos = new GestorDePedidos();
+        protected GestorDeTickets gestorDeTickets;
+        protected GestorDePedidos gestorDePedidos;
         protected List<Torta> tortasEstacion = new List<Torta>();
-        public Estacion()
+        public Estacion(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos)
         {
+            this.gestorDeTickets = gestorDeTickets;
+            this.gestorDePedidos = gestorDePedidos;
         }
         public virtual void ActualizarEnSegundoPlano(GameTime gameTime)
         {
