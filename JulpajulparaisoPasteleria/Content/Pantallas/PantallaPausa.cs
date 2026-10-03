@@ -53,6 +53,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 {
                     GestorDeAudio.PausarMusica();
                 }
+                botonPausarMusica.Actualizar(posVirtual);
             }
             else 
             {
@@ -60,9 +61,8 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 {
                     GestorDeAudio.ReanudarMusica();
                 }
+                botonContinuarMusica.Actualizar(posVirtual);
             }
-            botonContinuarMusica.Actualizar(posVirtual);
-            botonPausarMusica.Actualizar(posVirtual);
             botonContinuar.Actualizar(posVirtual);
             botonVolver.Actualizar(posVirtual);
         }
