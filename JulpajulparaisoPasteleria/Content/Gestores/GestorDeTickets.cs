@@ -23,12 +23,12 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
 
                 if (!ticket.EstaSiendoArrastrado && ManejoEntrada.ElementoSoltado())
                 {
-                    if (!areaDeTicketOcupada && DetectorDeColisiones.DetectarColision(ticket.AreaTicket, areaDeTicket) && ManejoEntrada.ElementoSoltado())
+                    if (!areaDeTicketOcupada && DetectorDeColisiones.DetectarColision(ticket.Area, areaDeTicket) && ManejoEntrada.ElementoSoltado())
                     {
                         areaDeTicketOcupada = true;
                         ticket.AcomodarTicket(areaDeTicket, ticket.Escala == Constante.ESCALA_TICKET ? ticket.Escala * 2 : ticket.Escala);
                     }
-                    if (DetectorDeColisiones.DetectarColision(ticket.AreaTicket, ticket.AreaTicketDefaut) && ManejoEntrada.ElementoSoltado())
+                    if (DetectorDeColisiones.DetectarColision(ticket.Area, ticket.AreaTicketDefaut) && ManejoEntrada.ElementoSoltado())
                     {
                         areaDeTicketOcupada = false;
                         ticket.AcomodarTicket(ticket.AreaTicketDefaut, ticket.Escala == Constante.ESCALA_TICKET * 2 ? ticket.Escala / 2 : ticket.Escala);

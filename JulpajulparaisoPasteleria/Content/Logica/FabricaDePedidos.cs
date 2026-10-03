@@ -1,7 +1,9 @@
 ﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Modelos;
+using JulpajulparaisoPasteleria.Content.Utilidades;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using static Microsoft.Xna.Framework.MathHelper;
 
 namespace JulpajulparaisoPasteleria.Content.Logica
@@ -13,7 +15,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         private FormaBizcochuelo[] formasBizcochuelo = (FormaBizcochuelo[])Enum.GetValues(typeof(FormaBizcochuelo));
         private SaborRelleno[] saboresRelleno = (SaborRelleno[])Enum.GetValues(typeof(SaborRelleno));
         private TipoCobertura[] tiposCobertura = (TipoCobertura[])Enum.GetValues(typeof(TipoCobertura));
-        private Topping[] toppings = (Topping[])Enum.GetValues(typeof(Topping));
+        private TipoTopping[] toppings = (TipoTopping[])Enum.GetValues(typeof(TipoTopping));
 
         public FabricaDePedidos() 
         {
@@ -25,12 +27,12 @@ namespace JulpajulparaisoPasteleria.Content.Logica
             FormaBizcochuelo formaElegida = formasBizcochuelo[r.Next(formasBizcochuelo.Length)];
             SaborRelleno rellenoElegido = saboresRelleno[r.Next(saboresRelleno.Length)];
             TipoCobertura coberturaElegida = tiposCobertura[r.Next(tiposCobertura.Length)];
-            List<Topping> toppingsDeseados = new List<Topping>();
-            int cantidadToppings = r.Next(1, 4);
+            List<TipoTopping> toppingsDeseados = new List<TipoTopping>();
+            int cantidadToppings = r.Next(1, Constante.CANTIDAD_MAXIMA_TOPPINGS);
 
             for (int i = 0; i < cantidadToppings; i++)
             {
-                Topping toppingAleatorio = toppings[r.Next(toppings.Length)];
+                TipoTopping toppingAleatorio = toppings[r.Next(toppings.Length)];
                 toppingsDeseados.Add(toppingAleatorio);
             }
             return new Pedido(

@@ -33,11 +33,6 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         {
             spriteBatch.Draw(texturaActual, area, Color.White);
         }
-        public void Tirar()
-        {
-            this.texturaActual = this.texturaVacia;
-            estaLleno = false;
-        }
         public void Reiniciar()
         {
             this.texturaActual = this.texturaVacia;

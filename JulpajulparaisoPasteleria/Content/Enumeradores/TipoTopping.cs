@@ -1,6 +1,6 @@
 ﻿namespace JulpajulparaisoPasteleria.Content.Enumeradores
 {
-    public enum Topping
+    public enum TipoTopping
     {
         Cereza,
         Oreo,
