@@ -1,4 +1,12 @@
 Registro de cambios
+## [0.6.7] - 2026-10-02
+- Creacion de la clase GestorDePedidos para gestionar las tortas en todas las estaciones.
+- Creacion de la clase BotonForma para seleccionar la forma del molde en EstacionDeMezcla.
+- Logica de GestorDePedidos añadida en todas las esatciones.
+- Creacion del enum EstacionActual para saber en que estacion esta la torta.
+- Creacion e implementacion de las imagenes de cada molde con cada sabor de bizcochuelo y estado de coccion
+- Logica de EstacionDeMezcla terminada.
+- Logica de EstacionDeHorneado terminada
 ## [0.5.7] - 2026-09-30
 - Incorporacion de botones de pausa y reanuacion de musica en PantallaJuego.
 ## [0.5.6] - 2026-09-28
