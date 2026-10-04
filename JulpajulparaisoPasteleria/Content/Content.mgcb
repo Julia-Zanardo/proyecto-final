@@ -2511,6 +2511,42 @@
 /processorParam:TextureFormat=Color
 /build:imagenes/Sprites/clienteCaminando3.png
 
+#begin imagenes/Sprites/clienteEnojado1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Sprites/clienteEnojado1.png
+
+#begin imagenes/Sprites/clienteEnojado2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Sprites/clienteEnojado2.png
+
+#begin imagenes/Sprites/clienteEnojado3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Sprites/clienteEnojado3.png
+
 #begin imagenes/Sprites/clienteEsperando1.png
 /importer:TextureImporter
 /processor:TextureProcessor

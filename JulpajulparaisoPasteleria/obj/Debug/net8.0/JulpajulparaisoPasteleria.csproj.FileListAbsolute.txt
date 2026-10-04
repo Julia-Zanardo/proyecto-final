@@ -330,3 +330,6 @@ C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\BizcochuelosConCobertura\redondoCoberturaNapolitana.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\BizcochuelosConCobertura\redondoCoberturaPistacho.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\BizcochuelosConCobertura\redondoCoberturaVainilla.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEnojado1.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEnojado2.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEnojado3.xnb

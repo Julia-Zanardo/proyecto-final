@@ -11,9 +11,11 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         public List<DibujadorDeTicket> TicketsActuales { get; private set; } = new List<DibujadorDeTicket> { };
         private  Rectangle areaDeTicket = new Rectangle(1530, 0, 900, 200);
         private  bool areaDeTicketOcupada = false;
+        private int contadorDeTickets = 0;
         public  void AgregarTikcet(DibujadorDeTicket nuevoTicket)
         {
             TicketsActuales.Add(nuevoTicket);
+            contadorDeTickets++;
         }
         public void ActualizarTickets(Vector2 posVirtual)
         {
@@ -39,7 +41,11 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         }
         public int ObtenerCantidadTickets()
         {
-            return TicketsActuales.Count;
+            return contadorDeTickets;
+        }
+        public void EliminarTicket(int indice)
+        {
+            TicketsActuales.RemoveAt(indice);
         }
     }
 }
