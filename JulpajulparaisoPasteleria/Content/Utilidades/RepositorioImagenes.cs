@@ -24,6 +24,7 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
         public BotonRelleno[] IconosBotonesRelleno { get; private set; }
         public Texture2D TexturaBasura { get; private set; }
         public Dictionary<(SaborBizcochuelo,FormaBizcochuelo,SaborRelleno), Texture2D> TexturasBizcochueloConRelleno { get; private set; }
+        public Dictionary<(FormaBizcochuelo, TipoCobertura), Texture2D> TexturasBizcochueloConCobertura { get; private set; }
         public void LoadContent(ContentManager content)
         {
             IconosBizcochuelo = new Dictionary<SaborBizcochuelo, Texture2D>();
@@ -192,6 +193,32 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
             TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Corazon, SaborRelleno.Chocolate), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCorazonCorteChocolate"));
             TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Corazon, SaborRelleno.Frutilla), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCorazonCorteFrutilla"));
             TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.Arandano, FormaBizcochuelo.Corazon, SaborRelleno.Limon), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/arandanoCorazonCorteLimon"));
+
+
+            TexturasBizcochueloConCobertura = new Dictionary<(FormaBizcochuelo, TipoCobertura), Texture2D>();
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Corazon, TipoCobertura.GlaseadoDeBanana), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/corazonCoberturaBanana"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Corazon, TipoCobertura.GlaseadoDePistacho), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/corazonCoberturaPistacho"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Corazon, TipoCobertura.GlaseadoDeFrutilla), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/corazonCoberturaFrutilla"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Corazon, TipoCobertura.Napolitano), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/corazonCoberturaNapolitana"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Corazon, TipoCobertura.AlgodonDeAzucar), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/corazonCoberturaAlgodon"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Corazon, TipoCobertura.GanacheChocolate), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/corazonCoberturaChocolate"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Corazon, TipoCobertura.GlaseadoDeVainilla), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/corazonCoberturaVainilla"));
+
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Cuadrado, TipoCobertura.GlaseadoDeBanana), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/cuadradoCoberturaBanana"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Cuadrado, TipoCobertura.GlaseadoDePistacho), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/cuadradoCoberturaPistacho"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Cuadrado, TipoCobertura.GlaseadoDeFrutilla), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/cuadradoCoberturaFrutilla"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Cuadrado, TipoCobertura.Napolitano), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/cuadradoCoberturaNapolitana"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Cuadrado, TipoCobertura.AlgodonDeAzucar), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/cuadradoCoberturaAlgodon"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Cuadrado, TipoCobertura.GanacheChocolate), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/cuadradoCoberturaChocolate"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Cuadrado, TipoCobertura.GlaseadoDeVainilla), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/cuadradoCoberturaVainilla"));
+
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Redondo, TipoCobertura.GlaseadoDeBanana), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/redondoCoberturaBanana"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Redondo, TipoCobertura.GlaseadoDePistacho), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/redondoCoberturaPistacho"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Redondo, TipoCobertura.GlaseadoDeFrutilla), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/redondoCoberturaFrutilla"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Redondo, TipoCobertura.Napolitano), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/redondoCoberturaNapolitana"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Redondo, TipoCobertura.AlgodonDeAzucar), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/redondoCoberturaAlgodon"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Redondo, TipoCobertura.GanacheChocolate), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/redondoCoberturaChocolate"));
+            TexturasBizcochueloConCobertura.Add((FormaBizcochuelo.Redondo, TipoCobertura.GlaseadoDeVainilla), content.Load<Texture2D>("imagenes/BizcochuelosConCobertura/redondoCoberturaVainilla"));
 
         }
     }
