@@ -33,22 +33,22 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
             {
                 case FormaBizcochuelo.Corazon:
                     PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
-                     new Rectangle(Area.X+70, Area.Y+70, 100,100),
                      new Rectangle(Area.X+250,Area.Y+150,100,100),
+                     new Rectangle(Area.X+70, Area.Y+70, 100,100),
                      new Rectangle(Area.X+430, Area.Y+70,100,100)
                     };
                     break;
                 case FormaBizcochuelo.Redondo:
                     PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
-                     new Rectangle(Area.X+50, Area.Y+100, 100,100),
                      new Rectangle(Area.X+250,Area.Y+100,100,100),
+                     new Rectangle(Area.X+50, Area.Y+100, 100,100),
                      new Rectangle(Area.X+450, Area.Y+100,100,100)
                     };
                     break;
                 case FormaBizcochuelo.Cuadrado:
                     PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
-                     new Rectangle(Area.X+50, Area.Y+110, 100,100),
                      new Rectangle(Area.X+250,Area.Y+70,100,100),
+                     new Rectangle(Area.X+50, Area.Y+110, 100,100),
                      new Rectangle(Area.X+450, Area.Y+110,100,100)
                     };
                     break;
