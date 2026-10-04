@@ -24,6 +24,11 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         public bool TerminoDeSalir { get; private set; }
         public Rectangle AreaCliente { get; private set; }
         public EstadoCliente Estado { get; private set; }
+        private float tiempoMaximoEspera = 7f;
+        private float cronometroEspera = 0;
+        private float cronometroEnojado = 0;
+        public bool EstaEnPrimeraFila { get; set; } = false;
+        public bool SeFueEnojado { get; private set; } = false;
         public Cliente(SkinCliente skin, Vector2 posicion, Rectangle destino, Pedido pedido)
         {
             this.skin = skin;
@@ -56,7 +61,16 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ConfiguracionSkin.ColumnasCaminando) * (int)escala, skin.Caminando.Height * (int)escala);
                     break;
                 case EstadoCliente.Esperando:
+                    posicion = new Vector2(destino.X, destino.Y);
                     AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Esperando.Width / skin.ConfiguracionSkin.ColumnasEsperando) * (int)escala, skin.Esperando.Height * (int)escala);
+                    if (EstaEnPrimeraFila)
+                    {
+                        cronometroEspera += tiempoTranscurrido;
+                        if (cronometroEspera > tiempoMaximoEspera)
+                        {
+                            CambiarDeEstado(EstadoCliente.Enojado);
+                        }
+                    }
                     break;
                 case EstadoCliente.Saliendo:
                     Vector2 distanciaSalidaVector = posicionSalida - posicion;
@@ -70,12 +84,25 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     {
                         posicion = posicionSalida;
                         TerminoDeSalir = true;
-
                     }
                     AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Caminando.Width / skin.ConfiguracionSkin.ColumnasSaliendo) * (int)escala, skin.Caminando.Height * (int)escala);
                     break;
+                case EstadoCliente.Enojado:
+                    cronometroEnojado += tiempoTranscurrido;
+                    if (cronometroEnojado >= 5)
+                    {
+                        CambiarDeEstado(EstadoCliente.Saliendo);
+                        posicionSalida = new Vector2(1920, posicion.Y);
+                        SeFueEnojado = true;
+                    }
+                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Enojado.Width / skin.ConfiguracionSkin.ColumasEnojado) * (int)escala, skin.Enojado.Height * (int)escala);
+                    break;
             }
             animacion.Actualizar(tiempo);
+        }
+        public void ReiniciarSalida()
+        {
+            TerminoDeSalir = false;
         }
         public void Dibujar(SpriteBatch spriteBatch)
         {
@@ -84,10 +111,18 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         public void CambiarDeEstado(EstadoCliente estado)
         {
             if (this.Estado == estado)
-            { 
+            {
                 return;
-             }
+            }
             this.Estado = estado;
+            if (estado == EstadoCliente.Esperando)
+            {
+                cronometroEspera = 0f;
+            }
+            else if (estado == EstadoCliente.Enojado)
+            {
+                cronometroEnojado = 0f;
+            }
             animacion = ObtenerAnimacion(estado);
         }
         private Animacion ObtenerAnimacion(EstadoCliente estado)
@@ -100,6 +135,8 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     return new Animacion(skin.Esperando, skin.ConfiguracionSkin.ColumnasEsperando, -1);
                 case EstadoCliente.Saliendo:
                     return new Animacion(skin.Caminando, skin.ConfiguracionSkin.ColumnasSaliendo, 1);
+                case EstadoCliente.Enojado:
+                    return new Animacion(skin.Enojado, skin.ConfiguracionSkin.ColumasEnojado, -1);
                 default:
                     return null;
             }
@@ -108,10 +145,14 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         {
 
             this.destino = posicionFila;
-            if (this.Estado == EstadoCliente.Esperando)
+            if (this.Estado == EstadoCliente.Esperando || this.Estado == EstadoCliente.Saliendo)
             {
                 CambiarDeEstado(EstadoCliente.Caminando);
             }
+        }
+        public void CambiarPosicionInicial(Vector2 posicionInicial)
+        {
+            this.posicion = posicionInicial;
         }
     }
 }

@@ -12,11 +12,13 @@ namespace JulpajulparaisoPasteleria.Content.Logica
     {
         public Texture2D Caminando { get; private set; }
         public Texture2D Esperando { get; private set; }
+        public Texture2D Enojado { get; private set; }
         public ConfiguracionSkin ConfiguracionSkin { get; private set; }
-        public SkinCliente(Texture2D caminando, Texture2D esperando, ConfiguracionSkin configuracion)
+        public SkinCliente(Texture2D caminando, Texture2D esperando,Texture2D enojado, ConfiguracionSkin configuracion)
         {
             this.Caminando = caminando;
             this.Esperando = esperando;
+            this.Enojado = enojado;
             this.ConfiguracionSkin = configuracion;
         }
     }

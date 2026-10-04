@@ -10,6 +10,7 @@ namespace JulpajulparaisoPasteleria.Content.Enumeradores
     {
         Esperando,
         Caminando,
-        Saliendo
+        Saliendo,
+        Enojado
     }
 }
