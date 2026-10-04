@@ -25,7 +25,8 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         private RepositorioImagenes r;
         public float Escala { get; private set; } = Constante.ESCALA_TICKET;
         private Pedido pedido;
-        public DibujadorDeTicket(Vector2 posicionTicket, Pedido pedido, RepositorioImagenes r, Texture2D texturaTicketPrecaragada, SpriteFont fuentePrecaragada) : base(posicionTicket, new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y, 500, 500))
+        public DibujadorDeTicket(Vector2 posicionTicket, Pedido pedido, RepositorioImagenes r, Texture2D texturaTicketPrecaragada, SpriteFont fuentePrecaragada) 
+            : base(posicionTicket, new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y,(int)(texturaTicketPrecaragada.Width * Constante.ESCALA_TICKET), (int)(texturaTicketPrecaragada.Height * Constante.ESCALA_TICKET)))
         {
             base.Posicion = posicionTicket;
             this.AreaTicketDefaut = new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y, 500, 500);
@@ -73,6 +74,10 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         {
             base.Posicion = new Vector2 (posicion.X, posicion.Y);
             this.Escala = escala;
+
+            int nuevoAncho = (int)(imagenTicket.Width * escala);
+            int altoNuevo = (int)(imagenTicket.Height * escala);
+            base.Area = new Rectangle((int)base.Posicion.X, (int)base.Posicion.Y, nuevoAncho, altoNuevo);
         }
 
     }
