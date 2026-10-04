@@ -11,7 +11,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         public static int DiaActual { get; private set; } = 1;
         public static int ContadorPedidos { get; private set; } = 0;
         public static float TiempoEntreClientes { get; private set; } = 3;
-        public static int CantidadDeClientesPorDia { get; private set; } = 3;
+        public static int CantidadDeClientesPorDia { get; private set; } = 9;
         public static int ObtenerIdPedido()
         {
             return ++ContadorPedidos;

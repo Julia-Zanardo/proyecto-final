@@ -15,7 +15,11 @@ namespace JulpajulparaisoPasteleria.Content.Logica
             { 1, new ConfiguracionSkin(12, 9, 12, 8) },
             { 2, new ConfiguracionSkin(12, 7, 12, 9) },
             { 3, new ConfiguracionSkin(12, 6, 12, 6) },
-
+            { 4, new ConfiguracionSkin(8, 11, 8, 5) },
+            { 5, new ConfiguracionSkin(8, 7, 8, 10) },
+            { 6, new ConfiguracionSkin(10, 6, 10, 5) },
+            { 7, new ConfiguracionSkin(10, 6, 10, 4) },
+            { 8, new ConfiguracionSkin(10, 6, 10, 4) }
         };
         public static List<SkinCliente> CargarSkinsClientes(ContentManager content, int cantidadPersonajes)
         {
