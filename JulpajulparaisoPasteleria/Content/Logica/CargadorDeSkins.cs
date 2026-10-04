@@ -12,9 +12,9 @@ namespace JulpajulparaisoPasteleria.Content.Logica
     {
         private static Dictionary<int, ConfiguracionSkin> datosSkins = new Dictionary<int, ConfiguracionSkin>()
         {
-            { 1, new ConfiguracionSkin(12, 9, 12) },
-            { 2, new ConfiguracionSkin(12, 7, 12) },
-            { 3, new ConfiguracionSkin(12, 6, 12) },
+            { 1, new ConfiguracionSkin(12, 9, 12, 8) },
+            { 2, new ConfiguracionSkin(12, 7, 12, 9) },
+            { 3, new ConfiguracionSkin(12, 6, 12, 6) },
 
         };
         public static List<SkinCliente> CargarSkinsClientes(ContentManager content, int cantidadPersonajes)
@@ -25,7 +25,8 @@ namespace JulpajulparaisoPasteleria.Content.Logica
                 ConfiguracionSkin configuracionColumnas = datosSkins[i];
                 Texture2D caminando = content.Load<Texture2D>($"imagenes/Sprites/clienteCaminando{i}");
                 Texture2D esperando = content.Load<Texture2D>($"imagenes/Sprites/clienteEsperando{i}");
-                skinsClientes.Add(new SkinCliente(caminando, esperando, configuracionColumnas));
+                Texture2D enojado = content.Load<Texture2D>($"imagenes/Sprites/clienteEnojado{i}");
+                skinsClientes.Add(new SkinCliente(caminando,esperando,enojado, configuracionColumnas));
             }
             return skinsClientes;
         }

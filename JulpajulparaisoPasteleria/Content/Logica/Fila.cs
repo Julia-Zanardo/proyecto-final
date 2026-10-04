@@ -6,20 +6,31 @@ namespace JulpajulparaisoPasteleria.Content.Logica
 {
     public class Fila
     {
-        public Rectangle[] posiciones { get; private set; }
+        public Rectangle[] posicionesOrdenarPedido { get; private set; }
+        public Rectangle[] posicionesEntregaPedido { get; private set; }
 
         public Fila()
         {
-            posiciones = new Rectangle[]
+            posicionesOrdenarPedido = new Rectangle[]
             {
                 new Rectangle(100, 200, 50, 50),
                 new Rectangle(300, 200, 50, 50),
                 new Rectangle(500, 200, 50, 50)
             };
+            posicionesEntregaPedido = new Rectangle[]
+            {
+                new Rectangle(100, 100, 50, 50),
+                new Rectangle(300, 100, 50, 50),
+                new Rectangle(500, 100, 50, 50)
+            };
         }
-        public Rectangle obtenerPosicionFila(int indice)
+        public Rectangle obtenerPosicionFilaPedido(int indice)
         {
-            return posiciones[indice];
+            return posicionesOrdenarPedido[indice];
+        }
+        public Rectangle obtenerPosicionFilaEntrega(int indice)
+        {
+            return posicionesEntregaPedido[indice];
         }
     }
 }

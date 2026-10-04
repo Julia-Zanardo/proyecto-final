@@ -11,11 +11,13 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         public int ColumnasCaminando { get; private set; }
         public int ColumnasEsperando { get; private set; }
         public int ColumnasSaliendo { get; private set; }
-        public ConfiguracionSkin(int ColumnasCaminando, int ColumnasEsperando, int ColumnasSaliendo) 
+        public int ColumasEnojado { get; private set; }
+        public ConfiguracionSkin(int ColumnasCaminando, int ColumnasEsperando, int ColumnasSaliendo, int ColumnasEnojado) 
         {
             this.ColumnasSaliendo = ColumnasSaliendo;
             this.ColumnasCaminando = ColumnasCaminando;
             this.ColumnasEsperando = ColumnasEsperando;
+            this.ColumasEnojado = ColumnasEnojado;
         }
     }
 }

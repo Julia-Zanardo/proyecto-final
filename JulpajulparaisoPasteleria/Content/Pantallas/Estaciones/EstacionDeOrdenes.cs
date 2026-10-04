@@ -19,10 +19,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private List<SkinCliente> texturasClientes;
         private GeneradorDeClientes generadorClientes;
         private int cantidadClientesMaxima;
-        private List<Cliente> clientesActivos = new List<Cliente>();
+        private List<Cliente> clientesActivosFilaPedido = new List<Cliente>();
+        private List<Cliente> clientesActivosFilaEntrega = new List<Cliente>();
         private Fila fila;
         private BotonBase ventanaDeDialogo;
-        private ContentManager contentManager;
         private int contadorClientes=0;
         private Texture2D texturaTicket;
         private SpriteFont fuentePedido;
@@ -32,7 +32,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public override void LoadContent(ContentManager content)
         {
-            contentManager = content;
             Fondo = content.Load<Texture2D>("imagenes/fondos/estacionOrdenes");
             cantidadClientesMaxima = GestorDeJuego.CantidadDeClientesPorDia;
             int cantidadPersonajes = Constante.CANTIDAD_PERSONAJES;
@@ -44,9 +43,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
-            if (clientesActivos.Count >0) 
+            if (clientesActivosFilaPedido.Count >0) 
             { 
-                Cliente clienteEnPrimeraFila = clientesActivos[0];
+                Cliente clienteEnPrimeraFila = clientesActivosFilaPedido[0];
                 if (clienteEnPrimeraFila.Estado == EstadoCliente.Esperando)
                 {
                     if (ventanaDeDialogo.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
@@ -70,48 +69,80 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         private void ActualizarClientes(GameTime gameTime)
         {
-            if (clientesActivos.Count > 0)
+            if (clientesActivosFilaPedido.Count > 0)
             {
-                Cliente clienteEnPrimeraFila = clientesActivos[0];
+                
+                Cliente clienteEnPrimeraFila = clientesActivosFilaPedido[0];
+
                 if (clienteEnPrimeraFila.TerminoDeSalir)
                 {
-                    clientesActivos.Remove(clienteEnPrimeraFila);
-                    for (int i = 0; i < clientesActivos.Count; i++)
+                    clienteEnPrimeraFila.CambiarPosicionInicial(new Vector2(1920, 100));
+                    AniadirClientesAFilaEntrega(clienteEnPrimeraFila);
+                    clientesActivosFilaPedido.Remove(clienteEnPrimeraFila);
+
+                    for (int i = 0; i < clientesActivosFilaPedido.Count; i++)
                     {
-                        Cliente clienteActual = clientesActivos[i];
-                        Rectangle posicionFila = fila.obtenerPosicionFila(i);
+                        Cliente clienteActual = clientesActivosFilaPedido[i];
+                        Rectangle posicionFila = fila.obtenerPosicionFilaPedido(i);
+                        clienteActual.CaminarHaciaPosicion(posicionFila);
+                    }
+
+                }
+            }
+            if (clientesActivosFilaEntrega.Count > 0)
+            {
+                clientesActivosFilaEntrega[0].EstaEnPrimeraFila = true;
+                if (clientesActivosFilaEntrega[0].TerminoDeSalir)
+                {
+                    gestorDeTickets.EliminarTicket(0);
+                    clientesActivosFilaEntrega.Remove(clientesActivosFilaEntrega[0]);
+                    for (int i = 0; i < clientesActivosFilaEntrega.Count; i++)
+                    {
+                        Cliente clienteActual = clientesActivosFilaEntrega[i];
+                        Rectangle posicionFila = fila.obtenerPosicionFilaEntrega(i);
                         clienteActual.CaminarHaciaPosicion(posicionFila);
                     }
                 }
-                }
+            }
 
             if (generadorClientes.Actualizar(gameTime) && contadorClientes < cantidadClientesMaxima)
             {
-                clientesActivos.Add(generadorClientes.GenerarCliente(fila.obtenerPosicionFila(clientesActivos.Count)));
+                clientesActivosFilaPedido.Add(generadorClientes.GenerarCliente(fila.obtenerPosicionFilaPedido(clientesActivosFilaPedido.Count)));
                 contadorClientes++;
             }
-            foreach (Cliente cliente in clientesActivos)
+            foreach (Cliente cliente in clientesActivosFilaPedido)
+            {
+                cliente.Actualizar(gameTime);
+            }
+            foreach (Cliente cliente in clientesActivosFilaEntrega)
             {
                 cliente.Actualizar(gameTime);
             }
         }
-
+        private void AniadirClientesAFilaEntrega(Cliente cliente)
+        {
+            cliente.ReiniciarSalida();
+            clientesActivosFilaEntrega.Add(cliente);
+            Rectangle posicionFila = fila.obtenerPosicionFilaEntrega(clientesActivosFilaEntrega.Count - 1);
+            cliente.CambiarPosicionInicial(new Vector2(1920, 100));
+            cliente.CaminarHaciaPosicion(posicionFila);
+        }
         public override void Dibujar(SpriteBatch spriteBatch)
         {
             base.Dibujar(spriteBatch);
-            foreach (Cliente cliente in clientesActivos)
+            foreach (Cliente cliente in clientesActivosFilaEntrega)
             {
                 cliente.Dibujar(spriteBatch);
             }
-            if (clientesActivos.Count >0)
+            foreach (Cliente cliente in clientesActivosFilaPedido)
             {
-                switch (clientesActivos[0].Estado)
+                cliente.Dibujar(spriteBatch);
+            }
+            if (clientesActivosFilaPedido.Count >0)
+            {
+                if (clientesActivosFilaPedido[0].Estado == EstadoCliente.Esperando)
                 {
-                    case EstadoCliente.Esperando:
-                        ventanaDeDialogo.Dibujar(spriteBatch);
-                        break;
-                    case EstadoCliente.Saliendo:
-                        break;
+                    ventanaDeDialogo.Dibujar(spriteBatch);
                 }
             }
             DibujarTickets(spriteBatch);
