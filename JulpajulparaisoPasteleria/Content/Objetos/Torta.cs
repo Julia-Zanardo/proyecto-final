@@ -58,17 +58,9 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         {
 
         }
-        public void AgregarSaborBizcochuelo(SaborBizcochuelo sabor)
-        {
-            if (SaborBizcochuelo == default)
-            {
-                SaborBizcochuelo = sabor;
-            }
-        }
         public void Actualizar(Vector2 posicionVirtual)
         {
             base.ActualizarArrastre(posicionVirtual);
-            base.Area = new Rectangle((int)posicionVirtual.X, (int)posicionVirtual.Y, Area.Width, Area.Height);
         }
         public void Dibujar(SpriteBatch spriteBatch, Rectangle area, Texture2D textura)
         {

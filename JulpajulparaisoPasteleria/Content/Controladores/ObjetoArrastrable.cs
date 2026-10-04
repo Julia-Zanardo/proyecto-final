@@ -30,7 +30,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
             if (EstaSiendoArrastrado)
             {
                 Posicion = posicionVirtual + desplazamiento;
-
+                Area = new Rectangle((int)Posicion.X, (int)Posicion.Y, Area.Width, Area.Height);
                 if (ManejoEntrada.ElementoSoltado())
                 {
                     EstaSiendoArrastrado = false;

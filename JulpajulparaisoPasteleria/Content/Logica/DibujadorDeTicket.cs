@@ -41,7 +41,6 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         public void Actualizar(Vector2 posicionVirtual)
         {
             this.cantidadToppings = pedido.ToppingsDeseados.Count;
-            base.Area = new Rectangle((int)base.Posicion.X, (int)base.Posicion.Y, (int)(imagenTicket.Width * Escala), (int)(imagenTicket.Height * Escala));
             base.ActualizarArrastre(posicionVirtual);
         }
         public void Dibujar( SpriteBatch spriteBatch)

@@ -45,10 +45,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 {
                     torta.cambiarArea(area);
                 }
-                if (i == 0) 
-                {
                     torta.Actualizar(posicionVirtual);
-                }
                 if (torta.EstaSiendoArrastrado)
                 {
                     if(DetectorDeColisiones.DetectarColision(torta.Area, areaTortaLista))
@@ -94,31 +91,17 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 for (int i = 0; i < tortasEstacion.Count; i++)
                 {
                     Torta torta = tortasEstacion[i];
+                    Texture2D textura;
 
                     if (torta.EstadoCoccion != EstadoCoccion.Quemado)
                     {
-                        Texture2D textura = r.TexturasMoldeSaborCoccion[(torta.SaborBizcochuelo, torta.FormaBizcochuelo, torta.EstadoCoccion)];
-                        if (torta.EstaSiendoArrastrado)
-                        {
-                            torta.Dibujar(spriteBatch, torta.Area, textura);
-                        }
-                        else
-                        {
-                            torta.Dibujar(spriteBatch, new Rectangle((int)posicionesTortas[i].X, (int)posicionesTortas[i].Y, 300, 200), textura);
-                        }
+                        textura = r.TexturasMoldeSaborCoccion[(torta.SaborBizcochuelo, torta.FormaBizcochuelo, torta.EstadoCoccion)];
                     }
-                    else if (torta.EstadoCoccion == EstadoCoccion.Quemado)
+                    else
                     {
-                        Texture2D textura = r.TexturasFormaQuemada[torta.FormaBizcochuelo];
-                        if (torta.EstaSiendoArrastrado)
-                        {
-                            torta.Dibujar(spriteBatch, torta.Area, textura);
-                        }
-                        else
-                        {
-                            torta.Dibujar(spriteBatch, new Rectangle((int)posicionesTortas[i].X, (int)posicionesTortas[i].Y, 300, 200), textura);
-                        }
-                    }   
+                        textura = r.TexturasFormaQuemada[torta.FormaBizcochuelo];
+                    }
+                    torta.Dibujar(spriteBatch, torta.Area, textura);
                 }
             }
             DibujarTickets(spriteBatch);
