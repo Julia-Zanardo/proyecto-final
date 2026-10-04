@@ -31,11 +31,12 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             this.gestorDePantalla = gestorDePantalla;
         }
         public void LoadContent(ContentManager content)
-        { 
+        {
             if (estaciones == null)
             {
                 gestorDePestañas.LoadContent(content);
                 botonPausa = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonPausa"), new Rectangle(1800, 10, 100, 100));
+                this.repositorioImagenes.LoadContent(content);
                 estaciones = new Estacion[] {
                      new EstacionDeOrdenes(gestorTickets, gestorDePedidos, repositorioImagenes),
                      new EstacionDeMezcla(gestorTickets, gestorDePedidos, repositorioImagenes),

@@ -25,18 +25,14 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         private RepositorioImagenes r;
         public float Escala { get; private set; } = Constante.ESCALA_TICKET;
         private Pedido pedido;
-        public DibujadorDeTicket(Vector2 posicionTicket, Pedido pedido, RepositorioImagenes r) : base(posicionTicket, new Rectangle((int)posicionTicket.X,(int)posicionTicket.Y, 500,500))
+        public DibujadorDeTicket(Vector2 posicionTicket, Pedido pedido, RepositorioImagenes r, Texture2D texturaTicketPrecaragada, SpriteFont fuentePrecaragada) : base(posicionTicket, new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y, 500, 500))
         {
             base.Posicion = posicionTicket;
             this.AreaTicketDefaut = new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y, 500, 500);
             this.pedido = pedido;
             this.r = r;
-        }
-        public void LoadContent(ContentManager content)
-        {
-            imagenTicket = content.Load<Texture2D>("imagenes/EstacionOrdenes/ticket");
-            r.LoadContent(content);
-            numeroDePedido = content.Load<SpriteFont>("Fuentes/fuenteEscritura");
+            this.imagenTicket = texturaTicketPrecaragada;
+            this.numeroDePedido = fuentePrecaragada;
         }
         public void Actualizar(Vector2 posicionVirtual)
         {

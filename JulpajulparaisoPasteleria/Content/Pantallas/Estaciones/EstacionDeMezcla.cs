@@ -33,7 +33,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             base.Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionMezcla");
             botonSiguiente = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonSiguiente"), new Rectangle(1400, 800, 300, 100));
             botonTirar = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonTirar"), new Rectangle(200, 600, 100, 100));
-            r.LoadContent(content);
             tazon = new Tazon(content.Load<Texture2D>("imagenes/Bowls/bowlVacio"), r.TexturasBowl);
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)

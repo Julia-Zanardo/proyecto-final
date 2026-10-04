@@ -30,7 +30,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public override void LoadContent(ContentManager content)
         {
             r = new RepositorioImagenes();
-            r.LoadContent(content);
             Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionHorneado");
         }
         public override void Actualizar (GameTime gameTime, Vector2 posicionVirtual)

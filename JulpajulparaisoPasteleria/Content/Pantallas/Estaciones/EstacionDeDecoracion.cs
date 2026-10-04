@@ -32,7 +32,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
             Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionDecoracion");
             botonSiguiente = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonSiguiente"), new Rectangle(1500, 750, 300, 100));
-            r.LoadContent(content);
             toppingsDisponibles = new Topping[]
             {
                 new Topping(TipoTopping.Banana, r.IconosToppings[TipoTopping.Banana], new Rectangle(480, 470, 100, 50)),

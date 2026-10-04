@@ -24,6 +24,8 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private BotonBase ventanaDeDialogo;
         private ContentManager contentManager;
         private int contadorClientes=0;
+        private Texture2D texturaTicket;
+        private SpriteFont fuentePedido;
         public EstacionDeOrdenes(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
             this.fila = new Fila();
@@ -37,45 +39,25 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             texturasClientes = CargadorDeSkins.CargarSkinsClientes(content, cantidadPersonajes);
             generadorClientes = new GeneradorDeClientes(texturasClientes);
             ventanaDeDialogo = new BotonBase(content.Load<Texture2D>("imagenes/Botones/dialogo"), new Rectangle(410, 340, 300, 200));
+            texturaTicket = content.Load<Texture2D>("imagenes/EstacionOrdenes/ticket");
+            fuentePedido = content.Load<SpriteFont>("Fuentes/fuenteEscritura");
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
             if (clientesActivos.Count >0) 
             { 
                 Cliente clienteEnPrimeraFila = clientesActivos[0];
-                switch (clienteEnPrimeraFila.Estado)
+                if (clienteEnPrimeraFila.Estado == EstadoCliente.Esperando)
                 {
-                    case EstadoCliente.Caminando:
-                        if (DetectorDeColisiones.DetectarColision(clientesActivos[0].AreaCliente, fila.posiciones[0]))
-                        {
-                            clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Esperando);
-                        }
-                        break;
-                    case EstadoCliente.Esperando:
-                        if (ventanaDeDialogo.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
-                        {
-                            clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Saliendo);
-                            DibujadorDeTicket ticket = new DibujadorDeTicket(new Vector2(base.gestorDeTickets.ObtenerCantidadTickets()>0?base.gestorDeTickets.ObtenerCantidadTickets()*200:0, 00), clienteEnPrimeraFila.pedido, r);
-                            ticket.LoadContent(contentManager);
-                            base.gestorDeTickets.AgregarTikcet(ticket);
-                            Torta torta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
-                            torta.EstacionActual = EstacionActual.EstacionDeMezcla;
-                            gestorDePedidos.AgregarTorta(torta);
-                        }
-
-                        break;
-                    case EstadoCliente.Saliendo:
-                        if (clienteEnPrimeraFila.TerminoDeSalir)
-                        {
-                            clientesActivos.Remove(clienteEnPrimeraFila);
-                            for(int i = 0; i<clientesActivos.Count; i++)
-                            {
-                                Cliente clienteActual = clientesActivos[i];
-                                Rectangle posicionFila = fila.obtenerPosicionFila(i);
-                                clienteActual.CaminarHaciaPosicion(posicionFila);
-                            }
-                        }
-                        break;
+                    if (ventanaDeDialogo.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
+                    {
+                        clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Saliendo);
+                        DibujadorDeTicket ticket = new DibujadorDeTicket(new Vector2(base.gestorDeTickets.ObtenerCantidadTickets() > 0 ? base.gestorDeTickets.ObtenerCantidadTickets() * 200 : 0, 00), clienteEnPrimeraFila.pedido, r, texturaTicket, fuentePedido);
+                        base.gestorDeTickets.AgregarTikcet(ticket);
+                        Torta torta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
+                        torta.EstacionActual = EstacionActual.EstacionDeMezcla;
+                        gestorDePedidos.AgregarTorta(torta);
+                    }
                 }
             }
             base.gestorDeTickets.ActualizarTickets(posicionVirtual);
@@ -88,6 +70,21 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         private void ActualizarClientes(GameTime gameTime)
         {
+            if (clientesActivos.Count > 0)
+            {
+                Cliente clienteEnPrimeraFila = clientesActivos[0];
+                if (clienteEnPrimeraFila.TerminoDeSalir)
+                {
+                    clientesActivos.Remove(clienteEnPrimeraFila);
+                    for (int i = 0; i < clientesActivos.Count; i++)
+                    {
+                        Cliente clienteActual = clientesActivos[i];
+                        Rectangle posicionFila = fila.obtenerPosicionFila(i);
+                        clienteActual.CaminarHaciaPosicion(posicionFila);
+                    }
+                }
+                }
+
             if (generadorClientes.Actualizar(gameTime) && contadorClientes < cantidadClientesMaxima)
             {
                 clientesActivos.Add(generadorClientes.GenerarCliente(fila.obtenerPosicionFila(clientesActivos.Count)));
