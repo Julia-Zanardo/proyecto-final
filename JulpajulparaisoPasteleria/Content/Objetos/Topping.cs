@@ -25,5 +25,9 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         {
             spriteBatch.Draw(textura, base.Area, Color.White);
         }
+        public void ActualizarPosicion(Rectangle nuevaPosicion)
+        {
+            this.Area = nuevaPosicion;
+        }
     }
 }

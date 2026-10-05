@@ -18,11 +18,14 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
     {
         private float tiempoTranscurrido = 0f;
         private Rectangle areaTortaLista = new Rectangle(1500, 850, 100, 100);
-        private Vector2[] posicionesTortas = new Vector2[3]
+        private Vector2[] posicionesTortas = new Vector2[6]
         {
             new Vector2(200, 250),
             new Vector2(600, 250),
             new Vector2(1000, 250),
+            new Vector2(200, 450),
+            new Vector2(600, 450),
+            new Vector2(1000, 450)
         };
         public EstacionDeHorneado(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes r) : base(gestorDeTickets, gestorDePedidos, r)
         {
@@ -34,16 +37,16 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public override void Actualizar (GameTime gameTime, Vector2 posicionVirtual)
         {
             ActualizarTiempoHorneado(gameTime);
-
+            
             for (int i = 0; i < tortasEstacion.Count; i++)
             {
                 Torta torta = tortasEstacion[i];
-                Rectangle area = new Rectangle((int)posicionesTortas[i].X, (int)posicionesTortas[i].Y, 300, 200);
+                Rectangle area = new Rectangle((int)posicionesTortas[i].X, (int)posicionesTortas[i].Y, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y);
                 if (!torta.EstaSiendoArrastrado)
                 {
                     torta.cambiarArea(area);
                 }
-                    torta.Actualizar(posicionVirtual);
+                torta.Actualizar(posicionVirtual);
                 if (torta.EstaSiendoArrastrado)
                 {
                     if(DetectorDeColisiones.DetectarColision(torta.Area, areaTortaLista))
@@ -59,7 +62,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public void ActualizarTiempoHorneado(GameTime gameTime)
         {
             tiempoTranscurrido = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            base.tortasEstacion = gestorDePedidos.getTortasEstacion(EstacionActual.EstacionDeHorneado);
+            if (base.tortasEstacion.Count < posicionesTortas.Length)
+            {
+                base.tortasEstacion = gestorDePedidos.getTortasEstacion(EstacionActual.EstacionDeHorneado);
+            }
             if (tortasEstacion.Count > 0)
             {
                 foreach (Torta torta in tortasEstacion)

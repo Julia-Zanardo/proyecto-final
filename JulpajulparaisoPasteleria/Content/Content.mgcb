@@ -1851,7 +1851,7 @@
 /processorParam:TextureFormat=Color
 /build:imagenes/Coberturas/napolitana.png
 
-#begin imagenes/EstacionDecoracion/areaDeBasura.png
+#begin imagenes/EstacionDeEntrega/areaDeBasura.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1861,7 +1861,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/EstacionDecoracion/areaDeBasura.png
+/build:imagenes/EstacionDeEntrega/areaDeBasura.png
+
+#begin imagenes/EstacionDeEntrega/ticketListo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/EstacionDeEntrega/ticketListo.png
 
 #begin imagenes/EstacionOrdenes/ticket.png
 /importer:TextureImporter

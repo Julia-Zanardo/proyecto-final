@@ -35,7 +35,6 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                         areaDeTicketOcupada = false;
                         ticket.AcomodarTicket(ticket.AreaTicketDefaut, ticket.Escala == Constante.ESCALA_TICKET * 2 ? ticket.Escala / 2 : ticket.Escala);
                     }
-
                 }
             }
         }
@@ -46,6 +45,17 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         public void EliminarTicket(int indice)
         {
             TicketsActuales.RemoveAt(indice);
+        }
+        public DibujadorDeTicket verificarColision(Rectangle area)
+        {
+            foreach (DibujadorDeTicket ticket in TicketsActuales)
+            {
+                if (DetectorDeColisiones.DetectarColision(area, ticket.Area))
+                {
+                    return ticket;
+                }
+            }
+            return null;
         }
     }
 }

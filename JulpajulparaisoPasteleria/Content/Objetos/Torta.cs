@@ -29,28 +29,31 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         }
         public void crearPosicionesToppings() 
         {
-            switch (FormaBizcochuelo) 
+            float proporcionX = (float)Area.Width / 500f;
+            float proporcionY = (float)Area.Height / 500f;
+
+            switch (FormaBizcochuelo)
             {
                 case FormaBizcochuelo.Corazon:
-                    PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
-                     new Rectangle(Area.X+250,Area.Y+150,100,100),
-                     new Rectangle(Area.X+70, Area.Y+70, 100,100),
-                     new Rectangle(Area.X+430, Area.Y+70,100,100)
-                    };
+                PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
+                new Rectangle(Area.X + (int)(200 * proporcionX), Area.Y + (int)(150 * proporcionY), (int)(100 * proporcionX), (int)(100 * proporcionY)),
+                new Rectangle(Area.X + (int)(50 * proporcionX),  Area.Y + (int)(70 * proporcionY),  (int)(100 * proporcionX), (int)(100 * proporcionY)),
+                new Rectangle(Area.X + (int)(350 * proporcionX), Area.Y + (int)(70 * proporcionY),  (int)(100 * proporcionX), (int)(100 * proporcionY))
+                };
                     break;
                 case FormaBizcochuelo.Redondo:
-                    PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
-                     new Rectangle(Area.X+250,Area.Y+100,100,100),
-                     new Rectangle(Area.X+50, Area.Y+100, 100,100),
-                     new Rectangle(Area.X+450, Area.Y+100,100,100)
-                    };
+                PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
+                new Rectangle(Area.X + (int)(200 * proporcionX), Area.Y + (int)(100 * proporcionY), (int)(100 * proporcionX), (int)(100 * proporcionY)),
+                new Rectangle(Area.X + (int)(50 * proporcionX),  Area.Y + (int)(100 * proporcionY), (int)(100 * proporcionX), (int)(100 * proporcionY)),
+                new Rectangle(Area.X + (int)(350 * proporcionX), Area.Y + (int)(100 * proporcionY), (int)(100 * proporcionX), (int)(100 * proporcionY))
+                };
                     break;
                 case FormaBizcochuelo.Cuadrado:
-                    PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
-                     new Rectangle(Area.X+250,Area.Y+70,100,100),
-                     new Rectangle(Area.X+50, Area.Y+110, 100,100),
-                     new Rectangle(Area.X+450, Area.Y+110,100,100)
-                    };
+                PosicionesToppings = new Rectangle[Constante.CANTIDAD_MAXIMA_TOPPINGS] {
+                new Rectangle(Area.X + (int)(200 * proporcionX), Area.Y + (int)(70 * proporcionY),  (int)(100 * proporcionX), (int)(100 * proporcionY)),
+                new Rectangle(Area.X + (int)(50 * proporcionX),  Area.Y + (int)(110 * proporcionY), (int)(100 * proporcionX), (int)(100 * proporcionY)),
+                new Rectangle(Area.X + (int)(350 * proporcionX), Area.Y + (int)(110 * proporcionY), (int)(100 * proporcionX), (int)(100 * proporcionY))
+                };
                     break;
             }
         }
@@ -61,6 +64,11 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         public void Actualizar(Vector2 posicionVirtual)
         {
             base.ActualizarArrastre(posicionVirtual);
+            if (EstaSiendoArrastrado)
+            {
+                crearPosicionesToppings();
+                ActualizarPosicionesToppings();
+            }
         }
         public void Dibujar(SpriteBatch spriteBatch, Rectangle area, Texture2D textura)
         {
@@ -78,6 +86,17 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
             Area = nuevaArea;
             base.Posicion = new Vector2(nuevaArea.X, nuevaArea.Y);
             crearPosicionesToppings();
+            ActualizarPosicionesToppings();
+        }
+        public void ActualizarPosicionesToppings()
+        {
+            if (toppings != null)
+            {
+                for (int i = 0; i < toppings.Count; i++)
+                {
+                     toppings[i].ActualizarPosicion(PosicionesToppings[i]);
+                }
+            }
         }
     }
 }

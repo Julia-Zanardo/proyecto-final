@@ -23,6 +23,7 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
         public BotonCobertura[] IconosBotonesCobertura { get; private set; }
         public BotonRelleno[] IconosBotonesRelleno { get; private set; }
         public Texture2D TexturaBasura { get; private set; }
+        public Texture2D TexturaPosicionarTicket { get; private set; }
         public Dictionary<(SaborBizcochuelo,FormaBizcochuelo,SaborRelleno), Texture2D> TexturasBizcochueloConRelleno { get; private set; }
         public Dictionary<(FormaBizcochuelo, TipoCobertura), Texture2D> TexturasBizcochueloConCobertura { get; private set; }
         public void LoadContent(ContentManager content)
@@ -131,7 +132,8 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
             IconosBotonesRelleno[2] = (new BotonRelleno(content.Load<Texture2D>("imagenes/Rellenos/botonRellenoFrutilla"), new Rectangle(950, 300, 60, 150), SaborRelleno.Frutilla));
             IconosBotonesRelleno[3] = (new BotonRelleno(content.Load<Texture2D>("imagenes/Rellenos/botonRellenoLimon"), new Rectangle(1050, 300, 60, 150), SaborRelleno.Limon));
 
-            TexturaBasura = content.Load<Texture2D>("imagenes/EstacionDecoracion/areaDeBasura");
+            TexturaBasura = content.Load<Texture2D>("imagenes/EstacionDeEntrega/areaDeBasura");
+            TexturaPosicionarTicket = content.Load<Texture2D>("imagenes/EstacionDeEntrega/ticketListo");
 
             TexturasBizcochueloConRelleno = new Dictionary<(SaborBizcochuelo, FormaBizcochuelo, SaborRelleno), Texture2D>();
             TexturasBizcochueloConRelleno.Add((SaborBizcochuelo.CarameloVainilla, FormaBizcochuelo.Redondo, SaborRelleno.Chantilly), content.Load<Texture2D>("imagenes/BizcochuelosRellenos/vainillaRedondoCorteChantilly"));
