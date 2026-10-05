@@ -1,4 +1,6 @@
-﻿using JulpajulparaisoPasteleria.Content.Gestores;
+﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
+using JulpajulparaisoPasteleria.Content.Gestores;
+using JulpajulparaisoPasteleria.Content.Personajes;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -13,8 +15,12 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
     public class EstacionDeEntrega : Estacion
     {
-        public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
+        private GestorDeClientes gestorDeClientes;
+        private Rectangle[] posicionesTortas;
+        private Cliente clienteActual;
+        public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
+            this.gestorDeClientes = gestorDeClientes;
         }
         public override void LoadContent(ContentManager content)
         {
@@ -22,6 +28,15 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)     
         {
+            base.tortasEstacion = gestorDePedidos.getTortasEstacion(EstacionActual.EstacionDeEntrega);
+            if (gestorDeClientes.clientesEsperandoEntrega.Count > 0)
+            { 
+                clienteActual = gestorDeClientes.clientesEsperandoEntrega[0];
+            }
+            if (tortasEstacion.Count > 0)
+            {
+                
+            }
             base.gestorDeTickets.ActualizarTickets(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
@@ -30,6 +45,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public override void Dibujar(SpriteBatch spriteBatch)
         {
             base.Dibujar(spriteBatch);
+            if (clienteActual != null)
+            {
+                clienteActual.Dibujar(spriteBatch, new Vector2(800, -300), 10f);
+            }
             DibujarTickets(spriteBatch);
         }
 

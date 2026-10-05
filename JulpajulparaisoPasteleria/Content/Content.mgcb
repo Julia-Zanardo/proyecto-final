@@ -1887,7 +1887,7 @@
 /processorParam:TextureFormat=Color
 /build:imagenes/Fondos/estacionDecoracion.png;imagenes/Fondos/estacionDecoracion
 
-#begin imagenes/Fondos/estacionDeEntrega.png
+#begin imagenes/Fondos/estacionDeEntrega.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1897,7 +1897,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/Fondos/estacionDeEntrega.png;imagenes/Fondos/estacionDeEntrega
+/build:imagenes/Fondos/estacionDeEntrega.jpg
 
 #begin imagenes/Fondos/estacionHorneado.png
 /importer:TextureImporter
@@ -1970,6 +1970,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:imagenes/Fondos/pestañas.png;imagenes/Fondos/pestañas
+
+#begin imagenes/Logo/logoJuego.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Logo/logoJuego.png
 
 #begin imagenes/Moldes/moldeArandanoCorazonCrudo.png
 /importer:TextureImporter

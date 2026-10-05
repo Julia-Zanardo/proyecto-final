@@ -24,6 +24,7 @@ namespace JulpajulparaisoPasteleria
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
             _graphics.SynchronizeWithVerticalRetrace = true;
+
         }
 
         protected override void Initialize()

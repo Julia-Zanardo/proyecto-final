@@ -26,9 +26,11 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private int contadorClientes=0;
         private Texture2D texturaTicket;
         private SpriteFont fuentePedido;
-        public EstacionDeOrdenes(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
+        private GestorDeClientes gestorDeClientes;
+        public EstacionDeOrdenes(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
             this.fila = new Fila();
+            this.gestorDeClientes = gestorDeClientes;
         }
         public override void LoadContent(ContentManager content)
         {
@@ -95,6 +97,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 if (clientesActivosFilaEntrega[0].TerminoDeSalir)
                 {
                     gestorDeTickets.EliminarTicket(0);
+                    gestorDeClientes.eliminarCliente(clientesActivosFilaEntrega[0]);
                     clientesActivosFilaEntrega.Remove(clientesActivosFilaEntrega[0]);
                     for (int i = 0; i < clientesActivosFilaEntrega.Count; i++)
                     {
@@ -123,6 +126,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
             cliente.ReiniciarSalida();
             clientesActivosFilaEntrega.Add(cliente);
+            gestorDeClientes.agregarCliente(cliente);
             Rectangle posicionFila = fila.obtenerPosicionFilaEntrega(clientesActivosFilaEntrega.Count - 1);
             cliente.CambiarPosicionInicial(new Vector2(1920, 100));
             cliente.CaminarHaciaPosicion(posicionFila);

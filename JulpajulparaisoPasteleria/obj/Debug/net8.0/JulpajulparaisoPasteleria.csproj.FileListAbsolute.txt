@@ -348,3 +348,4 @@ C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando6.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando7.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando8.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Logo\logoJuego.xnb

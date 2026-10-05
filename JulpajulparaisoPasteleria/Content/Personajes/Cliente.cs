@@ -24,7 +24,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         public bool TerminoDeSalir { get; private set; }
         public Rectangle AreaCliente { get; private set; }
         public EstadoCliente Estado { get; private set; }
-        private float tiempoMaximoEspera = 7f;
+        private float tiempoMaximoEspera = 40f;
         private float cronometroEspera = 0;
         private float cronometroEnojado = 0;
         public bool EstaEnPrimeraFila { get; set; } = false;
@@ -107,6 +107,11 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         public void Dibujar(SpriteBatch spriteBatch)
         {
             animacion.Dibujar(spriteBatch, posicion, escala);
+        }
+        public void Dibujar(SpriteBatch spriteBatch, Vector2 desplazamientoEntrega, float nuevaEscala)
+        {
+            Vector2 posicionModificada = new Vector2(posicion.X + desplazamientoEntrega.X, posicion.Y + desplazamientoEntrega.Y);
+            animacion.Dibujar(spriteBatch, posicionModificada, nuevaEscala);
         }
         public void CambiarDeEstado(EstadoCliente estado)
         {

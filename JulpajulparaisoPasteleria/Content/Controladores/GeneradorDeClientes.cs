@@ -39,7 +39,7 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
             Random random = new Random();
             int indice = random.Next(texturasClientes.Count);
             SkinCliente skin = texturasClientes[indice];
-            Vector2 inicio = new Vector2(1920, 200);
+            Vector2 inicio = new Vector2(1910, 200);
             Pedido pedido = generadorDePedidos.CrearPedido(GestorDeJuego.ObtenerIdPedido());
             Cliente nuevoCliente = new Cliente(skin, inicio, objetivo, pedido);
             return nuevoCliente;
