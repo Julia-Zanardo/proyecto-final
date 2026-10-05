@@ -1,5 +1,13 @@
 Registro de cambios
-## [0.6.7] - 2026-10-02
+## [0.7.7] - 2026-10-04
+- Creacion de texturas de torta con cobertura.
+- logica de EstacionDeDecoracion terminada: Contiene boton para volver atras, Boton siguiente, botones para agregar los enums a la torta y un array de toppings para crear toppins.
+- Correccion de desplazamiento en arrastrar en EstacionDeHorneado.
+- nueva fila de entrega agregada.
+- logica de nueva fila en EstacionDeOrdenes agregada.
+- Solucion de problema de arrastre de ticket.
+- Creacion de 5 texturas mas para clientes.
+## [0.6.7] - 2026-10-03
 - Creacion de la clase GestorDePedidos para gestionar las tortas en todas las estaciones.
 - Creacion de la clase BotonForma para seleccionar la forma del molde en EstacionDeMezcla.
 - Logica de GestorDePedidos añadida en todas las esatciones.
