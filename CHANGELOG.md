@@ -1,4 +1,8 @@
 Registro de cambios
+## [0.7.8] - 2026-10-05
+- Comienzo de logica de EstacionDeEntrega.
+- Las tortas ya se dibujan en esta estacion.
+- los clientes de la fila de entregas en EstacionDeOrdenes en primera posicion aparecen en la estacion de entrega.
 ## [0.7.7] - 2026-10-04
 - Creacion de texturas de torta con cobertura.
 - logica de EstacionDeDecoracion terminada: Contiene boton para volver atras, Boton siguiente, botones para agregar los enums a la torta y un array de toppings para crear toppins.
