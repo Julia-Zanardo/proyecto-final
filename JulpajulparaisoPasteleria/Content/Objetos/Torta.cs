@@ -23,6 +23,7 @@ namespace JulpajulparaisoPasteleria.Content.Objetos
         public float tiempoDeHorneadoActual { get; set; }
         public EstacionActual EstacionActual { get; set; } = EstacionActual.EstacionDeOrdenes;
         public Rectangle[] PosicionesToppings { get; private set; }
+        public bool ListaParaEntregar { get; set; } = false;
         public Torta(Rectangle area) : base(new Vector2(area.X, area.Y), area)
         {
             toppings = new List<Topping>();

@@ -21,9 +21,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private GestorDeClientes gestorDeClientes;
         private Rectangle[] posicionesTortas;
         private Cliente clienteActual;
-        private Rectangle areaTicket = new Rectangle(400, 400, 30, 50);
-        private Rectangle areaBasura = new Rectangle(200, 600, 100, 100);
-        private Rectangle areaTortaEntregar = new Rectangle(800, 750, 100, 100);
+        private Rectangle areaTicket = new Rectangle(800, 400, 150, 230);
+        private Rectangle areaBasura = new Rectangle(200, 700, 100, 100);
+        private Rectangle areaTortaEntregar = new Rectangle(800, 750, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y);
         public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
             this.gestorDeClientes = gestorDeClientes;
@@ -37,27 +37,50 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)     
         {
+            Torta tortaAEliminar = null;
+            if (gestorDeClientes.clientesEsperandoEntrega.Count>0)
+            {
+                clienteActual = gestorDeClientes.clientesEsperandoEntrega[0];
+            }
             base.tortasEstacion = gestorDePedidos.getTortasEstacion(EstacionActual.EstacionDeEntrega);
             for (int i = 0; i < tortasEstacion.Count; i++)
             {
                 Torta torta = tortasEstacion[i];
-                if (!torta.EstaSiendoArrastrado && i < posicionesTortas.Length)
+                if(!torta.EstaSiendoArrastrado)
                 {
-                    Rectangle area = new Rectangle((int)posicionesTortas[i].X, (int)posicionesTortas[i].Y, 300, 200);
-                    torta.cambiarArea(area);
+                    if(torta.ListaParaEntregar)
+                    {
+                        torta.cambiarArea(areaTortaEntregar);
+                    }else if (i<posicionesTortas.Length)
+                    {
+                        torta.cambiarArea(posicionesTortas[i]);
+                    }
                 }
                 torta.Actualizar(posicionVirtual);
-                if (torta.EstaSiendoArrastrado)
+                if(!torta.ListaParaEntregar && torta.EstaSiendoArrastrado)
                 {
                     if (DetectorDeColisiones.DetectarColision(torta.Area, areaTortaEntregar))
                     {
                         //aca la torta lista se elimina de tortas estacion y pasa a una clase que calcula la puntuacion y la muestra en pantalla
                         //pero solo si el ticket tambien fue entregado
                         torta.cambiarArea(areaTortaEntregar);
-                        tortasEstacion.Remove(torta);
+                        torta.ListaParaEntregar = true;
                     }
                 }
-                
+                if(torta.ListaParaEntregar) 
+                {
+                    if(DetectorDeColisiones.DetectarColision(areaBasura, torta.Area))
+                    {
+                        tortaAEliminar = torta;
+                        Torta nuevaTorta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
+                        nuevaTorta.EstacionActual = EstacionActual.EstacionDeMezcla;
+                        gestorDePedidos.AgregarTorta(nuevaTorta);
+                    }
+                }
+            }
+            if(tortaAEliminar !=null)
+            {
+                gestorDePedidos.QuitarTorta(tortaAEliminar);
             }
             DibujadorDeTicket ticketPuesto = gestorDeTickets.verificarColision(areaTicket);
             if (ticketPuesto != null)

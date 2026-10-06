@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../../../Users/julia/Downloads/bowlCaramelo.png
+#begin ../../../../../../Downloads/bowlCaramelo.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,9 +23,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../../../../Users/julia/Downloads/bowlCaramelo.png;imagenes/Bowls/bowlCaramelo.png
+/build:../../../../../../Downloads/bowlCaramelo.png;imagenes/Bowls/bowlCaramelo.png
 
-#begin ../../../../../Users/julia/Downloads/bowlVacio.png
+#begin ../../../../../../Downloads/bowlVacio.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,7 +35,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../../../../Users/julia/Downloads/bowlVacio.png;imagenes/Bowls/bowlVacio.png
+/build:../../../../../../Downloads/bowlVacio.png;imagenes/Bowls/bowlVacio.png
 
 #begin Fuentes/File.spritefont
 /importer:FontDescriptionImporter
@@ -1766,6 +1766,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:imagenes/Bowls/bowlFrutilla.png
+
+#begin imagenes/Bowls/bowlVacio.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Bowls/bowlVacio.png;imagenes/Bowls/bowlVacio
 
 #begin imagenes/Coberturas/algodonAzucar.png
 /importer:TextureImporter
