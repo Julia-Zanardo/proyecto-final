@@ -24,7 +24,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         public Rectangle AreaTicketDefaut { get; private set; }
         private RepositorioImagenes r;
         public float Escala { get; private set; } = Constante.ESCALA_TICKET;
-        private Pedido pedido;
+        public Pedido pedido { get; private set; }
         public DibujadorDeTicket(Vector2 posicionTicket, Pedido pedido, RepositorioImagenes r, Texture2D texturaTicketPrecaragada, SpriteFont fuentePrecaragada) 
             : base(posicionTicket, new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y,(int)(texturaTicketPrecaragada.Width * Constante.ESCALA_TICKET), (int)(texturaTicketPrecaragada.Height * Constante.ESCALA_TICKET)))
         {

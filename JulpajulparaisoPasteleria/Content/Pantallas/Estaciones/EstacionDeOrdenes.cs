@@ -96,7 +96,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 clientesActivosFilaEntrega[0].EstaEnPrimeraFila = true;
                 if (clientesActivosFilaEntrega[0].TerminoDeSalir)
                 {
-                    gestorDeTickets.EliminarTicket(0);
+                    gestorDeTickets.EliminarTicket(gestorDeTickets.obtenerTikcetSegunPedido(clientesActivosFilaEntrega[0].pedido);
                     gestorDeClientes.eliminarCliente(clientesActivosFilaEntrega[0]);
                     clientesActivosFilaEntrega.Remove(clientesActivosFilaEntrega[0]);
                     for (int i = 0; i < clientesActivosFilaEntrega.Count; i++)

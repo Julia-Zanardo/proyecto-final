@@ -1,5 +1,6 @@
 ﻿using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Logica;
+using JulpajulparaisoPasteleria.Content.Modelos;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -42,9 +43,9 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         {
             return contadorDeTickets;
         }
-        public void EliminarTicket(int indice)
+        public void EliminarTicket(DibujadorDeTicket ticketAEliminar)
         {
-            TicketsActuales.RemoveAt(indice);
+            TicketsActuales.Remove(ticketAEliminar);
         }
         public DibujadorDeTicket verificarColision(Rectangle area)
         {
@@ -53,6 +54,17 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                 if (DetectorDeColisiones.DetectarColision(area, ticket.Area))
                 {
                     return ticket;
+                }
+            }
+            return null;
+        }
+        public DibujadorDeTicket obtenerTikcetSegunPedido(Pedido pedido) { 
+            int indice = 0;
+            while(indice < TicketsActuales.Count) 
+            {
+                if(pedido == TicketsActuales[indice].pedido)
+                {
+                    return TicketsActuales[indice];
                 }
             }
             return null;

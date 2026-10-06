@@ -85,6 +85,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             DibujadorDeTicket ticketPuesto = gestorDeTickets.verificarColision(areaTicket);
             if (ticketPuesto != null)
             {
+                gestorDeTickets.EliminarTicket(ticketPuesto);
                 ticketPuesto.Area = areaTicket;
             }
             base.gestorDeTickets.ActualizarTickets(posicionVirtual);
