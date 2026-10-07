@@ -53,7 +53,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                     if (ventanaDeDialogo.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
                     {
                         clienteEnPrimeraFila.CambiarDeEstado(EstadoCliente.Saliendo);
-                        DibujadorDeTicket ticket = new DibujadorDeTicket(new Vector2(base.gestorDeTickets.ObtenerCantidadTickets() > 0 ? base.gestorDeTickets.ObtenerCantidadTickets() * 200 : 0, 00), clienteEnPrimeraFila.pedido, r, texturaTicket, fuentePedido);
+                        Ticket ticket = new Ticket(new Vector2(base.gestorDeTickets.ObtenerCantidadTickets() > 0 ? base.gestorDeTickets.ObtenerCantidadTickets() * 200 : 0, 00), clienteEnPrimeraFila.pedido, r, texturaTicket, fuentePedido);
                         base.gestorDeTickets.AgregarTikcet(ticket);
                         Torta torta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
                         torta.EstacionActual = EstacionActual.EstacionDeMezcla;
@@ -96,7 +96,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 clientesActivosFilaEntrega[0].EstaEnPrimeraFila = true;
                 if (clientesActivosFilaEntrega[0].TerminoDeSalir)
                 {
-                    gestorDeTickets.EliminarTicket(gestorDeTickets.obtenerTikcetSegunPedido(clientesActivosFilaEntrega[0].pedido);
+                    gestorDeTickets.EliminarTicket(gestorDeTickets.obtenerTikcetSegunPedido(clientesActivosFilaEntrega[0].pedido));
                     gestorDeClientes.eliminarCliente(clientesActivosFilaEntrega[0]);
                     clientesActivosFilaEntrega.Remove(clientesActivosFilaEntrega[0]);
                     for (int i = 0; i < clientesActivosFilaEntrega.Count; i++)

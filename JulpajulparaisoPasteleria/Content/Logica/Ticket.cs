@@ -16,16 +16,17 @@ using System.Threading.Tasks;
 
 namespace JulpajulparaisoPasteleria.Content.Logica
 {
-    public class DibujadorDeTicket : ObjetoArrastrable
+    public class Ticket : ObjetoArrastrable
     {
         private int cantidadToppings;
         private SpriteFont numeroDePedido;
         private Texture2D imagenTicket;
         public Rectangle AreaTicketDefaut { get; private set; }
         private RepositorioImagenes r;
+        public bool puestoEnZonaDeEntrega { get; set; } = false;
         public float Escala { get; private set; } = Constante.ESCALA_TICKET;
         public Pedido pedido { get; private set; }
-        public DibujadorDeTicket(Vector2 posicionTicket, Pedido pedido, RepositorioImagenes r, Texture2D texturaTicketPrecaragada, SpriteFont fuentePrecaragada) 
+        public Ticket(Vector2 posicionTicket, Pedido pedido, RepositorioImagenes r, Texture2D texturaTicketPrecaragada, SpriteFont fuentePrecaragada) 
             : base(posicionTicket, new Rectangle((int)posicionTicket.X, (int)posicionTicket.Y,(int)(texturaTicketPrecaragada.Width * Constante.ESCALA_TICKET), (int)(texturaTicketPrecaragada.Height * Constante.ESCALA_TICKET)))
         {
             base.Posicion = posicionTicket;

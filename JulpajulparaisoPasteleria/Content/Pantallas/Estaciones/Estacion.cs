@@ -41,7 +41,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         }
         public void DibujarTickets(SpriteBatch spriteBatch) 
         {
-            foreach (DibujadorDeTicket ticket in gestorDeTickets.TicketsActuales)
+            foreach (Ticket ticket in gestorDeTickets.TicketsActuales)
             {
                 ticket.Dibujar(spriteBatch);
             }

@@ -25,6 +25,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private bool rellenoSeleccionado = false;
         private bool coberturaSeleccionada = false;
         private BotonBase botonVolverAtras;
+        private BotonBase botonBorrarTorta;
         public EstacionDeDecoracion(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes r) : base(gestorDeTickets, gestorDePedidos, r)
         {
         }
@@ -32,6 +33,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
             Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionDecoracion");
             botonSiguiente = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonSiguiente"), new Rectangle(1500, 750, 300, 100));
+            botonBorrarTorta = new BotonBase(r.TexturaBasura, new Rectangle(1500, 600, 100, 100));
             toppingsDisponibles = new Topping[]
             {
                 new Topping(TipoTopping.Banana, r.IconosToppings[TipoTopping.Banana], new Rectangle(480, 470, 100, 50)),
@@ -83,14 +85,15 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 if (toppingActivo != null && coberturaSeleccionada)
                 {
                     toppingActivo.Actualizar(posicionVirtual);
-                        if (DetectorDeColisiones.DetectarColision(toppingActivo.Area, tortasEstacion[0].PosicionesToppings[contadorToppingsPuestos]))
+                        if (DetectorDeColisiones.DetectarColision(toppingActivo.Area, tortaActual.PosicionesToppings[contadorToppingsPuestos]))
                         {
-                            toppingActivo.Area = tortasEstacion[0].PosicionesToppings[contadorToppingsPuestos];
-                            tortasEstacion[0].toppings.Add(toppingActivo);
+                            toppingActivo.Area = tortaActual.PosicionesToppings[contadorToppingsPuestos];
+                            tortaActual.toppings.Add(toppingActivo);
                             contadorToppingsPuestos++;
                             toppingActivo = null;
                         }
                 }
+                
             }
             foreach (BotonCobertura boton in r.IconosBotonesCobertura)
             {
@@ -124,7 +127,15 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 coberturaSeleccionada = false;
                 contadorToppingsPuestos = 0;
             }
+            if (botonBorrarTorta.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
+            {
+                gestorDePedidos.tortas.Remove(tortaActual);
+                Torta nuevaTorta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
+                nuevaTorta.EstacionActual = EstacionActual.EstacionDeMezcla;
+                gestorDePedidos.AgregarTorta(nuevaTorta);
+            }
             botonSiguiente.Actualizar(posicionVirtual);
+            botonBorrarTorta.Actualizar(posicionVirtual);
             base.gestorDeTickets.ActualizarTickets(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
@@ -147,6 +158,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 {
                     tortaActual.Dibujar(spriteBatch, areaTorta, r.TexturasBizcochueloConCobertura[(tortaActual.FormaBizcochuelo, tortaActual.Cobertura)]);
                 }
+                botonBorrarTorta.Dibujar(spriteBatch);
             }
             foreach (BotonCobertura boton in r.IconosBotonesCobertura)
             {

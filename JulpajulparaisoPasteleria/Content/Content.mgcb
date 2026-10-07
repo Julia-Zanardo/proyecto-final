@@ -13,30 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../../../../Downloads/bowlCaramelo.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../../../../Downloads/bowlCaramelo.png;imagenes/Bowls/bowlCaramelo.png
-
-#begin ../../../../../../Downloads/bowlVacio.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../../../../Downloads/bowlVacio.png;imagenes/Bowls/bowlVacio.png
-
 #begin Fuentes/File.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -1743,6 +1719,18 @@
 /processorParam:TextureFormat=Color
 /build:imagenes/Bowls/bowlArandano.png
 
+#begin imagenes/Bowls/bowlCaramelo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Bowls/bowlCaramelo.png
+
 #begin imagenes/Bowls/bowlChocolate.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1777,7 +1765,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:imagenes/Bowls/bowlVacio.png;imagenes/Bowls/bowlVacio
+/build:imagenes/Bowls/bowlVacio.png
 
 #begin imagenes/Coberturas/algodonAzucar.png
 /importer:TextureImporter

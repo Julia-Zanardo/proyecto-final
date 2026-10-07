@@ -4,16 +4,17 @@ using JulpajulparaisoPasteleria.Content.Modelos;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace JulpajulparaisoPasteleria.Content.Gestores
 {
     public class GestorDeTickets
     {
-        public List<DibujadorDeTicket> TicketsActuales { get; private set; } = new List<DibujadorDeTicket> { };
+        public List<Ticket> TicketsActuales { get; private set; } = new List<Ticket> { };
         private  Rectangle areaDeTicket = new Rectangle(1530, 0, 900, 200);
         private  bool areaDeTicketOcupada = false;
         private int contadorDeTickets = 0;
-        public  void AgregarTikcet(DibujadorDeTicket nuevoTicket)
+        public  void AgregarTikcet(Ticket nuevoTicket)
         {
             TicketsActuales.Add(nuevoTicket);
             contadorDeTickets++;
@@ -43,22 +44,87 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         {
             return contadorDeTickets;
         }
-        public void EliminarTicket(DibujadorDeTicket ticketAEliminar)
+        public void EliminarTicket(Ticket ticketAEliminar)
         {
             TicketsActuales.Remove(ticketAEliminar);
         }
-        public DibujadorDeTicket verificarColision(Rectangle area)
+        public void ActualizarTicketsEnZonaDeEntrega(Rectangle areaDeEntrega, Vector2 posicionVirtual, Pedido pedido)
         {
-            foreach (DibujadorDeTicket ticket in TicketsActuales)
+            foreach (Ticket ticket in TicketsActuales)
             {
-                if (DetectorDeColisiones.DetectarColision(area, ticket.Area))
+                ticket.Actualizar(posicionVirtual);
+                if (!ticket.EstaSiendoArrastrado && ManejoEntrada.ElementoSoltado())
+                {
+                    if (!areaDeTicketOcupada && DetectorDeColisiones.DetectarColision(ticket.Area, areaDeTicket))
+                    {
+                        areaDeTicketOcupada = true;
+                        float escalaTicket;
+                        if (ticket.Escala == Constante.ESCALA_TICKET)
+                        {
+                            escalaTicket = ticket.Escala * 2;
+                        }
+                        else if (ticket.Escala == Constante.ESCALA_TICKET / 2f)
+                        {
+                            escalaTicket = (ticket.Escala * 4);
+                        }
+                        else
+                        {
+                            escalaTicket = ticket.Escala;
+                        }
+                        ticket.AcomodarTicket(areaDeTicket, escalaTicket);
+                    }
+                    else if (DetectorDeColisiones.DetectarColision(ticket.Area, areaDeEntrega) && (pedido == ticket.pedido))
+                    {
+                        Rectangle areaDeTicketEntrega = new Rectangle(areaDeEntrega.X + 30, areaDeEntrega.Y + 50, areaDeEntrega.Width, areaDeEntrega.Height);
+                        float escalaTicket;
+                        if (ticket.Escala == Constante.ESCALA_TICKET * 2)
+                        {
+                            escalaTicket = ticket.Escala /4;
+                        }
+                        else if (ticket.Escala == Constante.ESCALA_TICKET)
+                        {
+                            escalaTicket = ticket.Escala / 2f;
+                        }
+                        else
+                        {
+                            escalaTicket = ticket.Escala;
+                        }
+                        ticket.AcomodarTicket(areaDeTicketEntrega, escalaTicket);
+                        ticket.puestoEnZonaDeEntrega = true;
+                    }
+                    else if (DetectorDeColisiones.DetectarColision(ticket.Area, ticket.AreaTicketDefaut))
+                    {
+                        areaDeTicketOcupada = false;
+                        float escalaTicket;
+                        if (ticket.Escala == Constante.ESCALA_TICKET / 2)
+                        {
+                            escalaTicket = ticket.Escala * 2;
+                        }
+                        else if (ticket.Escala == Constante.ESCALA_TICKET * 2 )
+                        {
+                            escalaTicket = ticket.Escala / 2f;
+                        }
+                        else 
+                        {
+                            escalaTicket = ticket.Escala;
+                        }
+                        ticket.AcomodarTicket(ticket.AreaTicketDefaut, escalaTicket);
+                    }
+                }
+            }
+        }
+        public Ticket verificarColision(Rectangle areaDeEntrega)
+        {
+            foreach (Ticket ticket in TicketsActuales)
+            {
+                if (DetectorDeColisiones.DetectarColision(areaDeEntrega, ticket.Area))
                 {
                     return ticket;
                 }
             }
             return null;
         }
-        public DibujadorDeTicket obtenerTikcetSegunPedido(Pedido pedido) { 
+        public Ticket obtenerTikcetSegunPedido(Pedido pedido) { 
             int indice = 0;
             while(indice < TicketsActuales.Count) 
             {
@@ -66,6 +132,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                 {
                     return TicketsActuales[indice];
                 }
+                indice++;
             }
             return null;
         }

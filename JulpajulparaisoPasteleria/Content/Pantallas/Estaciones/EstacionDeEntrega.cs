@@ -2,6 +2,7 @@
 using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Logica;
+using JulpajulparaisoPasteleria.Content.Modelos;
 using JulpajulparaisoPasteleria.Content.Objetos;
 using JulpajulparaisoPasteleria.Content.Personajes;
 using JulpajulparaisoPasteleria.Content.Utilidades;
@@ -35,10 +36,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
             Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionDeEntrega");
         }
-        public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)     
+        public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
             Torta tortaAEliminar = null;
-            if (gestorDeClientes.clientesEsperandoEntrega.Count>0)
+            if (gestorDeClientes.clientesEsperandoEntrega.Count > 0)
             {
                 clienteActual = gestorDeClientes.clientesEsperandoEntrega[0];
             }
@@ -46,18 +47,18 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             for (int i = 0; i < tortasEstacion.Count; i++)
             {
                 Torta torta = tortasEstacion[i];
-                if(!torta.EstaSiendoArrastrado)
+                if (!torta.EstaSiendoArrastrado)
                 {
-                    if(torta.ListaParaEntregar)
+                    if (torta.ListaParaEntregar)
                     {
                         torta.cambiarArea(areaTortaEntregar);
-                    }else if (i<posicionesTortas.Length)
+                    } else if (i < posicionesTortas.Length)
                     {
                         torta.cambiarArea(posicionesTortas[i]);
                     }
                 }
                 torta.Actualizar(posicionVirtual);
-                if(!torta.ListaParaEntregar && torta.EstaSiendoArrastrado)
+                if (!torta.ListaParaEntregar && torta.EstaSiendoArrastrado)
                 {
                     if (DetectorDeColisiones.DetectarColision(torta.Area, areaTortaEntregar))
                     {
@@ -67,9 +68,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                         torta.ListaParaEntregar = true;
                     }
                 }
-                if(torta.ListaParaEntregar) 
+                if (torta.ListaParaEntregar)
                 {
-                    if(DetectorDeColisiones.DetectarColision(areaBasura, torta.Area))
+                    if (DetectorDeColisiones.DetectarColision(areaBasura, torta.Area))
                     {
                         tortaAEliminar = torta;
                         Torta nuevaTorta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
@@ -78,17 +79,18 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                     }
                 }
             }
-            if(tortaAEliminar !=null)
+            if (tortaAEliminar != null)
             {
                 gestorDePedidos.QuitarTorta(tortaAEliminar);
             }
-            DibujadorDeTicket ticketPuesto = gestorDeTickets.verificarColision(areaTicket);
-            if (ticketPuesto != null)
+            if (clienteActual != null)
             {
-                gestorDeTickets.EliminarTicket(ticketPuesto);
-                ticketPuesto.Area = areaTicket;
+                base.gestorDeTickets.ActualizarTicketsEnZonaDeEntrega(areaTicket, posicionVirtual, clienteActual.pedido);
             }
-            base.gestorDeTickets.ActualizarTickets(posicionVirtual);
+            else
+            {
+                base.gestorDeTickets.ActualizarTickets(posicionVirtual);
+            }
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
         {
