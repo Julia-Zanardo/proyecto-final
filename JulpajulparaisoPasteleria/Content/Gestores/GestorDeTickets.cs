@@ -23,6 +23,10 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         {
             foreach (var ticket in TicketsActuales)
             {
+                if (ticket.Escala == Constante.ESCALA_TICKET / 2)
+                {
+                    ticket.AcomodarTicket(ticket.AreaTicketDefaut, Constante.ESCALA_TICKET);
+                }
                 ticket.Actualizar(posVirtual);
 
                 if (!ticket.EstaSiendoArrastrado && ManejoEntrada.ElementoSoltado())
