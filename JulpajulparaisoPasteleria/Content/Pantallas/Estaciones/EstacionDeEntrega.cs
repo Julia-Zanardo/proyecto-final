@@ -44,9 +44,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
             Torta tortaAEliminar = null;
-            if (gestorDeClientes.clientesEsperandoEntrega.Count > 0)
+            if (gestorDeClientes.clientesActivosFilaEntrega.Count > 0)
             {
-                clienteActual = gestorDeClientes.clientesEsperandoEntrega[0];
+                clienteActual = gestorDeClientes.clientesActivosFilaEntrega[0];
             }
             base.tortasEstacion = gestorDePedidos.getTortasEstacion(EstacionActual.EstacionDeEntrega);
             for (int i = 0; i < tortasEstacion.Count; i++)
@@ -100,8 +100,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 calculadorDePuntuacion.RecibirElemetos(tortaAEntregar, clienteActual.pedido);
                 base.gestorDePedidos.QuitarTorta(tortaAEntregar);
-                clienteActual.CambiarDeEstado(EstadoCliente.Saliendo);
+                clienteActual.CambiarDeEstado(EstadoCliente.Hablando);
                 tortaAEntregar = null;
+                gestorDeTickets.EliminarTicket(gestorDeTickets.ObtenerTikcetSegunPedido(clienteActual.pedido));
             }
             botonEntregar.Actualizar(posicionVirtual);
         }
