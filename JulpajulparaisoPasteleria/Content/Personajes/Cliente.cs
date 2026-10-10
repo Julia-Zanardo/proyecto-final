@@ -1,11 +1,13 @@
 ﻿using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Logica;
 using JulpajulparaisoPasteleria.Content.Modelos;
+using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,8 +26,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         public bool TerminoDeSalir { get; private set; }
         public Rectangle AreaCliente { get; private set; }
         public EstadoCliente Estado { get; private set; }
-        private float tiempoMaximoEspera = 40f;
-        private float cronometroEspera = 0;
+        public float cronometroEspera { get; private set; } = 0;
         private float cronometroEnojado = 0;
         public bool EstaEnPrimeraFila { get; set; } = false;
         public bool SeFueEnojado { get; private set; } = false;
@@ -66,7 +67,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     if (EstaEnPrimeraFila)
                     {
                         cronometroEspera += tiempoTranscurrido;
-                        if (cronometroEspera > tiempoMaximoEspera)
+                        if (cronometroEspera > Constante.TIEMPO_MAXIMO_DE_ESPERA)
                         {
                             CambiarDeEstado(EstadoCliente.Enojado);
                         }

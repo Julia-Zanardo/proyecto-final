@@ -17,5 +17,6 @@ namespace JulpajulparaisoPasteleria.Content.Utilidades
         public const int MEDIDA_TORTA_Y = 200;
         public const int MEDIDA_TORTA_X = 300;
         public const int CANTIDAD_MAXIMA_TOPPINGS = 3;
+        public const float TIEMPO_MAXIMO_DE_ESPERA = 40f;
     }
 }
