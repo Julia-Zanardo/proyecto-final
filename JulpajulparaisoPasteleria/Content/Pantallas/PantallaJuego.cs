@@ -2,6 +2,7 @@
 using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
+using JulpajulparaisoPasteleria.Content.Logica;
 using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
@@ -22,7 +23,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         private RepositorioImagenes repositorioImagenes = new RepositorioImagenes();
         private GestorDeTickets gestorTickets = new GestorDeTickets();
         private GestorDePedidos gestorDePedidos = new GestorDePedidos();
-        private GestorDeClientes gestorDeClientes = new GestorDeClientes();
+        private GestorDeClientes gestorDeClientes;
         private Estacion estacionActual;
         private BotonBase botonPausa;
         private GestorDePantalla gestorDePantalla;
@@ -36,6 +37,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             if (estaciones == null)
             {
                 gestorDePestañas.LoadContent(content);
+                gestorDeClientes = new GestorDeClientes(CargadorDeSkins.CargarSkinsClientes(content, Constante.CANTIDAD_PERSONAJES));
                 botonPausa = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonPausa"), new Rectangle(1800, 10, 100, 100));
                 this.repositorioImagenes.LoadContent(content);
                 estaciones = new Estacion[] {

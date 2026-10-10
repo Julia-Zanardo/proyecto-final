@@ -12,14 +12,14 @@ namespace JulpajulparaisoPasteleria.Content.Logica
     {
         private static Dictionary<int, ConfiguracionSkin> datosSkins = new Dictionary<int, ConfiguracionSkin>()
         {
-            { 1, new ConfiguracionSkin(12, 9, 12, 8) },
-            { 2, new ConfiguracionSkin(12, 7, 12, 9) },
-            { 3, new ConfiguracionSkin(12, 6, 12, 6) },
-            { 4, new ConfiguracionSkin(8, 11, 8, 5) },
-            { 5, new ConfiguracionSkin(8, 7, 8, 10) },
-            { 6, new ConfiguracionSkin(10, 6, 10, 5) },
-            { 7, new ConfiguracionSkin(10, 6, 10, 4) },
-            { 8, new ConfiguracionSkin(10, 6, 10, 4) }
+            { 1, new ConfiguracionSkin(12, 9, 12, 8, 11) },
+            { 2, new ConfiguracionSkin(12, 7, 12, 9, 6) },
+            { 3, new ConfiguracionSkin(12, 6, 12, 6, 5) },
+            { 4, new ConfiguracionSkin(8, 11, 8, 5,13) },
+            { 5, new ConfiguracionSkin(8, 7, 8, 10,9) },
+            { 6, new ConfiguracionSkin(10, 6, 10, 5,3) },
+            { 7, new ConfiguracionSkin(10, 6, 10, 4,3) },
+            { 8, new ConfiguracionSkin(10, 6, 10, 4,3) }
         };
         public static List<SkinCliente> CargarSkinsClientes(ContentManager content, int cantidadPersonajes)
         {
@@ -30,7 +30,8 @@ namespace JulpajulparaisoPasteleria.Content.Logica
                 Texture2D caminando = content.Load<Texture2D>($"imagenes/Sprites/clienteCaminando{i}");
                 Texture2D esperando = content.Load<Texture2D>($"imagenes/Sprites/clienteEsperando{i}");
                 Texture2D enojado = content.Load<Texture2D>($"imagenes/Sprites/clienteEnojado{i}");
-                skinsClientes.Add(new SkinCliente(caminando,esperando,enojado, configuracionColumnas));
+                Texture2D hablando = content.Load<Texture2D>($"imagenes/Sprites/clienteHablando{i}");
+                skinsClientes.Add(new SkinCliente(caminando,esperando,enojado,hablando, configuracionColumnas));
             }
             return skinsClientes;
         }

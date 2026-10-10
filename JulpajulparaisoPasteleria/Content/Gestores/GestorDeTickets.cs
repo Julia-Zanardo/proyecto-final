@@ -122,18 +122,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                 }
             }
         }
-        public Ticket verificarColision(Rectangle areaDeEntrega)
-        {
-            foreach (Ticket ticket in TicketsActuales)
-            {
-                if (DetectorDeColisiones.DetectarColision(areaDeEntrega, ticket.Area))
-                {
-                    return ticket;
-                }
-            }
-            return null;
-        }
-        public Ticket obtenerTikcetSegunPedido(Pedido pedido) { 
+        public Ticket ObtenerTikcetSegunPedido(Pedido pedido) { 
             int indice = 0;
             while(indice < TicketsActuales.Count) 
             {

@@ -339,13 +339,6 @@ C:\Users\Alumno\source\Repos\proyecto-final\proyecto-final\JulpajulparaisoPastel
 C:\Users\Alumno\source\Repos\proyecto-final\proyecto-final\JulpajulparaisoPasteleria\obj\Debug\net8.0\Julpajul.6725B22D.Up2Date
 C:\Users\Alumno\source\Repos\proyecto-final\proyecto-final\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.genruntimeconfig.cache
 C:\Users\Alumno\source\Repos\proyecto-final\proyecto-final\JulpajulparaisoPasteleria\obj\Debug\net8.0\ref\JulpajulparaisoPasteleria.dll
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\mgcb.tool.restore
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.csproj.AssemblyReference.cache
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.GeneratedMSBuildEditorConfig.editorconfig
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.AssemblyInfoInputs.cache
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.AssemblyInfo.cs
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.csproj.CoreCompileInputs.cache
-C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.sourcelink.json
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Fondos\EstacionDecoracion.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Fondos\EstacionDeEntrega.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Fondos\EstacionHorneado.xnb
@@ -589,6 +582,13 @@ C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando6.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando7.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteEsperando8.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteHablando1.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteHablando2.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteHablando3.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteHablando4.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteHablando5.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteHablando7.xnb
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteHablando8.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Topings\topingBanana.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Topings\topingCereza.xnb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Topings\topingCubanito.xnb
@@ -622,9 +622,17 @@ C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\runtimes\osx\native\libSDL2-2.0.0.dylib
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\runtimes\win-arm64\native\SDL2.dll
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\runtimes\win-x64\native\SDL2.dll
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\mgcb.tool.restore
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.csproj.AssemblyReference.cache
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.GeneratedMSBuildEditorConfig.editorconfig
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.AssemblyInfoInputs.cache
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.AssemblyInfo.cs
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.csproj.CoreCompileInputs.cache
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.sourcelink.json
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\Julpajul.6725B22D.Up2Date
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.dll
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\refint\JulpajulparaisoPasteleria.dll
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.pdb
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\JulpajulparaisoPasteleria.genruntimeconfig.cache
 C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\obj\Debug\net8.0\ref\JulpajulparaisoPasteleria.dll
+C:\Local Development\Sandbox\JulpajulparaisoPasteleria\JulpajulparaisoPasteleria\bin\Debug\net8.0\Content\imagenes\Sprites\clienteHablando6.xnb

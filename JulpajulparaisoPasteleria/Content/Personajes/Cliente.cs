@@ -28,8 +28,8 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         public EstadoCliente Estado { get; private set; }
         public float cronometroEspera { get; private set; } = 0;
         private float cronometroEnojado = 0;
+        private float cronometroHablando = 0;
         public bool EstaEnPrimeraFila { get; set; } = false;
-        public bool SeFueEnojado { get; private set; } = false;
         public Cliente(SkinCliente skin, Vector2 posicion, Rectangle destino, Pedido pedido)
         {
             this.skin = skin;
@@ -94,9 +94,15 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     {
                         CambiarDeEstado(EstadoCliente.Saliendo);
                         posicionSalida = new Vector2(1920, posicion.Y);
-                        SeFueEnojado = true;
                     }
-                    AreaCliente = new Rectangle((int)posicion.X, (int)posicion.Y, (skin.Enojado.Width / skin.ConfiguracionSkin.ColumasEnojado) * (int)escala, skin.Enojado.Height * (int)escala);
+                    break;
+                case EstadoCliente.Hablando:
+                    cronometroHablando += tiempoTranscurrido;
+                    if (cronometroHablando >= 5)
+                    {
+                        CambiarDeEstado(EstadoCliente.Saliendo);
+                        posicionSalida = new Vector2(1920, posicion.Y);
+                    }
                     break;
             }
             animacion.Actualizar(tiempo);
@@ -143,6 +149,8 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     return new Animacion(skin.Caminando, skin.ConfiguracionSkin.ColumnasSaliendo, 1);
                 case EstadoCliente.Enojado:
                     return new Animacion(skin.Enojado, skin.ConfiguracionSkin.ColumasEnojado, -1);
+                case EstadoCliente.Hablando:
+                    return new Animacion(skin.Hablando, skin.ConfiguracionSkin.ColumnasHablando, -1);
                 default:
                     return null;
             }

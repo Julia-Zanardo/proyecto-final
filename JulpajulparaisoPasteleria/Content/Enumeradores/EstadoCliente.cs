@@ -11,6 +11,7 @@ namespace JulpajulparaisoPasteleria.Content.Enumeradores
         Esperando,
         Caminando,
         Saliendo,
-        Enojado
+        Enojado,
+        Hablando
     }
 }
