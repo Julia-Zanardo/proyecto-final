@@ -1,4 +1,17 @@
 Registro de cambios
+
+## [0.8.11] - 2026-10-10
+- BotonDeEntrega agregado en EstacionDeEntrega.
+- Creacion de clase CalculadorDePuntuacion para calcular la puntuacion de la torta.
+- Finalizacion de logica de CargadorDePuntuacion.
+- nueva animacion de cliente hablando cuando se apreta el boton de entregar añadida.
+- Refactorizacion de EstacionDeOrdenes y EstacionDeEntrega, todo se unio en GestorDeClientes.
+## [0.7.11] - 2026-10-09
+- Arreglo de bug en GestorDeTickets.
+## [0.7.10] - 2026-10-07
+- Metodo para gestionar las actualizaciones del ticket de la EstacionDeEntrega creado en GestorDeTickets.
+## [0.7.9] - 2026-10-06
+- Logica de arrastre de torta en EstacionDeEntrega corregida.
 ## [0.7.8] - 2026-10-05
 - Comienzo de logica de EstacionDeEntrega.
 - Las tortas ya se dibujan en esta estacion.
