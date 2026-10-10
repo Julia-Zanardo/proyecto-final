@@ -1,4 +1,5 @@
-﻿using JulpajulparaisoPasteleria.Content.Controladores;
+﻿using JulpajulparaisoPasteleria.Content.Botones;
+using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Logica;
@@ -25,6 +26,9 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private Rectangle areaTicket = new Rectangle(800, 400, 150, 230);
         private Rectangle areaBasura = new Rectangle(200, 700, 100, 100);
         private Rectangle areaTortaEntregar = new Rectangle(800, 750, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y);
+        private BotonBase botonEntregar;
+        private CalculadorDePuntuacion calculadorDePuntuacion = new CalculadorDePuntuacion();
+        private Torta tortaAEntregar = null;
         public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
             this.gestorDeClientes = gestorDeClientes;
@@ -35,6 +39,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         public override void LoadContent(ContentManager content)
         {
             Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionDeEntrega");
+            botonEntregar = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonEntregar"), new Rectangle(1500, 750, 300, 100));
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
@@ -62,21 +67,21 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 {
                     if (DetectorDeColisiones.DetectarColision(torta.Area, areaTortaEntregar))
                     {
-                        //aca la torta lista se elimina de tortas estacion y pasa a una clase que calcula la puntuacion y la muestra en pantalla
-                        //pero solo si el ticket tambien fue entregado
                         torta.cambiarArea(areaTortaEntregar);
                         torta.ListaParaEntregar = true;
+                        tortaAEntregar = torta;
                     }
                 }
-                if (torta.ListaParaEntregar)
+                if (DetectorDeColisiones.DetectarColision(areaBasura, torta.Area))
                 {
-                    if (DetectorDeColisiones.DetectarColision(areaBasura, torta.Area))
+                    if (tortaAEntregar == torta)
                     {
-                        tortaAEliminar = torta;
-                        Torta nuevaTorta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
-                        nuevaTorta.EstacionActual = EstacionActual.EstacionDeMezcla;
-                        gestorDePedidos.AgregarTorta(nuevaTorta);
+                        tortaAEntregar = null;
                     }
+                    tortaAEliminar = torta;
+                    Torta nuevaTorta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
+                    nuevaTorta.EstacionActual = EstacionActual.EstacionDeMezcla;
+                    gestorDePedidos.AgregarTorta(nuevaTorta);
                 }
             }
             if (tortaAEliminar != null)
@@ -91,6 +96,14 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             {
                 base.gestorDeTickets.ActualizarTickets(posicionVirtual);
             }
+            if (botonEntregar.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
+            {
+                calculadorDePuntuacion.RecibirElemetos(tortaAEntregar, clienteActual.pedido);
+                base.gestorDePedidos.QuitarTorta(tortaAEntregar);
+                clienteActual.CambiarDeEstado(EstadoCliente.Saliendo);
+                tortaAEntregar = null;
+            }
+            botonEntregar.Actualizar(posicionVirtual);
         }
         public override void ActualizarEnSegundoPlano(GameTime gameTime)
         {
@@ -114,6 +127,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             }
             spriteBatch.Draw(r.TexturaPosicionarTicket, areaTicket, Color.White);
             spriteBatch.Draw(r.TexturaBasura, areaBasura, Color.White);
+            if (base.gestorDeTickets.ticketListoParaEntregar && tortaAEntregar!=null)
+            {
+                botonEntregar.Dibujar(spriteBatch);
+            }
             DibujarTickets(spriteBatch);
         }
 
