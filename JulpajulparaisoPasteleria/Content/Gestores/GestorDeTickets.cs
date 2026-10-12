@@ -14,7 +14,6 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         private  Rectangle areaDeTicket = new Rectangle(1530, 0, 900, 200);
         private  bool areaDeTicketOcupada = false;
         private int contadorDeTickets = 0;
-        public bool ticketListoParaEntregar = false;
         public  void AgregarTikcet(Ticket nuevoTicket)
         {
             TicketsActuales.Add(nuevoTicket);
@@ -64,7 +63,6 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                     {
                         areaDeTicketOcupada = true;
                         float escalaTicket;
-                        ticketListoParaEntregar = false;
                         if (ticket.Escala == Constante.ESCALA_TICKET)
                         {
                             escalaTicket = ticket.Escala * 2;
@@ -83,7 +81,6 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                     {
                         Rectangle areaDeTicketEntrega = new Rectangle(areaDeEntrega.X + 30, areaDeEntrega.Y + 50, areaDeEntrega.Width, areaDeEntrega.Height);
                         float escalaTicket;
-                        ticketListoParaEntregar = true;
                         areaDeTicketOcupada = false;
                         if (ticket.Escala == Constante.ESCALA_TICKET * 2)
                         {
@@ -104,7 +101,6 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                     {
                         areaDeTicketOcupada = false;
                         float escalaTicket;
-                        ticketListoParaEntregar = false;
                         if (ticket.Escala == Constante.ESCALA_TICKET / 2)
                         {
                             escalaTicket = ticket.Escala * 2;
@@ -133,6 +129,15 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                 indice++;
             }
             return null;
+        }
+        public bool ElTicketEstaEnZonaDeEntrega(Pedido pedido, Rectangle areaDeEntrega)
+        {
+            Ticket ticket = ObtenerTikcetSegunPedido(pedido);
+            if (ticket != null)
+            {
+                return DetectorDeColisiones.DetectarColision(ticket.Area, areaDeEntrega);
+            }
+            return false;
         }
     }
 }
