@@ -37,5 +37,9 @@ namespace JulpajulparaisoPasteleria.Content.Controladores
                 }
             }
         }
+            public void ForzarSoltar()
+            {
+                EstaSiendoArrastrado = false;
+            }
     }
 }
