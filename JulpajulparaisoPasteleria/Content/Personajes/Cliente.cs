@@ -98,7 +98,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     break;
                 case EstadoCliente.Hablando:
                     cronometroHablando += tiempoTranscurrido;
-                    if (cronometroHablando >= 5)
+                    if (cronometroHablando >= 15)
                     {
                         CambiarDeEstado(EstadoCliente.Saliendo);
                         posicionSalida = new Vector2(1920, posicion.Y);

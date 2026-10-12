@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
 {
@@ -29,10 +30,13 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private BotonBase botonEntregar;
         private CalculadorDePuntuacion calculadorDePuntuacion = new CalculadorDePuntuacion();
         private Torta tortaAEntregar = null;
+        private Texture2D dialogoPuntaje;
+        private bool areaDeTortaOcupada = false;
+        private SpriteFont fuente;
         public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
             this.gestorDeClientes = gestorDeClientes;
-            posicionesTortas = new Rectangle[] { 
+            posicionesTortas = new Rectangle[] {
                 new Rectangle(100,420,Constante.MEDIDA_TORTA_X,Constante.MEDIDA_TORTA_Y/2),
                 new Rectangle(400,420,Constante.MEDIDA_TORTA_X,Constante.MEDIDA_TORTA_Y/2) };
         }
@@ -40,6 +44,8 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         {
             Fondo = content.Load<Texture2D>("imagenes/Fondos/estacionDeEntrega");
             botonEntregar = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonEntregar"), new Rectangle(1500, 750, 300, 100));
+            fuente = content.Load<SpriteFont>("fuentes/fuenteGruesa");
+            dialogoPuntaje = content.Load<Texture2D>("imagenes/EstacionDeEntrega/dialogoPuntaje");
         }
         public override void Actualizar(GameTime gameTime, Vector2 posicionVirtual)
         {
@@ -49,27 +55,32 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 clienteActual = gestorDeClientes.clientesActivosFilaEntrega[0];
             }
             base.tortasEstacion = gestorDePedidos.getTortasEstacion(EstacionActual.EstacionDeEntrega);
+            int puestoEnEstante = 0;
             for (int i = 0; i < tortasEstacion.Count; i++)
             {
                 Torta torta = tortasEstacion[i];
-                if (!torta.EstaSiendoArrastrado)
+                if (torta.ListaParaEntregar)
                 {
-                    if (torta.ListaParaEntregar)
+                    torta.cambiarArea(areaTortaEntregar);
+                    tortaAEntregar = torta;
+                } else
+                {
+                    if (!torta.EstaSiendoArrastrado && puestoEnEstante < posicionesTortas.Length)
                     {
-                        torta.cambiarArea(areaTortaEntregar);
-                    } else if (i < posicionesTortas.Length)
-                    {
-                        torta.cambiarArea(posicionesTortas[i]);
+                        torta.cambiarArea(posicionesTortas[puestoEnEstante]);
                     }
+                    puestoEnEstante++;
                 }
                 torta.Actualizar(posicionVirtual);
                 if (!torta.ListaParaEntregar && torta.EstaSiendoArrastrado)
                 {
-                    if (DetectorDeColisiones.DetectarColision(torta.Area, areaTortaEntregar))
+                    if (DetectorDeColisiones.DetectarColision(torta.Area, areaTortaEntregar) && !areaDeTortaOcupada)
                     {
                         torta.cambiarArea(areaTortaEntregar);
                         torta.ListaParaEntregar = true;
+                        areaDeTortaOcupada = true;
                         tortaAEntregar = torta;
+                        torta.ForzarSoltar();
                     }
                 }
                 if (DetectorDeColisiones.DetectarColision(areaBasura, torta.Area))
@@ -77,11 +88,22 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                     if (tortaAEntregar == torta)
                     {
                         tortaAEntregar = null;
+                        areaDeTortaOcupada = false;
                     }
                     tortaAEliminar = torta;
                     Torta nuevaTorta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
                     nuevaTorta.EstacionActual = EstacionActual.EstacionDeMezcla;
                     gestorDePedidos.AgregarTorta(nuevaTorta);
+                }
+                if (torta.EstaSiendoArrastrado && torta.ListaParaEntregar)
+                {
+                    if (DetectorDeColisiones.DetectarColision(posicionesTortas[0], torta.Area))
+                    {
+                        tortaAEntregar = null;
+                        areaDeTortaOcupada = false;
+                        torta.ListaParaEntregar = false;
+                        AcomodarTortas(torta);
+                    }
                 }
             }
             if (tortaAEliminar != null)
@@ -101,7 +123,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 calculadorDePuntuacion.RecibirElemetos(tortaAEntregar, clienteActual.pedido);
                 base.gestorDePedidos.QuitarTorta(tortaAEntregar);
                 clienteActual.CambiarDeEstado(EstadoCliente.Hablando);
-                tortaAEntregar = null;
+                areaDeTortaOcupada = false;
                 gestorDeTickets.EliminarTicket(gestorDeTickets.ObtenerTikcetSegunPedido(clienteActual.pedido));
             }
             botonEntregar.Actualizar(posicionVirtual);
@@ -114,10 +136,15 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             base.Dibujar(spriteBatch);
             if (tortasEstacion.Count > 0)
             {
+                int tortasDibujadasEnEstante = 0;
                 for (int i = 0; i < tortasEstacion.Count; i++)
                 {
-                    if (i < posicionesTortas.Length) 
+                    if (tortasDibujadasEnEstante < posicionesTortas.Length || tortasEstacion[i].ListaParaEntregar || tortasEstacion[i].EstaSiendoArrastrado)
                     {
+                        if (!tortasEstacion[i].ListaParaEntregar && !tortasEstacion[i].EstaSiendoArrastrado)
+                        {
+                            tortasDibujadasEnEstante++;
+                        }
                         tortasEstacion[i].Dibujar(spriteBatch, tortasEstacion[i].Area, r.TexturasBizcochueloConCobertura[(tortasEstacion[i].FormaBizcochuelo, tortasEstacion[i].Cobertura)]);
                     }
                 }
@@ -125,15 +152,50 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             if (clienteActual != null)
             {
                 clienteActual.Dibujar(spriteBatch, new Vector2(800, -300), 10f);
+                if (clienteActual.Estado == EstadoCliente.Hablando && tortaAEntregar != null)
+                {
+                    DibujarDialogoDePuntuacion(spriteBatch);
+
+                }
+                if (base.gestorDeTickets.ElTicketEstaEnZonaDeEntrega(clienteActual.pedido, areaTicket) && tortaAEntregar != null)
+                {
+                    botonEntregar.Dibujar(spriteBatch);
+                }
             }
             spriteBatch.Draw(r.TexturaPosicionarTicket, areaTicket, Color.White);
             spriteBatch.Draw(r.TexturaBasura, areaBasura, Color.White);
-            if (base.gestorDeTickets.ticketListoParaEntregar && tortaAEntregar!=null)
-            {
-                botonEntregar.Dibujar(spriteBatch);
-            }
             DibujarTickets(spriteBatch);
         }
+        private void AcomodarTortas(Torta torta)
+        {
+            if (tortasEstacion.Count >= 2)
+            {
+                Torta tortaActualEnPosicion0 = tortasEstacion[0];
+                tortasEstacion[0] = torta;
+                tortasEstacion[1] = tortaActualEnPosicion0;
+            }
+            else if (tortasEstacion.Count == 1)
+            {
+                tortasEstacion[0] = torta;
+            }
+            torta.ForzarSoltar();
+        }
+        private void DibujarDialogoDePuntuacion(SpriteBatch spriteBatch)
+        {
+            calculadorDePuntuacion.RecibirElemetos(tortaAEntregar, clienteActual.pedido);
+            Rectangle areaDialogo = new Rectangle(1350, 100, 300, 300);
+            spriteBatch.Draw(dialogoPuntaje, areaDialogo, Color.White);
+            int puntuacionOrdenes = calculadorDePuntuacion.CalcularPuntuacionEstacionDeOrdenes(clienteActual);
+            int puntuacionMezcla = calculadorDePuntuacion.CalcularPuntuacionEstacionDeMezcla();
+            int puntuacionHorneado = calculadorDePuntuacion.CalcularPuntuacionEstacionDeHorneado();
+            int puntuacionDecoracion = calculadorDePuntuacion.CalcularPuntucacionEstacionDeDecoracion();
+            int puntuacionTotal = calculadorDePuntuacion.CalcularPuntuacionTotal();
+            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionOrdenes), new Vector2(areaDialogo.X+150, areaDialogo.Y+20), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionMezcla), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 75), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionHorneado), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 130), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionDecoracion), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 190), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionTotal), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 250), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
+        }
     }
 }
