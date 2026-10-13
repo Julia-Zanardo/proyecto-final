@@ -30,6 +30,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
         private float cronometroEnojado = 0;
         private float cronometroHablando = 0;
         public bool EstaEnPrimeraFila { get; set; } = false;
+        public bool SeFueEnojado { get; private set; } = false;
         public Cliente(SkinCliente skin, Vector2 posicion, Rectangle destino, Pedido pedido)
         {
             this.skin = skin;
@@ -95,6 +96,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                         CambiarDeEstado(EstadoCliente.Saliendo);
                         posicionSalida = new Vector2(1920, posicion.Y);
                     }
+                    SeFueEnojado = true;
                     break;
                 case EstadoCliente.Hablando:
                     cronometroHablando += tiempoTranscurrido;
