@@ -28,17 +28,18 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private Rectangle areaBasura = new Rectangle(200, 700, 100, 100);
         private Rectangle areaTortaEntregar = new Rectangle(800, 750, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y);
         private BotonBase botonEntregar;
-        private CalculadorDePuntuacion calculadorDePuntuacion = new CalculadorDePuntuacion();
+        public CalculadorDePuntuacion calculadorDePuntuacion;
         private Torta tortaAEntregar = null;
         private Texture2D dialogoPuntaje;
         private bool areaDeTortaOcupada = false;
         private SpriteFont fuente;
-        public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
+        public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes, CalculadorDePuntuacion calculadorDePuntuacion) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
             this.gestorDeClientes = gestorDeClientes;
             posicionesTortas = new Rectangle[] {
                 new Rectangle(100,420,Constante.MEDIDA_TORTA_X,Constante.MEDIDA_TORTA_Y/2),
                 new Rectangle(400,420,Constante.MEDIDA_TORTA_X,Constante.MEDIDA_TORTA_Y/2) };
+            this.calculadorDePuntuacion = calculadorDePuntuacion;
         }
         public override void LoadContent(ContentManager content)
         {
@@ -155,9 +156,8 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 if (clienteActual.Estado == EstadoCliente.Hablando && tortaAEntregar != null)
                 {
                     DibujarDialogoDePuntuacion(spriteBatch);
-
                 }
-                if (base.gestorDeTickets.ElTicketEstaEnZonaDeEntrega(clienteActual.pedido, areaTicket) && tortaAEntregar != null)
+                if (base.gestorDeTickets.ElTicketEstaEnZonaDeEntrega(clienteActual.pedido, areaTicket) && tortaAEntregar != null && clienteActual.Estado == EstadoCliente.Esperando)
                 {
                     botonEntregar.Dibujar(spriteBatch);
                 }

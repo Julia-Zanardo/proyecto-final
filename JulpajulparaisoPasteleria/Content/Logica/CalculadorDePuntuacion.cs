@@ -16,6 +16,11 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         private Torta torta;
         private Pedido pedido;
         private int puntuacionAcumulada;
+        public float PuntuacionAcumuladaTotal { get; private set; }
+        public float PuntuacionAcumuladaOrdenes { get; private set; }
+        public float PuntuacionAcumuladaMezcla { get; private set; }
+        public float PuntuacionAcumuladaHorneado { get; private set; }
+        public float PuntuacionAcumuladaDecoracion { get; private set; }
 
         public void RecibirElemetos(Torta torta, Pedido pedido) 
         {
@@ -25,6 +30,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
         }
         public int CalcularPuntuacionTotal()
         {
+            PuntuacionAcumuladaTotal += puntuacionAcumulada;
             return puntuacionAcumulada;
         }
         public int CalcularPuntuacionEstacionDeOrdenes(Cliente cliente)
@@ -39,6 +45,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
                 puntaje = 15;
             }
             puntuacionAcumulada += puntaje;
+            PuntuacionAcumuladaOrdenes += puntaje;
             return puntaje;
         }
         public int CalcularPuntuacionEstacionDeMezcla()
@@ -53,6 +60,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
                 puntaje = 10;
             }
             puntuacionAcumulada += puntaje;
+            PuntuacionAcumuladaMezcla += puntaje;
             return puntaje;
         }
         public int CalcularPuntuacionEstacionDeHorneado()
@@ -67,6 +75,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
                 puntaje = 20;
             }
             puntuacionAcumulada += puntaje;
+            PuntuacionAcumuladaHorneado += puntaje;
             return puntaje;
         }
         public int CalcularPuntucacionEstacionDeDecoracion()
@@ -85,6 +94,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
                 puntaje += 15;
             }
             puntuacionAcumulada += puntaje;
+            PuntuacionAcumuladaDecoracion += puntaje;
             return puntaje;
         }
         private bool verificarTipoTopping()
@@ -111,6 +121,14 @@ namespace JulpajulparaisoPasteleria.Content.Logica
                 }
             }
             return true;
+        }
+        public void ReiniciarAcumuladoresDia()
+        {
+            this.PuntuacionAcumuladaOrdenes = 0;
+            this.PuntuacionAcumuladaMezcla = 0;
+            this.PuntuacionAcumuladaHorneado = 0;
+            this.PuntuacionAcumuladaDecoracion = 0;
+            this.PuntuacionAcumuladaTotal = 0;
         }
     }
 }
