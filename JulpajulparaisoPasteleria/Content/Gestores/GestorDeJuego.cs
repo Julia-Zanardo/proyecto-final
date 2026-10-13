@@ -10,8 +10,26 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
     {
         public static int DiaActual { get; private set; } = 1;
         public static int ContadorPedidos { get; private set; } = 0;
-        public static float TiempoEntreClientes { get; private set; } = 3;
-        public static int CantidadDeClientesPorDia { get; private set; } = 9;
+        public static float TiempoEntreClientes { get; private set; } = 15;
+        public static int CantidadDeClientesPorDia { get; private set; } = 1;
+        public static int CantidadDeClientesAntendidosHoy { get; private set; } = 0;
+        public static bool DiaTerminado;
+        public static void RegistrarPedidoEntregado()
+        {
+            CantidadDeClientesAntendidosHoy++;
+        }
+        public static bool ObtenerSiDiaTermino() 
+        {
+            if (CantidadDeClientesAntendidosHoy >= CantidadDeClientesPorDia)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         public static int ObtenerIdPedido()
         {
             return ++ContadorPedidos;
@@ -22,8 +40,9 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             ContadorPedidos = 0;
             TiempoEntreClientes -= 5; // despues lo cambio con una clase aleatorio o algo asi
             CantidadDeClientesPorDia++;
+            CantidadDeClientesAntendidosHoy = 0;
         }
-        public static void reiniciarPedidos() 
+        public static void ReiniciarPedidos() 
         {
             ContadorPedidos = 0;
         }

@@ -56,6 +56,10 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                 clientesActivosFilaEntrega[0].EstaEnPrimeraFila = true;
                 if (clientesActivosFilaEntrega[0].TerminoDeSalir)
                 {
+                    if (!clientesActivosFilaEntrega[0].SeFueEnojado)
+                    {
+                        GestorDeJuego.RegistrarPedidoEntregado();
+                    }
                     clientesActivosFilaEntrega.Remove(clientesActivosFilaEntrega[0]);
                     for (int i = 0; i < clientesActivosFilaEntrega.Count; i++)
                     {
