@@ -1683,6 +1683,18 @@
 /processorParam:TextureFormat=Color
 /build:imagenes/Botones/botonSiguiente.png
 
+#begin imagenes/Botones/botonSiguienteDia.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Botones/botonSiguienteDia.png
+
 #begin imagenes/Botones/botonTirar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1994,6 +2006,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:imagenes/Fondos/pantallaPausa.png
+
+#begin imagenes/Fondos/pantallaResumenDia.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Fondos/pantallaResumenDia.png
 
 #begin imagenes/Fondos/pestañas.png
 /importer:TextureImporter
