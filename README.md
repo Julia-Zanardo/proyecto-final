@@ -35,8 +35,13 @@ Antes de empezar, asegurate de tener instalado lo siguiente en tu sistema:
 Pasos para la Ejecución  
 **1. Clonar el repositorio**  
 Abrí tu terminal en la carpeta donde quieras descargar el juego y ejecutá:
+-- Clonar todo el proyecto.
 ```bash
 git clone https://github.com/Julia-Zanardo/proyecto-final.git
+```
+-- Clonar solo el ultimo commit
+```bash
+git clone --branch desarrollo-juego --depth 1 https://github.com/Julia-Zanardo/proyecto-final.git
 ```
 **2. Acceder al directorio del proyecto**
 ```bash
