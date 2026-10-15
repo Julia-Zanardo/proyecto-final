@@ -2,7 +2,6 @@
 using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
-using JulpajulparaisoPasteleria.Content.Modelos;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -14,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JulpajulparaisoPasteleria.Content.Logica
+namespace JulpajulparaisoPasteleria.Content.Modelos
 {
     public class Ticket : ObjetoArrastrable
     {

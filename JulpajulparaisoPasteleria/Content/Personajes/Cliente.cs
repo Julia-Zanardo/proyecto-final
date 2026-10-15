@@ -38,7 +38,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
             this.posicion = posicion;
             this.posicionSalida = posicion;
             this.destino = destino;
-            velocidad = 300f;
+            velocidad = 200f;
             escala = 6.0f;
             this.pedido = pedido;
             this.Estado = EstadoCliente.Caminando;
@@ -91,7 +91,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     break;
                 case EstadoCliente.Enojado:
                     cronometroEnojado += tiempoTranscurrido;
-                    if (cronometroEnojado >= 5)
+                    if (cronometroEnojado >= 8)
                     {
                         CambiarDeEstado(EstadoCliente.Saliendo);
                         posicionSalida = new Vector2(1920, posicion.Y);
@@ -100,7 +100,7 @@ namespace JulpajulparaisoPasteleria.Content.Personajes
                     break;
                 case EstadoCliente.Hablando:
                     cronometroHablando += tiempoTranscurrido;
-                    if (cronometroHablando >= 15)
+                    if (cronometroHablando >= 8)
                     {
                         CambiarDeEstado(EstadoCliente.Saliendo);
                         posicionSalida = new Vector2(1920, posicion.Y);

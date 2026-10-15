@@ -14,7 +14,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         public static int CantidadDeClientesPorDia { get; private set; } = 1;
         public static int CantidadDeClientesAntendidosHoy { get; private set; } = 0;
         public static bool DiaTerminado;
-        public static void RegistrarPedidoEntregado()
+        public static void RegistrarCliente()
         {
             CantidadDeClientesAntendidosHoy++;
         }
@@ -30,6 +30,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             }
 
         }
+
         public static int ObtenerIdPedido()
         {
             return ++ContadorPedidos;

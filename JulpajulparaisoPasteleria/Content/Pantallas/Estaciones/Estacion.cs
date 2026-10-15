@@ -1,7 +1,7 @@
 ﻿using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
-using JulpajulparaisoPasteleria.Content.Logica;
+using JulpajulparaisoPasteleria.Content.Modelos;
 using JulpajulparaisoPasteleria.Content.Objetos;
 using JulpajulparaisoPasteleria.Content.Utilidades;
 using Microsoft.Xna.Framework;

@@ -4,6 +4,7 @@ using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Enumeradores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Logica;
+using JulpajulparaisoPasteleria.Content.Modelos;
 using JulpajulparaisoPasteleria.Content.Objetos;
 using JulpajulparaisoPasteleria.Content.Personajes;
 using JulpajulparaisoPasteleria.Content.Utilidades;

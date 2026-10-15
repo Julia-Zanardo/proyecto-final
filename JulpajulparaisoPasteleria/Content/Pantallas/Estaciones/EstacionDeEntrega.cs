@@ -28,18 +28,24 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private Rectangle areaBasura = new Rectangle(200, 700, 100, 100);
         private Rectangle areaTortaEntregar = new Rectangle(800, 750, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y);
         private BotonBase botonEntregar;
-        public CalculadorDePuntuacion calculadorDePuntuacion;
+        public CalculadorDePuntuacion calculadorDePuntuacion = new CalculadorDePuntuacion();
         private Torta tortaAEntregar = null;
         private Texture2D dialogoPuntaje;
         private bool areaDeTortaOcupada = false;
         private SpriteFont fuente;
-        public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes, CalculadorDePuntuacion calculadorDePuntuacion) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
+        private RegistroDeDia registroDeDia;
+        private int puntajeOrdenes;
+        private int puntajeMezcla;
+        private int puntajeHorneado;
+        private int puntajeDecoracion;
+        private int puntajeTotal;
+        public EstacionDeEntrega(GestorDeTickets gestorDeTickets, GestorDePedidos gestorDePedidos, RepositorioImagenes repositorioImagenes, GestorDeClientes gestorDeClientes, RegistroDeDia registroDeDia ) : base(gestorDeTickets, gestorDePedidos, repositorioImagenes)
         {
             this.gestorDeClientes = gestorDeClientes;
             posicionesTortas = new Rectangle[] {
                 new Rectangle(100,420,Constante.MEDIDA_TORTA_X,Constante.MEDIDA_TORTA_Y/2),
                 new Rectangle(400,420,Constante.MEDIDA_TORTA_X,Constante.MEDIDA_TORTA_Y/2) };
-            this.calculadorDePuntuacion = calculadorDePuntuacion;
+            this.registroDeDia = registroDeDia;
         }
         public override void LoadContent(ContentManager content)
         {
@@ -114,6 +120,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             if (clienteActual != null)
             {
                 base.gestorDeTickets.ActualizarTicketsEnZonaDeEntrega(areaTicket, posicionVirtual, clienteActual.pedido);
+                if(clienteActual.SeFueEnojado)
+                {
+                    gestorDeTickets.EliminarTicket(gestorDeTickets.ObtenerTikcetSegunPedido(clienteActual.pedido));
+                }
             }
             else
             {
@@ -121,7 +131,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             }
             if (botonEntregar.FueClickeado(posicionVirtual, ManejoEntrada.ElementoClickeado()))
             {
-                calculadorDePuntuacion.RecibirElemetos(tortaAEntregar, clienteActual.pedido);
+                RegistrarEntrega();
                 base.gestorDePedidos.QuitarTorta(tortaAEntregar);
                 clienteActual.CambiarDeEstado(EstadoCliente.Hablando);
                 areaDeTortaOcupada = false;
@@ -161,6 +171,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 {
                     botonEntregar.Dibujar(spriteBatch);
                 }
+                if (clienteActual.SeFueEnojado)
+                {
+                    registroDeDia.RegistrarEntrega(0, 0, 0, 0,0);
+                }
             }
             spriteBatch.Draw(r.TexturaPosicionarTicket, areaTicket, Color.White);
             spriteBatch.Draw(r.TexturaBasura, areaBasura, Color.White);
@@ -185,17 +199,24 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
             calculadorDePuntuacion.RecibirElemetos(tortaAEntregar, clienteActual.pedido);
             Rectangle areaDialogo = new Rectangle(1350, 100, 300, 300);
             spriteBatch.Draw(dialogoPuntaje, areaDialogo, Color.White);
-            int puntuacionOrdenes = calculadorDePuntuacion.CalcularPuntuacionEstacionDeOrdenes(clienteActual);
-            int puntuacionMezcla = calculadorDePuntuacion.CalcularPuntuacionEstacionDeMezcla();
-            int puntuacionHorneado = calculadorDePuntuacion.CalcularPuntuacionEstacionDeHorneado();
-            int puntuacionDecoracion = calculadorDePuntuacion.CalcularPuntucacionEstacionDeDecoracion();
-            int puntuacionTotal = calculadorDePuntuacion.CalcularPuntuacionTotal();
-            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionOrdenes), new Vector2(areaDialogo.X+150, areaDialogo.Y+20), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionMezcla), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 75), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionHorneado), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 130), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionDecoracion), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 190), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(fuente, Convert.ToString(puntuacionTotal), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 250), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
+            spriteBatch.DrawString(fuente, Convert.ToString(puntajeOrdenes), new Vector2(areaDialogo.X+150, areaDialogo.Y+20), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(puntajeMezcla), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 75), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(puntajeHorneado), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 130), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(puntajeDecoracion), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 190), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(puntajeTotal), new Vector2(areaDialogo.X + 150, areaDialogo.Y + 250), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+        }
+        private void RegistrarEntrega()
+        {
+            calculadorDePuntuacion.RecibirElemetos(tortaAEntregar, clienteActual.pedido);
+
+            puntajeOrdenes = calculadorDePuntuacion.CalcularPuntuacionEstacionDeOrdenes(clienteActual);
+            puntajeMezcla = calculadorDePuntuacion.CalcularPuntuacionEstacionDeMezcla();
+            puntajeHorneado = calculadorDePuntuacion.CalcularPuntuacionEstacionDeHorneado();
+            puntajeDecoracion = calculadorDePuntuacion.CalcularPuntucacionEstacionDeDecoracion();
+            puntajeTotal = calculadorDePuntuacion.CalcularPuntuacionTotal();
+
+            registroDeDia.RegistrarEntrega(puntajeOrdenes, puntajeMezcla, puntajeHorneado, puntajeDecoracion, puntajeTotal);
         }
     }
 }

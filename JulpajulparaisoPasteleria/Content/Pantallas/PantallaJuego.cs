@@ -27,7 +27,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         private Estacion estacionActual;
         private BotonBase botonPausa;
         private GestorDePantalla gestorDePantalla;
-        private CalculadorDePuntuacion calculadorDePuntuacion = new CalculadorDePuntuacion();
+        private RegistroDeDia registroDeDia = new RegistroDeDia();
         public PantallaJuego(GestorDePantalla gestorDePantalla)
         {
             gestorDePestañas = new GestorDePestañas();
@@ -46,7 +46,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                      new EstacionDeMezcla(gestorTickets, gestorDePedidos, repositorioImagenes),
                      new EstacionDeHorneado(gestorTickets, gestorDePedidos, repositorioImagenes),
                      new EstacionDeDecoracion(gestorTickets, gestorDePedidos, repositorioImagenes),
-                     new EstacionDeEntrega(gestorTickets, gestorDePedidos, repositorioImagenes, gestorDeClientes,  calculadorDePuntuacion)
+                     new EstacionDeEntrega(gestorTickets, gestorDePedidos, repositorioImagenes, gestorDeClientes, registroDeDia)
                  };
                 foreach (Estacion e in estaciones)
                 {
@@ -77,7 +77,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             botonPausa.Actualizar(posVirtual);
             if (GestorDeJuego.ObtenerSiDiaTermino())
             {
-                gestorDePantalla.CambiarPantalla(new PantallaResumenDia(gestorDePantalla, calculadorDePuntuacion));
+                gestorDePantalla.CambiarPantalla(new PantallaResumenDia(gestorDePantalla,registroDeDia));
                 return;
             }
         }

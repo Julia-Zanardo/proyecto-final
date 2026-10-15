@@ -28,7 +28,7 @@ namespace JulpajulparaisoPasteleria.Content.Logica
             SaborRelleno rellenoElegido = saboresRelleno[r.Next(saboresRelleno.Length)];
             TipoCobertura coberturaElegida = tiposCobertura[r.Next(tiposCobertura.Length)];
             List<TipoTopping> toppingsDeseados = new List<TipoTopping>();
-            int cantidadToppings = r.Next(1, Constante.CANTIDAD_MAXIMA_TOPPINGS);
+            int cantidadToppings = r.Next(1, Constante.CANTIDAD_MAXIMA_TOPPINGS+1);
 
             for (int i = 0; i < cantidadToppings; i++)
             {

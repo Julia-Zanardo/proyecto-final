@@ -20,12 +20,12 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         private Texture2D fondo;
         private BotonBase botonSiguienteDia;
         private GestorDePantalla gestorDePantalla;
-        private CalculadorDePuntuacion calculadorDePuntuacion;
+        private RegistroDeDia registroDeDia;
         private SpriteFont fuente;
-        public PantallaResumenDia(GestorDePantalla gestorDePantalla, CalculadorDePuntuacion calculadorDePuntuacion)
+        public PantallaResumenDia(GestorDePantalla gestorDePantalla, RegistroDeDia registroDeDia)
         {
             this.gestorDePantalla = gestorDePantalla;
-            this.calculadorDePuntuacion = calculadorDePuntuacion;
+            this.registroDeDia = registroDeDia;
         }
         public void LoadContent(ContentManager content)
         {
@@ -40,7 +40,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             {
                 GestorDeJuego.AvanzarDeDia();
                 gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
-                calculadorDePuntuacion.ReiniciarAcumuladoresDia();
+                registroDeDia.ReiniciarAcumuladoresDia();
             }
             botonSiguienteDia.Actualizar(posVirtual);
         }
@@ -53,11 +53,11 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         }
         private void DibujarPuntuacion(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(fuente, Convert.ToString(calculadorDePuntuacion.PuntuacionAcumuladaOrdenes/GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(750, 500), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(fuente, Convert.ToString(calculadorDePuntuacion.PuntuacionAcumuladaMezcla / GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(750, 700), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(fuente, Convert.ToString(calculadorDePuntuacion.PuntuacionAcumuladaHorneado / GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(850, 500), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(fuente, Convert.ToString(calculadorDePuntuacion.PuntuacionAcumuladaDecoracion / GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(850, 700), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(fuente, Convert.ToString(calculadorDePuntuacion.PuntuacionAcumuladaOrdenes / GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(800, 750), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(registroDeDia.PuntuacionAcumuladaOrdenes/GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(880, 490), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(registroDeDia.PuntuacionAcumuladaMezcla / GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(880, 640), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(registroDeDia.PuntuacionAcumuladaHorneado / GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(1200, 490), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(registroDeDia.PuntuacionAcumuladaDecoracion / GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(1200, 640), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(fuente, Convert.ToString(registroDeDia.PuntuacionAcumuladaTotal / GestorDeJuego.CantidadDeClientesAntendidosHoy), new Vector2(1050, 730), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
         }
     }
