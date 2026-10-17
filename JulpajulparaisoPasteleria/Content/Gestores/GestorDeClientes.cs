@@ -57,6 +57,14 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
                 if (clientesActivosFilaEntrega[0].TerminoDeSalir)
                 {
                     GestorDeJuego.RegistrarCliente();
+                    if (clientesActivosFilaEntrega[0].SeFueEnojado)
+                    {
+                        GestorDeJuego.CantidadDeClientesEnojados++;
+                    }
+                    else 
+                    {
+                        GestorDeJuego.CantidadDeClientesFelices++;
+                    }
                     clientesActivosFilaEntrega.Remove(clientesActivosFilaEntrega[0]);
                     for (int i = 0; i < clientesActivosFilaEntrega.Count; i++)
                     {

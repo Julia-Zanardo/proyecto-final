@@ -1,4 +1,5 @@
-﻿using JulpajulparaisoPasteleria.Content.Controladores;
+﻿using JulpajulparaisoPasteleria.Content.BaseDeDatos;
+using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Pantallas;
 using JulpajulparaisoPasteleria.Content.Pantallas.Estaciones;
@@ -34,7 +35,7 @@ namespace JulpajulparaisoPasteleria
             adaptadorDeResolucion.Actualizar(Window.ClientBounds.Width, Window.ClientBounds.Height);
             gestorDePantalla = new GestorDePantalla(Content);
             base.Initialize();
-
+            GestorDeBaseDeDatos.InicializarBaseDeDatos();
         }
 
         protected override void LoadContent()

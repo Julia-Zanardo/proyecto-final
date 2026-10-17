@@ -1,4 +1,5 @@
-﻿using JulpajulparaisoPasteleria.Content.Botones;
+﻿using JulpajulparaisoPasteleria.Content.BaseDeDatos;
+using JulpajulparaisoPasteleria.Content.Botones;
 using JulpajulparaisoPasteleria.Content.Controladores;
 using JulpajulparaisoPasteleria.Content.Gestores;
 using JulpajulparaisoPasteleria.Content.Interfaces;
@@ -19,6 +20,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
     {
         private Texture2D fondo;
         private BotonBase botonSiguienteDia;
+        private BotonBase botonGuardarPartida;
         private GestorDePantalla gestorDePantalla;
         private RegistroDeDia registroDeDia;
         private SpriteFont fuente;
@@ -30,7 +32,8 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         public void LoadContent(ContentManager content)
         {
             fondo = content.Load<Texture2D>("imagenes/Fondos/pantallaResumenDia");
-            botonSiguienteDia = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonSiguienteDia"), new Rectangle(750,900,400,200));
+            botonSiguienteDia = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonSiguienteDia"), new Rectangle(550,850,400,200));
+            botonGuardarPartida = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonGuardarPartida"), new Rectangle(950, 850, 400, 200));
             fuente = content.Load<SpriteFont>("fuentes/fuenteGruesa");
         }
 
@@ -42,14 +45,35 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
                 registroDeDia.ReiniciarAcumuladoresDia();
             }
+            if (botonGuardarPartida.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
+            {
+                string nombreJugador = "Julia";
+                int promedioPuntaje = registroDeDia.PuntuacionAcumuladaTotal / GestorDeJuego.CantidadDeClientesAntendidosHoy;
+                int clientesSatisfichos = GestorDeJuego.CantidadDeClientesFelices;
+                int enojados = GestorDeJuego.CantidadDeClientesEnojados;
+
+                try
+                {
+                    GestorDeJuego.GuardarPartida(nombreJugador, promedioPuntaje, clientesSatisfichos, enojados);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            botonGuardarPartida.Actualizar(posVirtual);
             botonSiguienteDia.Actualizar(posVirtual);
         }
 
         public void Dibujar(SpriteBatch dibujo)
         {
             dibujo.Draw(fondo, new Rectangle(0, 0, Constante.ANCHO_VIRTUAL, Constante.ALTO_VIRTUAL), Color.White);
-            DibujarPuntuacion(dibujo);
+            if(GestorDeJuego.CantidadDeClientesAntendidosHoy>0)
+            {
+                DibujarPuntuacion(dibujo);
+            }
             botonSiguienteDia.Dibujar(dibujo);
+            botonGuardarPartida.Dibujar(dibujo);
         }
         private void DibujarPuntuacion(SpriteBatch spriteBatch)
         {
