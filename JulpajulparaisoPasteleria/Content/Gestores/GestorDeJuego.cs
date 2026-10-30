@@ -16,7 +16,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         public static int CantidadDeClientesAntendidosHoy { get;  set; } = 0;
         public static int CantidadDeClientesEnojados { get; set; } = 0;
         public static int CantidadDeClientesFelices { get; set; } = 0;
-        public static bool DiaTerminado;
+        public static int SlotActual { get; set; } = 0;
         public static void RegistrarCliente()
         {
             CantidadDeClientesAntendidosHoy++;
@@ -42,19 +42,23 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         {
             DiaActual++;
             ContadorPedidos = 0;
-            TiempoEntreClientes -= 5; // despues lo cambio con una clase aleatorio o algo asi
+            TiempoEntreClientes -= 5; 
             CantidadDeClientesPorDia++;
             CantidadDeClientesAntendidosHoy = 0;
         }
-        public static void ReiniciarPedidos() 
+        public static void GuardarPartida(string numeroDePartida, int promedio, int satisfechos, int enojados)
         {
-            ContadorPedidos = 0;
+            RepositorioPartida.GuardarProgreso(numeroDePartida, promedio, satisfechos, enojados);
         }
-        public static void GuardarPartida(string nombreJugador, int promedio, int satisfechos, int enojados)
+        public static void ReiniciarPartidaNueva()
         {
-            AvanzarDeDia();
-
-            RepositorioPartida.GuardarProgreso(nombreJugador, promedio, satisfechos, enojados);
+            DiaActual = 1;
+            ContadorPedidos = 0;
+            TiempoEntreClientes = 15; 
+            CantidadDeClientesPorDia = 1; 
+            CantidadDeClientesAntendidosHoy = 0;
+            CantidadDeClientesEnojados = 0;
+            CantidadDeClientesFelices = 0;
         }
     }
 

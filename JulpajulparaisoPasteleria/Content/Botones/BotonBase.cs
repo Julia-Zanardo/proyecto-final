@@ -50,5 +50,9 @@ namespace JulpajulparaisoPasteleria.Content.Botones
 
             spriteBatch.Draw(Textura, Area , colorBoton);
         }
+        public void CambiarArea(Rectangle nuevaArea)
+        {
+            this.Area = nuevaArea;
+        }
     }
 }

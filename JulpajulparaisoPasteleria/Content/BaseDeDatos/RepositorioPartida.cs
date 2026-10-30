@@ -10,59 +10,22 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
 {
     public static class RepositorioPartida
     {
-        public static void GuardarProgreso(string nombreJugador, int promedioPuntaje, int clientesSatisfichos, int clientesEnojados)
+        public static void GuardarProgreso(string nombreSlot, int promedioPuntaje, int clientesSatisfichos, int clientesEnojados)
         {
             SQLiteConnection conexion = JulpajulparaisoPasteleria.Content.BaseDeDatos.GestorDeBaseDeDatos.ObtenerConexion();
             SQLiteTransaction transaccion = conexion.BeginTransaction();
 
             try
             {
-                GestorDeJuego.AvanzarDeDia();
-
-                int idJugador = -1;
-
-                SQLiteCommand cmdVerificarJugador = conexion.CreateCommand();
-                try
-                {
-                    cmdVerificarJugador.Transaction = transaccion;
-                    cmdVerificarJugador.CommandText = "SELECT ID_JUGADOR FROM JUGADOR WHERE NOMBRE = @nombre;";
-                    cmdVerificarJugador.Parameters.AddWithValue("@nombre", nombreJugador);
-                    object resultadoJugador = cmdVerificarJugador.ExecuteScalar();
-
-                    if (resultadoJugador != null)
-                    {
-                        idJugador = Convert.ToInt32(resultadoJugador);
-                    }
-                }
-                finally
-                {
-                    cmdVerificarJugador.Dispose();
-                }
-
-                if (idJugador == -1)
-                {
-                    SQLiteCommand cmdInsertarJugador = conexion.CreateCommand();
-                    try
-                    {
-                        cmdInsertarJugador.Transaction = transaccion;
-                        cmdInsertarJugador.CommandText = "INSERT INTO JUGADOR (NOMBRE) VALUES (@nombre); SELECT last_insert_rowid();";
-                        cmdInsertarJugador.Parameters.AddWithValue("@nombre", nombreJugador);
-                        idJugador = Convert.ToInt32(cmdInsertarJugador.ExecuteScalar());
-                    }
-                    finally
-                    {
-                        cmdInsertarJugador.Dispose();
-                    }
-                }
-
                 int idPartida = -1;
 
+                // 1. Verificar si ya existe la partida por el texto (ej: "Partida 1")
                 SQLiteCommand cmdVerificarPartida = conexion.CreateCommand();
                 try
                 {
                     cmdVerificarPartida.Transaction = transaccion;
-                    cmdVerificarPartida.CommandText = "SELECT ID_PARTIDA FROM PARTIDA WHERE ID_JUGADOR = @idJugador ORDER BY ID_PARTIDA DESC LIMIT 1;";
-                    cmdVerificarPartida.Parameters.AddWithValue("@idJugador", idJugador);
+                    cmdVerificarPartida.CommandText = "SELECT ID_PARTIDA FROM PARTIDA WHERE NOMBRE_SLOT = @slot;";
+                    cmdVerificarPartida.Parameters.AddWithValue("@slot", nombreSlot);
                     object resultadoPartida = cmdVerificarPartida.ExecuteScalar();
 
                     if (resultadoPartida != null)
@@ -75,6 +38,7 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
                     cmdVerificarPartida.Dispose();
                 }
 
+                // 2. Actualizar o insertar según corresponda
                 if (idPartida != -1)
                 {
                     SQLiteCommand cmdUpdatePartida = conexion.CreateCommand();
@@ -82,13 +46,13 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
                     {
                         cmdUpdatePartida.Transaction = transaccion;
                         cmdUpdatePartida.CommandText = @"
-                    UPDATE PARTIDA 
-                    SET DIAS = @dias, 
-                        TIEMPO_ENTRE_CLIENTES = @tiempo, 
-                        CANTIDAD_CLIENTES = @cantClientes, 
-                        DIA_ACTUAL = @diaActual, 
-                        PROMEDIO_PUNTUACION = @promedio
-                    WHERE ID_PARTIDA = @idPartida;";
+                            UPDATE PARTIDA 
+                            SET DIAS = @dias, 
+                                TIEMPO_ENTRE_CLIENTES = @tiempo, 
+                                CANTIDAD_CLIENTES = @cantClientes, 
+                                DIA_ACTUAL = @diaActual, 
+                                PROMEDIO_PUNTUACION = @promedio
+                            WHERE ID_PARTIDA = @idPartida;";
 
                         cmdUpdatePartida.Parameters.AddWithValue("@idPartida", idPartida);
                         cmdUpdatePartida.Parameters.AddWithValue("@dias", GestorDeJuego.DiaActual);
@@ -111,11 +75,11 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
                     {
                         cmdInsertPartida.Transaction = transaccion;
                         cmdInsertPartida.CommandText = @"
-                    INSERT INTO PARTIDA (ID_JUGADOR, DIAS, TIEMPO_ENTRE_CLIENTES, CANTIDAD_CLIENTES, DIA_ACTUAL, PROMEDIO_PUNTUACION)
-                    VALUES (@idJugador, @dias, @tiempo, @cantClientes, @diaActual, @promedio);
-                    SELECT last_insert_rowid();";
+                            INSERT INTO PARTIDA (NOMBRE_SLOT, DIAS, TIEMPO_ENTRE_CLIENTES, CANTIDAD_CLIENTES, DIA_ACTUAL, PROMEDIO_PUNTUACION)
+                            VALUES (@slot, @dias, @tiempo, @cantClientes, @diaActual, @promedio);
+                            SELECT last_insert_rowid();";
 
-                        cmdInsertPartida.Parameters.AddWithValue("@idJugador", idJugador);
+                        cmdInsertPartida.Parameters.AddWithValue("@slot", nombreSlot);
                         cmdInsertPartida.Parameters.AddWithValue("@dias", GestorDeJuego.DiaActual);
                         cmdInsertPartida.Parameters.AddWithValue("@tiempo", GestorDeJuego.TiempoEntreClientes);
                         cmdInsertPartida.Parameters.AddWithValue("@cantClientes", GestorDeJuego.CantidadDeClientesPorDia);
@@ -130,13 +94,14 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
                     }
                 }
 
+                // 3. Registrar el día
                 SQLiteCommand cmdDia = conexion.CreateCommand();
                 try
                 {
                     cmdDia.Transaction = transaccion;
                     cmdDia.CommandText = @"
-                INSERT INTO DIA (ID_PARTIDA, PUNTUACION, CANTIDAD_CLIENTES_SATISFECHOS, CANTIDAD_CLIENTES_ENOJADOS)
-                VALUES (@idPartida, @puntuacion, @satisfechos, @enojados);";
+                        INSERT INTO DIA (ID_PARTIDA, PUNTUACION, CANTIDAD_CLIENTES_SATISFECHOS, CANTIDAD_CLIENTES_ENOJADOS)
+                        VALUES (@idPartida, @puntuacion, @satisfechos, @enojados);";
 
                     cmdDia.Parameters.AddWithValue("@idPartida", idPartida);
                     cmdDia.Parameters.AddWithValue("@puntuacion", promedioPuntaje);
@@ -155,7 +120,7 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
             catch (System.Exception ex)
             {
                 transaccion.Rollback();
-                throw new Exception("Error al guardar la partida en la base de datos: " + ex.Message);
+                throw new Exception("Error al guardar la partida: " + ex.Message);
             }
             finally
             {
@@ -164,71 +129,24 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
                 conexion.Dispose();
             }
         }
-        public static DatosResumenPartida ObtenerResumenPartida(string nombreJugador)
+
+        public static DatosResumenDia ObtenerUltimoDiaRegistrado(string nombreSlot)
         {
             SQLiteConnection conexion = GestorDeBaseDeDatos.ObtenerConexion();
             try
             {
                 string query = @"
-            SELECT J.NOMBRE, P.DIA_ACTUAL
-            FROM PARTIDA P
-            INNER JOIN JUGADOR J ON P.ID_JUGADOR = J.ID_JUGADOR
-            WHERE J.NOMBRE = @nombre
-            ORDER BY P.ID_PARTIDA DESC LIMIT 1;";
+                    SELECT P.DIA_ACTUAL, D.PUNTUACION, D.CANTIDAD_CLIENTES_SATISFECHOS, 
+                           D.CANTIDAD_CLIENTES_ENOJADOS, P.PROMEDIO_PUNTUACION
+                    FROM DIA D
+                    INNER JOIN PARTIDA P ON D.ID_PARTIDA = P.ID_PARTIDA
+                    WHERE P.NOMBRE_SLOT = @slot
+                    ORDER BY D.ID_DIA DESC LIMIT 1;";
 
                 SQLiteCommand comando = new SQLiteCommand(query, conexion);
                 try
                 {
-                    comando.Parameters.AddWithValue("@nombre", nombreJugador);
-                    SQLiteDataReader lector = comando.ExecuteReader();
-                    try
-                    {
-                        if (lector.Read())
-                        {
-                            return new DatosResumenPartida
-                            {
-                                NombreJugador = lector["NOMBRE"].ToString(),
-                                DiaActual =Convert.ToInt32(lector["DIA_ACTUAL"]),
-                            };
-                        }
-                    }
-                    finally
-                    {
-                        lector.Dispose();
-                    }
-                }
-                finally
-                {
-                    comando.Dispose();
-                }
-            }
-            finally
-            {
-                conexion.Close();
-                conexion.Dispose();
-            }
-
-            return null;
-        }
-
-        public static DatosResumenDia ObtenerUltimoDiaRegistrado(string nombreJugador)
-        {
-            SQLiteConnection conexion = GestorDeBaseDeDatos.ObtenerConexion();
-            try
-            {
-                string query = @"
-            SELECT P.DIA_ACTUAL, D.PUNTUACION, D.CANTIDAD_CLIENTES_SATISFECHOS, 
-                   D.CANTIDAD_CLIENTES_ENOJADOS, P.PROMEDIO_PUNTUACION
-            FROM DIA D
-            INNER JOIN PARTIDA P ON D.ID_PARTIDA = P.ID_PARTIDA
-            INNER JOIN JUGADOR J ON P.ID_JUGADOR = J.ID_JUGADOR
-            WHERE J.NOMBRE = @nombre
-            ORDER BY D.ID_DIA DESC LIMIT 1;";
-
-                SQLiteCommand comando = new SQLiteCommand(query, conexion);
-                try
-                {
-                    comando.Parameters.AddWithValue("@nombre", nombreJugador);
+                    comando.Parameters.AddWithValue("@slot", nombreSlot);
                     SQLiteDataReader lector = comando.ExecuteReader();
                     try
                     {
@@ -262,22 +180,21 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
 
             return null;
         }
-        public static void CargarPartidaEnJuego(string nombreJugador)
+
+        public static void CargarPartidaEnJuego(string nombreSlot)
         {
             SQLiteConnection conexion = GestorDeBaseDeDatos.ObtenerConexion();
             try
             {
                 string query = @"
-            SELECT P.DIAS, P.TIEMPO_ENTRE_CLIENTES, P.CANTIDAD_CLIENTES, P.DIA_ACTUAL, P.PROMEDIO_PUNTUACION
-            FROM PARTIDA P
-            INNER JOIN JUGADOR J ON P.ID_JUGADOR = J.ID_JUGADOR
-            WHERE J.NOMBRE = @nombre
-            ORDER BY P.ID_PARTIDA DESC LIMIT 1;";
+                    SELECT P.DIAS, P.TIEMPO_ENTRE_CLIENTES, P.CANTIDAD_CLIENTES, P.DIA_ACTUAL, P.PROMEDIO_PUNTUACION
+                    FROM PARTIDA P
+                    WHERE P.NOMBRE_SLOT = @slot;";
 
                 SQLiteCommand comando = new SQLiteCommand(query, conexion);
                 try
                 {
-                    comando.Parameters.AddWithValue("@nombre", nombreJugador);
+                    comando.Parameters.AddWithValue("@slot", nombreSlot);
                     SQLiteDataReader lector = comando.ExecuteReader();
                     try
                     {
@@ -304,6 +221,7 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
                 conexion.Dispose();
             }
         }
+
         public static List<DatosResumenPartida> ObtenerTodasLasPartidas()
         {
             List<DatosResumenPartida> listaPartidas = new List<DatosResumenPartida>();
@@ -312,10 +230,9 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
             try
             {
                 string query = @"
-            SELECT J.NOMBRE, P.DIA_ACTUAL
-            FROM PARTIDA P
-            INNER JOIN JUGADOR J ON P.ID_JUGADOR = J.ID_JUGADOR
-            ORDER BY P.ID_PARTIDA DESC;";
+                    SELECT NOMBRE_SLOT, DIA_ACTUAL
+                    FROM PARTIDA
+                    ORDER BY ID_PARTIDA ASC;";
 
                 SQLiteCommand comando = new SQLiteCommand(query, conexion);
                 try
@@ -327,7 +244,7 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
                         {
                             listaPartidas.Add(new DatosResumenPartida
                             {
-                                NombreJugador = lector["NOMBRE"].ToString(),
+                                NombreJugador = lector["NOMBRE_SLOT"].ToString(),
                                 DiaActual = Convert.ToInt32(lector["DIA_ACTUAL"]),
                             });
                         }
@@ -344,11 +261,31 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
             }
             finally
             {
-                conexion.Close();   
+                conexion.Close();
                 conexion.Dispose();
             }
 
             return listaPartidas;
+        }
+        public static int ObtenerSiguienteSlotDisponible()
+        {
+            var partidasExistentes = ObtenerTodasLasPartidas(); // Trae las partidas guardadas
+
+            // Revisamos del 1 al 4 cuál falta
+            for (int i = 1; i <= 4; i++)
+            {
+                string nombreBuscado = "Partida " + i;
+                // Si no encuentra ninguna partida con este nombre, este slot está libre
+                bool ocupado = partidasExistentes.Any(p => p.NombreJugador == nombreBuscado);
+
+                if (!ocupado)
+                {
+                    return i; // ¡Encontró un slot libre! (1, 2, 3 o 4)
+                }
+            }
+
+            // Si los 4 slots están ocupados, por defecto devolvemos el 1 (o el que prefieras sobrescribir)
+            return 1;
         }
     }
 }

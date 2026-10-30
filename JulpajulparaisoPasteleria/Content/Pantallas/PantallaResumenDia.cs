@@ -47,19 +47,26 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             }
             if (botonGuardarPartida.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
             {
-                string nombreJugador = "Julia";
+                if (GestorDeJuego.SlotActual == 0)
+                {
+                    GestorDeJuego.SlotActual = RepositorioPartida.ObtenerSiguienteSlotDisponible();
+                }
+                int slotActual = GestorDeJuego.SlotActual;
                 int promedioPuntaje = registroDeDia.PuntuacionAcumuladaTotal / GestorDeJuego.CantidadDeClientesAntendidosHoy;
                 int clientesSatisfichos = GestorDeJuego.CantidadDeClientesFelices;
                 int enojados = GestorDeJuego.CantidadDeClientesEnojados;
 
+                GestorDeJuego.AvanzarDeDia();
                 try
                 {
-                    GestorDeJuego.GuardarPartida(nombreJugador, promedioPuntaje, clientesSatisfichos, enojados);
+                    GestorDeJuego.GuardarPartida("Partida "+slotActual, promedioPuntaje, clientesSatisfichos, enojados);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
+                registroDeDia.ReiniciarAcumuladoresDia();
+                gestorDePantalla.CambiarPantalla(new MenuPrincipal(gestorDePantalla));
             }
             botonGuardarPartida.Actualizar(posVirtual);
             botonSiguienteDia.Actualizar(posVirtual);

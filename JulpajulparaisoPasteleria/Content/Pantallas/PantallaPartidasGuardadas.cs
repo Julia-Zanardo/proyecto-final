@@ -20,6 +20,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         private BotonContinuarPartida[] botonesContinuarPartida;
         private Texture2D fondo;
         private SpriteFont fuente;
+        private int borde=150;
         public PantallaPartidasGuardadas(GestorDePantalla gestorDePantalla, List<DatosResumenPartida> datosResumenPartidas)
         {
             this.gestorDePantalla = gestorDePantalla;
@@ -33,7 +34,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             botonesContinuarPartida = new BotonContinuarPartida[datosResumenPartidas.Count];
             for (int i = 0; i < botonesContinuarPartida.Length; i++)
             {
-                botonesContinuarPartida[i] = new BotonContinuarPartida(content.Load<Texture2D>("imagenes/Botones/botonContinuar"), new Rectangle(200 * i, 700, 300, 100), datosResumenPartidas[i]);
+                botonesContinuarPartida[i] = new BotonContinuarPartida(content.Load<Texture2D>("imagenes/Botones/botonContinuar"), new Rectangle(borde-20 +(450 * i), 750, 320, 160), datosResumenPartidas[i]);
             }
         }
         public void Actualizar(GameTime gameTime, Vector2 posVirtual)
@@ -61,8 +62,8 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 string textoNombre = partida.NombreJugador;
                 string textoDiaACtual = Convert.ToString(partida.DiaActual);
 
-                spriteBatch.DrawString(fuente, textoNombre, new Vector2(200, 500), Color.Black, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
-                spriteBatch.DrawString(fuente, textoDiaACtual, new Vector2(200, 600), Color.Black, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(fuente, textoNombre, new Vector2(borde+(450*i), 330), Color.Black, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(fuente, textoDiaACtual, new Vector2(borde+100+(450*i), 500), Color.Black, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
                 botonesContinuarPartida[i].Dibujar(spriteBatch);
             }
         }

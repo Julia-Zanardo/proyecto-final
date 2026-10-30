@@ -19,17 +19,18 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
     {
         private Texture2D fondo;
         private BotonBase botonJugar;
+        private BotonBase botonContinuarPartida;
         private GestorDePantalla gestorDePantalla;
         public MenuPrincipal(GestorDePantalla gestorDePantalla)
         {
             this.gestorDePantalla = gestorDePantalla;
             GestorDeAudio.PausarMusica();
         }
-
         public void LoadContent(ContentManager content)
         {
             fondo = content.Load<Texture2D>("imagenes/Fondos/menuPrincipal");
             botonJugar = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonJugar"), new Rectangle(800, 850, 400, 200));
+            botonContinuarPartida = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonContinuarPartida"), new Rectangle(950, 850, 400, 200));
             GestorDeAudio.LoadContent(content);
         }
 
@@ -37,26 +38,33 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         {
             if (botonJugar.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
             {
-                GestorDeJuego.ReiniciarPedidos();
-                List<DatosResumenPartida> partidasGuardadas = RepositorioPartida.ObtenerTodasLasPartidas();
-                System.Diagnostics.Debug.WriteLine("Cantidad de partidas guardadas: " + (partidasGuardadas != null ? partidasGuardadas.Count.ToString() : "es null"));
-                if (partidasGuardadas != null && partidasGuardadas.Count > 0)
-                {
-
-                    gestorDePantalla.CambiarPantalla(new PantallaPartidasGuardadas(gestorDePantalla, partidasGuardadas));
-                }
-                else
-                {
-                    gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
-                }
+                GestorDeJuego.ReiniciarPartidaNueva();
+                gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
+            }
+            if (botonContinuarPartida.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
+            {
+                GestorDeJuego.ReiniciarPartidaNueva();
+                gestorDePantalla.CambiarPantalla(new PantallaPartidasGuardadas(gestorDePantalla, RepositorioPartida.ObtenerTodasLasPartidas()));
             }
             botonJugar.Actualizar(posVirtual);
+            botonContinuarPartida.Actualizar(posVirtual);
         }
 
         public void Dibujar(SpriteBatch dibujo)
         {
             dibujo.Draw(fondo, new Rectangle(0, 0, Constante.ANCHO_VIRTUAL, Constante.ALTO_VIRTUAL), Color.White);
-            botonJugar.Dibujar(dibujo);
+            List<DatosResumenPartida> partidasGuardadas = RepositorioPartida.ObtenerTodasLasPartidas();
+
+            if (partidasGuardadas != null && partidasGuardadas.Count > 0)
+            {
+                botonJugar.CambiarArea(new Rectangle(550, 850, 400, 200));
+                botonContinuarPartida.Dibujar(dibujo);
+                botonJugar.Dibujar(dibujo);
+            }
+            else 
+            {
+                botonJugar.Dibujar(dibujo);
+            }
         }
     }
 }

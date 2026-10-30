@@ -1611,6 +1611,18 @@
 /processorParam:TextureFormat=Color
 /build:imagenes/Botones/botonContinuar.png
 
+#begin imagenes/Botones/botonContinuarPartida.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:imagenes/Botones/botonContinuarPartida.png
+
 #begin imagenes/Botones/botonDesmute.png
 /importer:TextureImporter
 /processor:TextureProcessor
