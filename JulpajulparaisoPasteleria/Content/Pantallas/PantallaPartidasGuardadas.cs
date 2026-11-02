@@ -45,6 +45,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
 
                 if (botonesContinuarPartida[i].FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
                 {
+                    GestorDeJuego.SlotActual = i + 1;
                     DatosResumenPartida partidaSeleccionada = datosResumenPartidas[i];
                     RepositorioPartida.CargarPartidaEnJuego(partidaSeleccionada.NombreJugador);
 

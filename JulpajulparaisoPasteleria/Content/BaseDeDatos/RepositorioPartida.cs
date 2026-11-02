@@ -12,109 +12,32 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
     {
         public static void GuardarProgreso(string nombreSlot, int promedioPuntaje, int clientesSatisfichos, int clientesEnojados)
         {
-            SQLiteConnection conexion = JulpajulparaisoPasteleria.Content.BaseDeDatos.GestorDeBaseDeDatos.ObtenerConexion();
-            SQLiteTransaction transaccion = conexion.BeginTransaction();
+            using var conexion = JulpajulparaisoPasteleria.Content.BaseDeDatos.GestorDeBaseDeDatos.ObtenerConexion();
+            using var transaccion = conexion.BeginTransaction();
 
             try
             {
-                int idPartida = -1;
+                string consultaPartida = @"
+                INSERT OR REPLACE INTO PARTIDA (SLOT, TIEMPO_ENTRE_CLIENTES, CANTIDAD_CLIENTES, DIA_ACTUAL, PROMEDIO_PUNTUACION)
+                VALUES (@slot, @tiempo, @cantClientes, @diaActual, @promedio);";
 
-                // 1. Verificar si ya existe la partida por el texto (ej: "Partida 1")
-                SQLiteCommand cmdVerificarPartida = conexion.CreateCommand();
-                try
-                {
-                    cmdVerificarPartida.Transaction = transaccion;
-                    cmdVerificarPartida.CommandText = "SELECT ID_PARTIDA FROM PARTIDA WHERE NOMBRE_SLOT = @slot;";
-                    cmdVerificarPartida.Parameters.AddWithValue("@slot", nombreSlot);
-                    object resultadoPartida = cmdVerificarPartida.ExecuteScalar();
+                using var ComandoPartida = new SQLiteCommand(consultaPartida, conexion, transaccion);
+                ComandoPartida.Parameters.AddWithValue("@slot", nombreSlot);
+                ComandoPartida.Parameters.AddWithValue("@tiempo", GestorDeJuego.TiempoEntreClientes);
+                ComandoPartida.Parameters.AddWithValue("@cantClientes", GestorDeJuego.CantidadDeClientesPorDia);
+                ComandoPartida.Parameters.AddWithValue("@diaActual", GestorDeJuego.DiaActual);
+                ComandoPartida.Parameters.AddWithValue("@promedio", promedioPuntaje);
+                ComandoPartida.ExecuteNonQuery();
+                string consultaDia = @"
+                INSERT INTO HISTORIAL_DIAS (SLOT, PUNTUACION, CANTIDAD_CLIENTES_SATISFECHOS, CANTIDAD_CLIENTES_ENOJADOS)
+                VALUES (@slot, @puntuacion, @satisfechos, @enojados);";
 
-                    if (resultadoPartida != null)
-                    {
-                        idPartida = Convert.ToInt32(resultadoPartida);
-                    }
-                }
-                finally
-                {
-                    cmdVerificarPartida.Dispose();
-                }
-
-                // 2. Actualizar o insertar según corresponda
-                if (idPartida != -1)
-                {
-                    SQLiteCommand cmdUpdatePartida = conexion.CreateCommand();
-                    try
-                    {
-                        cmdUpdatePartida.Transaction = transaccion;
-                        cmdUpdatePartida.CommandText = @"
-                            UPDATE PARTIDA 
-                            SET DIAS = @dias, 
-                                TIEMPO_ENTRE_CLIENTES = @tiempo, 
-                                CANTIDAD_CLIENTES = @cantClientes, 
-                                DIA_ACTUAL = @diaActual, 
-                                PROMEDIO_PUNTUACION = @promedio
-                            WHERE ID_PARTIDA = @idPartida;";
-
-                        cmdUpdatePartida.Parameters.AddWithValue("@idPartida", idPartida);
-                        cmdUpdatePartida.Parameters.AddWithValue("@dias", GestorDeJuego.DiaActual);
-                        cmdUpdatePartida.Parameters.AddWithValue("@tiempo", GestorDeJuego.TiempoEntreClientes);
-                        cmdUpdatePartida.Parameters.AddWithValue("@cantClientes", GestorDeJuego.CantidadDeClientesPorDia);
-                        cmdUpdatePartida.Parameters.AddWithValue("@diaActual", GestorDeJuego.DiaActual);
-                        cmdUpdatePartida.Parameters.AddWithValue("@promedio", promedioPuntaje);
-
-                        cmdUpdatePartida.ExecuteNonQuery();
-                    }
-                    finally
-                    {
-                        cmdUpdatePartida.Dispose();
-                    }
-                }
-                else
-                {
-                    SQLiteCommand cmdInsertPartida = conexion.CreateCommand();
-                    try
-                    {
-                        cmdInsertPartida.Transaction = transaccion;
-                        cmdInsertPartida.CommandText = @"
-                            INSERT INTO PARTIDA (NOMBRE_SLOT, DIAS, TIEMPO_ENTRE_CLIENTES, CANTIDAD_CLIENTES, DIA_ACTUAL, PROMEDIO_PUNTUACION)
-                            VALUES (@slot, @dias, @tiempo, @cantClientes, @diaActual, @promedio);
-                            SELECT last_insert_rowid();";
-
-                        cmdInsertPartida.Parameters.AddWithValue("@slot", nombreSlot);
-                        cmdInsertPartida.Parameters.AddWithValue("@dias", GestorDeJuego.DiaActual);
-                        cmdInsertPartida.Parameters.AddWithValue("@tiempo", GestorDeJuego.TiempoEntreClientes);
-                        cmdInsertPartida.Parameters.AddWithValue("@cantClientes", GestorDeJuego.CantidadDeClientesPorDia);
-                        cmdInsertPartida.Parameters.AddWithValue("@diaActual", GestorDeJuego.DiaActual);
-                        cmdInsertPartida.Parameters.AddWithValue("@promedio", promedioPuntaje);
-
-                        idPartida = Convert.ToInt32(cmdInsertPartida.ExecuteScalar());
-                    }
-                    finally
-                    {
-                        cmdInsertPartida.Dispose();
-                    }
-                }
-
-                // 3. Registrar el día
-                SQLiteCommand cmdDia = conexion.CreateCommand();
-                try
-                {
-                    cmdDia.Transaction = transaccion;
-                    cmdDia.CommandText = @"
-                        INSERT INTO DIA (ID_PARTIDA, PUNTUACION, CANTIDAD_CLIENTES_SATISFECHOS, CANTIDAD_CLIENTES_ENOJADOS)
-                        VALUES (@idPartida, @puntuacion, @satisfechos, @enojados);";
-
-                    cmdDia.Parameters.AddWithValue("@idPartida", idPartida);
-                    cmdDia.Parameters.AddWithValue("@puntuacion", promedioPuntaje);
-                    cmdDia.Parameters.AddWithValue("@satisfechos", clientesSatisfichos);
-                    cmdDia.Parameters.AddWithValue("@enojados", clientesEnojados);
-
-                    cmdDia.ExecuteNonQuery();
-                }
-                finally
-                {
-                    cmdDia.Dispose();
-                }
-
+                using var ComandoDia = new SQLiteCommand(consultaDia, conexion, transaccion);
+                ComandoDia.Parameters.AddWithValue("@slot", nombreSlot);
+                ComandoDia.Parameters.AddWithValue("@puntuacion", promedioPuntaje);
+                ComandoDia.Parameters.AddWithValue("@satisfechos", clientesSatisfichos);
+                ComandoDia.Parameters.AddWithValue("@enojados", clientesEnojados);
+                ComandoDia.ExecuteNonQuery();
                 transaccion.Commit();
             }
             catch (System.Exception ex)
@@ -122,14 +45,7 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
                 transaccion.Rollback();
                 throw new Exception("Error al guardar la partida: " + ex.Message);
             }
-            finally
-            {
-                transaccion.Dispose();
-                conexion.Close();
-                conexion.Dispose();
-            }
         }
-
         public static DatosResumenDia ObtenerUltimoDiaRegistrado(string nombreSlot)
         {
             SQLiteConnection conexion = GestorDeBaseDeDatos.ObtenerConexion();
@@ -269,23 +185,62 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
         }
         public static int ObtenerSiguienteSlotDisponible()
         {
-            var partidasExistentes = ObtenerTodasLasPartidas(); // Trae las partidas guardadas
+            var partidasExistentes = ObtenerTodasLasPartidas();
 
-            // Revisamos del 1 al 4 cuál falta
+            // 1. Revisar del 1 al 4 cuál falta
             for (int i = 1; i <= 4; i++)
             {
                 string nombreBuscado = "Partida " + i;
-                // Si no encuentra ninguna partida con este nombre, este slot está libre
                 bool ocupado = partidasExistentes.Any(p => p.NombreJugador == nombreBuscado);
 
                 if (!ocupado)
                 {
-                    return i; // ¡Encontró un slot libre! (1, 2, 3 o 4)
+                    return i; // Hay un slot libre
                 }
             }
 
-            // Si los 4 slots están ocupados, por defecto devolvemos el 1 (o el que prefieras sobrescribir)
-            return 1;
+            // 2. Si los 4 están ocupados, buscamos la partida más vieja (menor ID_PARTIDA)
+            using (SQLiteConnection conexion = GestorDeBaseDeDatos.ObtenerConexion())
+            {
+                string query = "SELECT NOMBRE_SLOT FROM PARTIDA ORDER BY ID_PARTIDA ASC LIMIT 1;";
+                using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
+                {
+                    object resultado = comando.ExecuteScalar();
+                    if (resultado != null)
+                    {
+                        string nombreMasVieja = resultado.ToString(); // Ejemplo: "Partida 3"
+                                                                      // Extraemos el número del slot del nombre (asumiendo formato "Partida X")
+                        if (int.TryParse(nombreMasVieja.Replace("Partida ", ""), out int numeroSlot))
+                        {
+                            // Opcional: Si quieres borrar físicamente la vieja para que no queden huerfanas las tablas DIA:
+                            BorrarPartidaPorNombre(nombreMasVieja, conexion);
+                            return numeroSlot;
+                        }
+                    }
+                }
+            }
+
+            return 1; // Fallback por seguridad
+        }
+
+        // Método auxiliar recomendado para limpiar la vieja y sus días asociados:
+        private static void BorrarPartidaPorNombre(string nombreSlot, SQLiteConnection conexion)
+        {
+            // 1. Borrar los días asociados primero
+            string queryDias = "DELETE FROM DIA WHERE ID_PARTIDA IN (SELECT ID_PARTIDA FROM PARTIDA WHERE NOMBRE_SLOT = @slot);";
+            using (SQLiteCommand cmdDias = new SQLiteCommand(queryDias, conexion))
+            {
+                cmdDias.Parameters.AddWithValue("@slot", nombreSlot);
+                cmdDias.ExecuteNonQuery();
+            }
+
+            // 2. Borrar la partida
+            string queryPartida = "DELETE FROM PARTIDA WHERE NOMBRE_SLOT = @slot;";
+            using (SQLiteCommand cmdPartida = new SQLiteCommand(queryPartida, conexion))
+            {
+                cmdPartida.Parameters.AddWithValue("@slot", nombreSlot);
+                cmdPartida.ExecuteNonQuery();
+            }
         }
     }
 }

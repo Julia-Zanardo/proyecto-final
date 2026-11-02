@@ -36,18 +36,34 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
 
         public void Actualizar(GameTime gameTime, Vector2 posVirtual)
         {
-            if (botonJugar.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
+            List<DatosResumenPartida> partidasGuardadas = RepositorioPartida.ObtenerTodasLasPartidas();
+            bool hayPartidas = (partidasGuardadas != null && partidasGuardadas.Count > 0);
+            if (hayPartidas)
             {
-                GestorDeJuego.ReiniciarPartidaNueva();
-                gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
+                botonJugar.CambiarArea(new Rectangle(550, 850, 400, 200));
+                if (botonJugar.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
+                {
+                    GestorDeJuego.ReiniciarPartidaNueva();
+                    gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
+                }
+
+                if (botonContinuarPartida.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
+                {
+                    gestorDePantalla.CambiarPantalla(new PantallaPartidasGuardadas(gestorDePantalla, partidasGuardadas));
+                }
+                botonJugar.Actualizar(posVirtual);
+                botonContinuarPartida.Actualizar(posVirtual);
             }
-            if (botonContinuarPartida.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
+            else
             {
-                GestorDeJuego.ReiniciarPartidaNueva();
-                gestorDePantalla.CambiarPantalla(new PantallaPartidasGuardadas(gestorDePantalla, RepositorioPartida.ObtenerTodasLasPartidas()));
+                botonJugar.CambiarArea(new Rectangle(800, 850, 400, 200));
+                if (botonJugar.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
+                {
+                    GestorDeJuego.ReiniciarPartidaNueva();
+                    gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
+                }
+                botonJugar.Actualizar(posVirtual);
             }
-            botonJugar.Actualizar(posVirtual);
-            botonContinuarPartida.Actualizar(posVirtual);
         }
 
         public void Dibujar(SpriteBatch dibujo)
@@ -57,7 +73,6 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
 
             if (partidasGuardadas != null && partidasGuardadas.Count > 0)
             {
-                botonJugar.CambiarArea(new Rectangle(550, 850, 400, 200));
                 botonContinuarPartida.Dibujar(dibujo);
                 botonJugar.Dibujar(dibujo);
             }

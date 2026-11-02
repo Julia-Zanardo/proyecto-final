@@ -11,12 +11,12 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
 {
     public static class GestorDeBaseDeDatos
     {
-        private static string NombreArchivoDB = "julpajulparaiso.db";
+        private static string NombreArchivo = "julpajulparaiso.db";
         private static string CadenaConexión
         {
             get
             {
-                return $"Data Source={NombreArchivoDB}";
+                return $"Data Source={NombreArchivo}";
             }
         }
         public static SQLiteConnection ObtenerConexion()
@@ -27,44 +27,26 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
         }
         public static void InicializarBaseDeDatos()
         {
+            using var conexion = ObtenerConexion();
+            using var comando = conexion.CreateCommand();
 
-            System.Data.IDbConnection conexion = ObtenerConexion();
-            try
-            {
-                System.Data.IDbCommand comando = conexion.CreateCommand();
-                try
-                {
-                    comando.CommandText = @"
-                        CREATE TABLE IF NOT EXISTS PARTIDA (
-                            ID_PARTIDA INTEGER PRIMARY KEY AUTOINCREMENT,
-                            NOMBRE_SLOT TEXT NOT NULL UNIQUE,
-                            DIAS INTEGER,
-                            TIEMPO_ENTRE_CLIENTES REAL,
-                            CANTIDAD_CLIENTES INTEGER,
-                            DIA_ACTUAL INTEGER,
-                            PROMEDIO_PUNTUACION INTEGER
-                        );
-                        CREATE TABLE IF NOT EXISTS DIA (
-                            ID_DIA INTEGER PRIMARY KEY AUTOINCREMENT,
-                            ID_PARTIDA INTEGER,
-                            PUNTUACION INTEGER,
-                            CANTIDAD_CLIENTES_SATISFECHOS INTEGER,
-                            CANTIDAD_CLIENTES_ENOJADOS INTEGER,
-                            FOREIGN KEY (ID_PARTIDA) REFERENCES PARTIDA(ID_PARTIDA)
-                        );
-                    ";
-                    comando.ExecuteNonQuery();
-                }
-                finally
-                {
-                    comando.Dispose();
-                }
-            }
-            finally
-            {
-                conexion.Close();
-                conexion.Dispose();
-            }
+            comando.CommandText = @"
+            CREATE TABLE IF NOT EXISTS PARTIDA (
+                SLOT TEXT PRIMARY KEY,
+                TIEMPO_ENTRE_CLIENTES REAL,
+                CANTIDAD_CLIENTES INTEGER,
+                DIA_ACTUAL INTEGER,
+                PROMEDIO_PUNTUACION INTEGER
+            );
+            CREATE TABLE IF NOT EXISTS HISTORIAL_DIAS (
+                ID_DIA INTEGER PRIMARY KEY AUTOINCREMENT,
+                SLOT TEXT,
+                PUNTUACION INTEGER,
+                CANTIDAD_CLIENTES_SATISFECHOS INTEGER,
+                CANTIDAD_CLIENTES_ENOJADOS INTEGER,
+                FOREIGN KEY (SLOT) REFERENCES PARTIDA(SLOT)
+            );";
+            comando.ExecuteNonQuery();
         }
     }
 }
