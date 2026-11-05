@@ -47,7 +47,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             {
                 gestorDePantalla.CambiarPantalla(new MenuPrincipal(gestorDePantalla));
             }
-            if (GestorDeAudio.musicaSonando)
+            if (GestorDeAudio.MusicaSonando)
             {
                 if (botonPausarMusica.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
                 {
@@ -71,7 +71,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             dibujo.Draw(fondo, new Rectangle(0, 0, Constante.ANCHO_VIRTUAL, Constante.ALTO_VIRTUAL),Color.White );
             botonContinuar.Dibujar(dibujo);
             botonVolver.Dibujar(dibujo);
-            if (GestorDeAudio.musicaSonando)
+            if (GestorDeAudio.MusicaSonando)
             {
                 botonPausarMusica.Dibujar(dibujo);
             }

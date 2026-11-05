@@ -10,6 +10,5 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
     {
         public string NombreJugador { get; set; }
         public int DiaActual { get; set; }
-        public int DineroAcumulado { get; set; }
     }
 }

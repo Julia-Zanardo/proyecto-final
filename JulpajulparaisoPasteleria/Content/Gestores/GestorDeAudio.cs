@@ -14,7 +14,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
     {
         private static SoundEffect sonidoClick;
         private static Song musicaFondo;
-        public static bool musicaSonando = true;
+        public static bool MusicaSonando = true;
         public static void LoadContent(ContentManager content) 
         {
             sonidoClick = content.Load<SoundEffect>("Sonidos/sonidoClick");
@@ -32,13 +32,14 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             {
                 MediaPlayer.Play(musicaFondo);
             }
+            MusicaSonando = true;
         }
         public static void PausarMusica()
         {
             if (MediaPlayer.State == MediaState.Playing)
             {
                 MediaPlayer.Pause();
-                musicaSonando = false;
+                MusicaSonando = false;
             }
         }
         public static void ReanudarMusica()
@@ -46,7 +47,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             if (MediaPlayer.State == MediaState.Paused)
             {
                 MediaPlayer.Resume();
-                musicaSonando = true;
+                MusicaSonando = true;
             }
         }
     }
