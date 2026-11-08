@@ -25,7 +25,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
         private Rectangle[] posicionesTortas;
         private Cliente clienteActual;
         private Rectangle areaTicket = new Rectangle(800, 400, 150, 230);
-        private Rectangle areaBasura = new Rectangle(200, 700, 100, 100);
+        private Rectangle areaBasura = new Rectangle(200, 800, 100, 100);
         private Rectangle areaTortaEntregar = new Rectangle(800, 750, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y);
         private BotonBase botonEntregar;
         public CalculadorDePuntuacion calculadorDePuntuacion = new CalculadorDePuntuacion();

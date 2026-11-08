@@ -51,10 +51,9 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
             using var conexion = GestorDeBaseDeDatos.ObtenerConexion();
 
             string consulta = @"
-            SELECT P.DIAS, P.TIEMPO_ENTRE_CLIENTES, P.CANTIDAD_CLIENTES, P.DIA_ACTUAL, P.PROMEDIO_PUNTUACION
-            FROM PARTIDA P
-            WHERE P.NOMBRE_SLOT = @slot;";
-
+                SELECT P.TIEMPO_ENTRE_CLIENTES, P.CANTIDAD_CLIENTES, P.DIA_ACTUAL, P.PROMEDIO_PUNTUACION
+                FROM PARTIDA P
+                WHERE P.SLOT = @slot;";
             using var comando = new SQLiteCommand(consulta, conexion);
             comando.Parameters.AddWithValue("@slot", nombreSlot);
             SQLiteDataReader lector = comando.ExecuteReader();
@@ -72,9 +71,9 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
 
             using var conexion = GestorDeBaseDeDatos.ObtenerConexion();
             string consulta = @"
-                    SELECT NOMBRE_SLOT, DIA_ACTUAL
+                    SELECT SLOT, DIA_ACTUAL
                     FROM PARTIDA
-                    ORDER BY ID_PARTIDA ASC;";
+                    ORDER BY SLOT ASC;";
 
             using var comando = new SQLiteCommand(consulta, conexion);
             SQLiteDataReader lector = comando.ExecuteReader();
@@ -82,18 +81,18 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
             {
                 listaPartidas.Add(
                     new DatosResumenPartida
-                {
-                    NombreJugador = lector["NOMBRE_SLOT"].ToString(),
-                    DiaActual = Convert.ToInt32(lector["DIA_ACTUAL"]),
-                });
+                    {
+                        NombreJugador = lector["SLOT"].ToString(),
+                        DiaActual = Convert.ToInt32(lector["DIA_ACTUAL"]),
+                    });
             }
 
             return listaPartidas;
         }
         public static int ObtenerSiguienteSlotDisponible()
         {
-            List<DatosResumenPartida>  partidasExistentes = ObtenerTodasLasPartidas();
-            if (partidasExistentes.Count < 4) 
+            List<DatosResumenPartida> partidasExistentes = ObtenerTodasLasPartidas();
+            if (partidasExistentes.Count < 4)
             {
                 return partidasExistentes.Count + 1;
             }
@@ -115,7 +114,7 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
             using var comandoDias = new SQLiteCommand(consultaDias, conexion);
             comandoDias.Parameters.AddWithValue("@slot", nombreSlot);
             string consultaPartida = "DELETE FROM PARTIDA WHERE NOMBRE_SLOT = @slot;";
-            using var comandoPartida = new SQLiteCommand(consultaDias, conexion);
+            using var comandoPartida = new SQLiteCommand(consultaPartida, conexion);
             comandoPartida.Parameters.AddWithValue("@slot", nombreSlot);
         }
     }

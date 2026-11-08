@@ -54,7 +54,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 }
                 estacionActual = estaciones[0];
             }
-            GestorDeAudio.ReproducirMusicaFondo();
+            if (GestorDeAudio.MusicaSonando) 
+            {
+                GestorDeAudio.ReproducirMusicaFondo();
+            }
         }
         public void Actualizar(GameTime gameTime, Vector2 posVirtual)
         {

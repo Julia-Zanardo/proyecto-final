@@ -16,7 +16,9 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
         {
             get
             {
-                return $"Data Source={NombreArchivo}";
+                string rutaEjecutable = AppDomain.CurrentDomain.BaseDirectory;
+                string rutaCompletaBaseDatos = System.IO.Path.Combine(rutaEjecutable, NombreArchivo);
+                return $"Data Source={rutaCompletaBaseDatos};Version=3;";
             }
         }
         public static SQLiteConnection ObtenerConexion()

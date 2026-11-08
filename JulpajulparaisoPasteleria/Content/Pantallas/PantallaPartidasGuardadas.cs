@@ -18,6 +18,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         private GestorDePantalla gestorDePantalla;
         private List<DatosResumenPartida> datosResumenPartidas;
         private BotonContinuarPartida[] botonesContinuarPartida;
+        private BotonBase botonCerrar;
         private Texture2D fondo;
         private SpriteFont fuente;
         private int borde=150;
@@ -32,6 +33,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             fondo = content.Load<Texture2D>("imagenes/Fondos/pantallaPartidasGuardadas");
             fuente = content.Load<SpriteFont>("fuentes/fuenteGruesa");
             botonesContinuarPartida = new BotonContinuarPartida[datosResumenPartidas.Count];
+            botonCerrar = new BotonBase(content.Load<Texture2D>("imagenes/Botones/botonCerrar"), new Rectangle(1600, 50, 200, 100));
             for (int i = 0; i < botonesContinuarPartida.Length; i++)
             {
                 botonesContinuarPartida[i] = new BotonContinuarPartida(content.Load<Texture2D>("imagenes/Botones/botonContinuar"), new Rectangle(borde-20 +(450 * i), 750, 320, 160), datosResumenPartidas[i]);
@@ -39,6 +41,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         }
         public void Actualizar(GameTime gameTime, Vector2 posVirtual)
         {
+            botonCerrar.Actualizar(posVirtual);
             for (int i = 0; i < botonesContinuarPartida.Length; i++)
             {
                 botonesContinuarPartida[i].Actualizar(posVirtual);
@@ -52,6 +55,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                     gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
                     break;
                 }
+            }
+            if(botonCerrar.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
+            {
+                gestorDePantalla.CambiarPantalla(new MenuPrincipal(gestorDePantalla));
             }
         }
         public void Dibujar(SpriteBatch spriteBatch)
@@ -67,6 +74,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 spriteBatch.DrawString(fuente, textoDiaACtual, new Vector2(borde+100+(450*i), 500), Color.Black, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
                 botonesContinuarPartida[i].Dibujar(spriteBatch);
             }
+            botonCerrar.Dibujar(spriteBatch);
         }
     }
 }

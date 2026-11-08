@@ -44,6 +44,10 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
                 if (botonJugar.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
                 {
                     GestorDeJuego.ReiniciarPartidaNueva();
+                    if (GestorDeAudio.MusicaSonando)
+                    { 
+                        GestorDeAudio.ReproducirMusicaFondo();
+                    }
                     gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
                 }
 
