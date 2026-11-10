@@ -1,5 +1,25 @@
 Registro de cambios
-
+## [1.10.12] - 2026-10-04
+- clases GestorDeBaseDeDatos y RepositorioPartida actualizadas con using var.
+## [0.10.12] - 2026-10-29
+- nuevo BotonContinuarPartida en MenuPrincipal.
+- logica en MenuPrincipal adaptada a la logica de base de datos.
+## [0.10.12] - 2026-10-15
+- Creacion de clase GestorDeBaseDeDatos.
+- Creacion de clase Repositorio Partida.
+- Creacion de clase DatosResumenPartida.
+- Creacion de clase PantallaPartidasGuardadas.
+## [0.10.12] - 2026-10-15
+- nueva clase RegistroDia para calcular promedio de puntuacion de cada estacion.
+## [0.10.11] - 2026-10-13
+- PantallaResumen creada.
+- Funcion ObtenerSiDiaTerrmino en GestorDeJuego.
+- CalculardorDePuntuacion pasado por constructor en PantallaJuego.
+- logica de PantallaResumenDia  empezada.
+## [0.9.11] - 2026-10-12
+- Metodo ForzarSoltar para evitar movimientos extraños en las tortas.
+- Metodo para saber si el ticket esta en la zona de entrega segun el pedido.
+- Logica de EstacionDeEntrega terminada.
 ## [0.8.11] - 2026-10-10
 - BotonDeEntrega agregado en EstacionDeEntrega.
 - Creacion de clase CalculadorDePuntuacion para calcular la puntuacion de la torta.
