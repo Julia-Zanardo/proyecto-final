@@ -132,7 +132,7 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas.Estaciones
                 gestorDePedidos.tortas.Remove(tortaActual);
                 Torta nuevaTorta = new Torta(new Rectangle(0, 0, Constante.MEDIDA_TORTA_X, Constante.MEDIDA_TORTA_Y));
                 nuevaTorta.EstacionActual = EstacionActual.EstacionDeMezcla;
-                nuevaTorta.cambiarArea(new Rectangle(0, 0, -500, -500));
+                nuevaTorta.cambiarArea(new Rectangle(0, 0, 0, 0));
                 gestorDePedidos.AgregarTorta(nuevaTorta);
             }
             botonSiguiente.Actualizar(posicionVirtual);
