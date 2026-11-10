@@ -1,15 +1,15 @@
 Registro de cambios
-## [1.10.12] - 2026-10-04
+## [1.11.13] - 2026-10-04
 - clases GestorDeBaseDeDatos y RepositorioPartida actualizadas con using var.
-## [0.10.12] - 2026-10-29
+## [0.11.13] - 2026-10-29
 - nuevo BotonContinuarPartida en MenuPrincipal.
 - logica en MenuPrincipal adaptada a la logica de base de datos.
-## [0.10.12] - 2026-10-15
+## [0.11.12] - 2026-10-15
 - Creacion de clase GestorDeBaseDeDatos.
 - Creacion de clase Repositorio Partida.
 - Creacion de clase DatosResumenPartida.
 - Creacion de clase PantallaPartidasGuardadas.
-## [0.10.12] - 2026-10-15
+## [0.10.13] - 2026-10-15
 - nueva clase RegistroDia para calcular promedio de puntuacion de cada estacion.
 ## [0.10.11] - 2026-10-13
 - PantallaResumen creada.
