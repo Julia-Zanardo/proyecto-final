@@ -31,7 +31,6 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             {
                 return false;
             }
-
         }
 
         public static int ObtenerIdPedido()
