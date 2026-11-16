@@ -17,6 +17,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
         public static int CantidadDeClientesEnojados { get; set; } = 0;
         public static int CantidadDeClientesFelices { get; set; } = 0;
         public static int SlotActual { get; set; } = 0;
+        public static List<DiaJugadoTemporal> DiasPendientesDeGuardado = new List<DiaJugadoTemporal>();
         public static void RegistrarCliente()
         {
             CantidadDeClientesAntendidosHoy++;
@@ -45,9 +46,9 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             CantidadDeClientesPorDia++;
             CantidadDeClientesAntendidosHoy = 0;
         }
-        public static void GuardarPartida(string numeroDePartida, int promedio, int satisfechos, int enojados)
+        public static void GuardarPartida(string nombreSlot)
         {
-            RepositorioPartida.GuardarProgreso(numeroDePartida, promedio, satisfechos, enojados);
+            RepositorioPartida.GuardarProgresoCompleto(SlotActual);
         }
         public static void ReiniciarPartidaNueva()
         {
@@ -58,6 +59,7 @@ namespace JulpajulparaisoPasteleria.Content.Gestores
             CantidadDeClientesAntendidosHoy = 0;
             CantidadDeClientesEnojados = 0;
             CantidadDeClientesFelices = 0;
+            SlotActual = 0;
         }
     }
 

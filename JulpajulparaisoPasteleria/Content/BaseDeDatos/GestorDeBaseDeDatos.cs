@@ -1,11 +1,6 @@
-﻿using JulpajulparaisoPasteleria.Content.Gestores;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+using System.IO;
 
 namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
 {
@@ -17,37 +12,46 @@ namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
             get
             {
                 string rutaEjecutable = AppDomain.CurrentDomain.BaseDirectory;
-                string rutaCompletaBaseDatos = System.IO.Path.Combine(rutaEjecutable, NombreArchivo);
+                string rutaCompletaBaseDatos = Path.Combine(rutaEjecutable, NombreArchivo);
                 return $"Data Source={rutaCompletaBaseDatos};Version=3;";
             }
         }
+
         public static SQLiteConnection ObtenerConexion()
         {
             SQLiteConnection conexion = new SQLiteConnection(CadenaConexión);
             conexion.Open();
+            using var comandoPragma = new SQLiteCommand("PRAGMA foreign_keys = ON;", conexion);
+            comandoPragma.ExecuteNonQuery();
+
             return conexion;
         }
+
         public static void InicializarBaseDeDatos()
         {
             using var conexion = ObtenerConexion();
             using var comando = conexion.CreateCommand();
 
             comando.CommandText = @"
-            CREATE TABLE IF NOT EXISTS PARTIDA (
+            CREATE TABLE IF NOT EXISTS PARTIDAS (
                 SLOT TEXT PRIMARY KEY,
                 TIEMPO_ENTRE_CLIENTES REAL,
                 CANTIDAD_CLIENTES INTEGER,
                 DIA_ACTUAL INTEGER,
-                PROMEDIO_PUNTUACION INTEGER
+                FECHA_CREACION DATETIME DEFAULT CURRENT_TIMESTAMP 
             );
+
             CREATE TABLE IF NOT EXISTS HISTORIAL_DIAS (
                 ID_DIA INTEGER PRIMARY KEY AUTOINCREMENT,
-                SLOT TEXT,
-                PUNTUACION INTEGER,
-                CANTIDAD_CLIENTES_SATISFECHOS INTEGER,
-                CANTIDAD_CLIENTES_ENOJADOS INTEGER,
-                FOREIGN KEY (SLOT) REFERENCES PARTIDA(SLOT)
+                SLOT TEXT NOT NULL,
+                PUNTUACION INTEGER NOT NULL,
+                CANTIDAD_CLIENTES_SATISFECHOS INTEGER NOT NULL,
+                CANTIDAD_CLIENTES_ENOJADOS INTEGER NOT NULL,
+                FOREIGN KEY (SLOT) REFERENCES PARTIDAS(SLOT)
+                ON DELETE CASCADE
+                ON UPDATE RESTRICT
             );";
+
             comando.ExecuteNonQuery();
         }
     }

@@ -48,9 +48,13 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
 
                 if (botonesContinuarPartida[i].FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
                 {
-                    GestorDeJuego.SlotActual = i + 1;
                     DatosResumenPartida partidaSeleccionada = datosResumenPartidas[i];
-                    RepositorioPartida.CargarPartidaEnJuego(partidaSeleccionada.NombreJugador);
+
+                    int numeroSlot = RepositorioPartida.NumeroDeSlot(partidaSeleccionada.NombreJugador);
+
+                    GestorDeJuego.SlotActual = numeroSlot;
+
+                    RepositorioPartida.CargarPartidaEnJuego(numeroSlot);
 
                     gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
                     break;

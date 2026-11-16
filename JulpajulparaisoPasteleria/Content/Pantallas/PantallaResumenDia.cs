@@ -41,6 +41,13 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
         {
             if (botonSiguienteDia.FueClickeado(posVirtual, ManejoEntrada.ElementoClickeado()))
             {
+                int promedioPuntaje = registroDeDia.PuntuacionAcumuladaTotal / (GestorDeJuego.CantidadDeClientesAntendidosHoy > 0 ? GestorDeJuego.CantidadDeClientesAntendidosHoy : 1);
+                GestorDeJuego.DiasPendientesDeGuardado.Add(new DiaJugadoTemporal
+                {
+                    Puntuacion = promedioPuntaje,
+                    Satisfechos = GestorDeJuego.CantidadDeClientesFelices,
+                    Enojados = GestorDeJuego.CantidadDeClientesEnojados
+                });
                 GestorDeJuego.AvanzarDeDia();
                 gestorDePantalla.CambiarPantalla(new PantallaJuego(gestorDePantalla));
                 registroDeDia.ReiniciarAcumuladoresDia();
@@ -49,21 +56,26 @@ namespace JulpajulparaisoPasteleria.Content.Pantallas
             {
                 if (GestorDeJuego.SlotActual == 0)
                 {
-                    GestorDeJuego.SlotActual = RepositorioPartida.ObtenerSiguienteSlotDisponible();
+                    GestorDeJuego.SlotActual = RepositorioPartida.ObtenerNumeroDeSlotParaNuevaPartida();
                 }
-                int slotActual = GestorDeJuego.SlotActual;
-                int promedioPuntaje = registroDeDia.PuntuacionAcumuladaTotal / GestorDeJuego.CantidadDeClientesAntendidosHoy;
-                int clientesSatisfichos = GestorDeJuego.CantidadDeClientesFelices;
-                int enojados = GestorDeJuego.CantidadDeClientesEnojados;
 
+                int clientesAtendidos = GestorDeJuego.CantidadDeClientesAntendidosHoy > 0 ? GestorDeJuego.CantidadDeClientesAntendidosHoy : 1;
+                int promedioPuntaje = registroDeDia.PuntuacionAcumuladaTotal / clientesAtendidos;
+
+                GestorDeJuego.DiasPendientesDeGuardado.Add(new DiaJugadoTemporal
+                {
+                    Puntuacion = promedioPuntaje,
+                    Satisfechos = GestorDeJuego.CantidadDeClientesFelices,
+                    Enojados = GestorDeJuego.CantidadDeClientesEnojados
+                });
+                GestorDeJuego.AvanzarDeDia();
                 try
                 {
-                    GestorDeJuego.AvanzarDeDia();
-                    GestorDeJuego.GuardarPartida("Partida " + slotActual, promedioPuntaje, clientesSatisfichos, enojados);
+                    RepositorioPartida.GuardarProgresoCompleto(GestorDeJuego.SlotActual);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Error al guardar la partida: " + ex.Message);
                 }
                 registroDeDia.ReiniciarAcumuladoresDia();
                 gestorDePantalla.CambiarPantalla(new MenuPrincipal(gestorDePantalla));

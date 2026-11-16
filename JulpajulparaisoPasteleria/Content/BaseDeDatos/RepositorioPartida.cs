@@ -2,120 +2,157 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JulpajulparaisoPasteleria.Content.BaseDeDatos
 {
     public static class RepositorioPartida
     {
-        public static void GuardarProgreso(string nombreSlot, int promedioPuntaje, int clientesSatisfichos, int clientesEnojados)
+        public const int CantidadMaximaSlots = 4;
+
+        public static string NombreSlot(int numero)
         {
-            using var conexion = JulpajulparaisoPasteleria.Content.BaseDeDatos.GestorDeBaseDeDatos.ObtenerConexion();
+            return $"Partida {numero}";
+        }
+
+        public static int NumeroDeSlot(string nombre)
+        {
+            return int.Parse(nombre.Replace("Partida ", "").Trim());
+        }
+
+        
+        public static void GuardarProgresoCompleto(int numeroSlot)
+        {
+            string nombreSlot = NombreSlot(numeroSlot);
+            using var conexion = GestorDeBaseDeDatos.ObtenerConexion();
             using var transaccion = conexion.BeginTransaction();
 
             try
             {
                 string consultaPartida = @"
-                INSERT OR REPLACE INTO PARTIDA (SLOT, TIEMPO_ENTRE_CLIENTES, CANTIDAD_CLIENTES, DIA_ACTUAL, PROMEDIO_PUNTUACION)
-                VALUES (@slot, @tiempo, @cantClientes, @diaActual, @promedio);";
+                    INSERT INTO PARTIDAS (SLOT, TIEMPO_ENTRE_CLIENTES, CANTIDAD_CLIENTES, DIA_ACTUAL)
+                    VALUES (@slot, @tiempo, @cantClientes, @diaActual)
+                    ON CONFLICT(SLOT) DO UPDATE SET
+                        TIEMPO_ENTRE_CLIENTES = excluded.TIEMPO_ENTRE_CLIENTES,
+                        CANTIDAD_CLIENTES     = excluded.CANTIDAD_CLIENTES,
+                        DIA_ACTUAL            = excluded.DIA_ACTUAL;";
 
-                using var ComandoPartida = new SQLiteCommand(consultaPartida, conexion, transaccion);
-                ComandoPartida.Parameters.AddWithValue("@slot", nombreSlot);
-                ComandoPartida.Parameters.AddWithValue("@tiempo", GestorDeJuego.TiempoEntreClientes);
-                ComandoPartida.Parameters.AddWithValue("@cantClientes", GestorDeJuego.CantidadDeClientesPorDia);
-                ComandoPartida.Parameters.AddWithValue("@diaActual", GestorDeJuego.DiaActual);
-                ComandoPartida.Parameters.AddWithValue("@promedio", promedioPuntaje);
-                ComandoPartida.ExecuteNonQuery();
+                using (var cmd = new SQLiteCommand(consultaPartida, conexion, transaccion))
+                {
+                    cmd.Parameters.AddWithValue("@slot", nombreSlot);
+                    cmd.Parameters.AddWithValue("@tiempo", GestorDeJuego.TiempoEntreClientes);
+                    cmd.Parameters.AddWithValue("@cantClientes", GestorDeJuego.CantidadDeClientesPorDia);
+                    cmd.Parameters.AddWithValue("@diaActual", GestorDeJuego.DiaActual);
+                    cmd.ExecuteNonQuery();
+                }
+
                 string consultaDia = @"
-                INSERT INTO HISTORIAL_DIAS (SLOT, PUNTUACION, CANTIDAD_CLIENTES_SATISFECHOS, CANTIDAD_CLIENTES_ENOJADOS)
-                VALUES (@slot, @puntuacion, @satisfechos, @enojados);";
+                    INSERT INTO HISTORIAL_DIAS (SLOT, PUNTUACION, CANTIDAD_CLIENTES_SATISFECHOS, CANTIDAD_CLIENTES_ENOJADOS)
+                    VALUES (@slot, @puntuacion, @satisfechos, @enojados);";
 
-                using var ComandoDia = new SQLiteCommand(consultaDia, conexion, transaccion);
-                ComandoDia.Parameters.AddWithValue("@slot", nombreSlot);
-                ComandoDia.Parameters.AddWithValue("@puntuacion", promedioPuntaje);
-                ComandoDia.Parameters.AddWithValue("@satisfechos", clientesSatisfichos);
-                ComandoDia.Parameters.AddWithValue("@enojados", clientesEnojados);
-                ComandoDia.ExecuteNonQuery();
+                foreach (var dia in GestorDeJuego.DiasPendientesDeGuardado)
+                {
+                    using var cmd = new SQLiteCommand(consultaDia, conexion, transaccion);
+                    cmd.Parameters.AddWithValue("@slot", nombreSlot);
+                    cmd.Parameters.AddWithValue("@puntuacion", dia.Puntuacion);
+                    cmd.Parameters.AddWithValue("@satisfechos", dia.Satisfechos);
+                    cmd.Parameters.AddWithValue("@enojados", dia.Enojados);
+                    cmd.ExecuteNonQuery();
+                }
+
                 transaccion.Commit();
+                GestorDeJuego.DiasPendientesDeGuardado.Clear();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 transaccion.Rollback();
-                throw new Exception("Error al guardar la partida: " + ex.Message);
+                throw new Exception("Error al guardar: " + ex.Message, ex);
             }
         }
-        public static void CargarPartidaEnJuego(string nombreSlot)
+
+        public static void CargarPartidaEnJuego(int numeroSlot)
         {
             using var conexion = GestorDeBaseDeDatos.ObtenerConexion();
+            using var comando = new SQLiteCommand(@"
+                SELECT TIEMPO_ENTRE_CLIENTES, CANTIDAD_CLIENTES, DIA_ACTUAL
+                FROM PARTIDAS
+                WHERE SLOT = @slot;", conexion);
+            comando.Parameters.AddWithValue("@slot", NombreSlot(numeroSlot));
 
-            string consulta = @"
-                SELECT P.TIEMPO_ENTRE_CLIENTES, P.CANTIDAD_CLIENTES, P.DIA_ACTUAL, P.PROMEDIO_PUNTUACION
-                FROM PARTIDA P
-                WHERE P.SLOT = @slot;";
-            using var comando = new SQLiteCommand(consulta, conexion);
-            comando.Parameters.AddWithValue("@slot", nombreSlot);
-            SQLiteDataReader lector = comando.ExecuteReader();
+            using var lector = comando.ExecuteReader();
             if (lector.Read())
             {
                 GestorDeJuego.DiaActual = Convert.ToInt32(lector["DIA_ACTUAL"]);
                 GestorDeJuego.TiempoEntreClientes = Convert.ToSingle(lector["TIEMPO_ENTRE_CLIENTES"]);
                 GestorDeJuego.CantidadDeClientesPorDia = Convert.ToInt32(lector["CANTIDAD_CLIENTES"]);
+                GestorDeJuego.SlotActual = numeroSlot;
+                GestorDeJuego.DiasPendientesDeGuardado.Clear();
             }
         }
 
         public static List<DatosResumenPartida> ObtenerTodasLasPartidas()
         {
-            List<DatosResumenPartida> listaPartidas = new List<DatosResumenPartida>();
+            var lista = new List<DatosResumenPartida>();
 
             using var conexion = GestorDeBaseDeDatos.ObtenerConexion();
-            string consulta = @"
-                    SELECT SLOT, DIA_ACTUAL
-                    FROM PARTIDA
-                    ORDER BY SLOT ASC;";
+            using var comando = new SQLiteCommand(
+                "SELECT SLOT, DIA_ACTUAL FROM PARTIDAS ORDER BY SLOT ASC;", conexion);
+            using var lector = comando.ExecuteReader();
 
-            using var comando = new SQLiteCommand(consulta, conexion);
-            SQLiteDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {
-                listaPartidas.Add(
-                    new DatosResumenPartida
-                    {
-                        NombreJugador = lector["SLOT"].ToString(),
-                        DiaActual = Convert.ToInt32(lector["DIA_ACTUAL"]),
-                    });
+                lista.Add(new DatosResumenPartida
+                {
+                    NombreJugador = lector["SLOT"].ToString(),
+                    DiaActual = Convert.ToInt32(lector["DIA_ACTUAL"]),
+                });
+            }
+            return lista;
+        }
+        private static List<string> ObtenerSlotsPorAntiguedad()
+        {
+            var nombres = new List<string>();
+
+            using var conexion = GestorDeBaseDeDatos.ObtenerConexion();
+            using var comando = new SQLiteCommand(
+                "SELECT SLOT FROM PARTIDAS ORDER BY FECHA_CREACION ASC;", conexion);
+            using var lector = comando.ExecuteReader();
+
+            while (lector.Read())
+            {
+                nombres.Add(lector["SLOT"].ToString());
+            }
+            return nombres;
+        }
+
+        public static void BorrarPartidaPorSlot(string nombreSlot)
+        {
+            using var conexion = GestorDeBaseDeDatos.ObtenerConexion();
+            using var comando = new SQLiteCommand("DELETE FROM PARTIDAS WHERE SLOT = @slot;", conexion);
+            comando.Parameters.AddWithValue("@slot", nombreSlot);
+            comando.ExecuteNonQuery();
+        }
+
+        public static int ObtenerNumeroDeSlotParaNuevaPartida()
+        {
+            List<string> ocupados = ObtenerSlotsPorAntiguedad();
+            var usados = new HashSet<string>(ocupados);
+
+            if (ocupados.Count >= CantidadMaximaSlots)
+            {
+                string masAntiguo = ocupados[0];
+                BorrarPartidaPorSlot(masAntiguo);
+                usados.Remove(masAntiguo);
             }
 
-            return listaPartidas;
-        }
-        public static int ObtenerSiguienteSlotDisponible()
-        {
-            List<DatosResumenPartida> partidasExistentes = ObtenerTodasLasPartidas();
-            if (partidasExistentes.Count < 4)
+            for (int numero = 1; numero <= CantidadMaximaSlots; numero++)
             {
-                return partidasExistentes.Count + 1;
+                if (!usados.Contains(NombreSlot(numero)))
+                {
+                    return numero;
+                }
             }
-            using var conexion = GestorDeBaseDeDatos.ObtenerConexion();
-            string consulta = "SELECT NOMBRE_SLOT FROM PARTIDA ORDER BY ID_PARTIDA ASC LIMIT 1;";
-            using var comando = new SQLiteCommand(consulta, conexion);
-            var resultado = comando.ExecuteScalar();
-            string nombreMasVieja = resultado.ToString();
-            if (int.TryParse(nombreMasVieja.Replace("Partida ", ""), out int numeroSlot))
-            {
-                BorrarPartidaPorNombre(nombreMasVieja, conexion);
-                return numeroSlot;
-            }
-            return 1;
-        }
-        private static void BorrarPartidaPorNombre(string nombreSlot, SQLiteConnection conexion)
-        {
-            string consultaDias = "DELETE FROM DIA WHERE ID_PARTIDA IN (SELECT ID_PARTIDA FROM PARTIDA WHERE NOMBRE_SLOT = @slot);";
-            using var comandoDias = new SQLiteCommand(consultaDias, conexion);
-            comandoDias.Parameters.AddWithValue("@slot", nombreSlot);
-            string consultaPartida = "DELETE FROM PARTIDA WHERE NOMBRE_SLOT = @slot;";
-            using var comandoPartida = new SQLiteCommand(consultaPartida, conexion);
-            comandoPartida.Parameters.AddWithValue("@slot", nombreSlot);
+
+            throw new InvalidOperationException("No se encontró un slot libre.");
         }
     }
 }
